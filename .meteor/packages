@@ -20,7 +20,10 @@ email
 kadira:flow-router
 kadira:flow-router-ssr
 kadira:react-layout
+lauricio:less-autoprefixer
+less
 matb33:collection-hooks
 react
 reactive-var
+semantic:ui
 underscore
