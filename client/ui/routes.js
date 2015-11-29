@@ -1,5 +1,9 @@
 FlowRouter.route('/', {
   action: function(params, queryParams) {
-    console.log("Yeah! We are on the front:", params.postId);
+    ReactLayout.render(MainLayout,{
+      header: 'this is the header',
+      content: 'this is the content',
+      footer: 'this is the footer'
+    });
   }
 });
