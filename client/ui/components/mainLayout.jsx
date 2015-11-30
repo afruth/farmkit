@@ -1,4 +1,4 @@
-MainLayout = React.createClass ({
+CC.MainLayout = React.createClass ({
   render() {
     return <div>
 
