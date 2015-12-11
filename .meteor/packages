@@ -17,7 +17,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 aldeed:collection2
 dburles:collection-helpers
 email
-kadira:flow-router
 kadira:flow-router-ssr
 kadira:react-layout
 lauricio:less-autoprefixer
