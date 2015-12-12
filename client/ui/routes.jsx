@@ -1,37 +1,36 @@
-var Content = CC.Content;
-var Header = CC.Header;
-var Footer = CC.Footer;
-var AdminContent = CC.AdminContent;
 
 FlowRouter.route('/', {
-  navbar: true,
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.MainLayout,{
-      header: <Header />,
-      content: <Content />,
-      footer: <Footer />
-    });
-  }
+  	navbar: true,
+  	name: 'home',
+  	action: function(params, queryParams) {
+	    ReactLayout.render(CC.MainLayout,{
+	      	header: <CC.Header />,
+	      	content: <CC.Content />,
+	      	footer: <CC.Footer />
+	    });
+  	}
 });
 
 FlowRouter.route('/admin', {
-  navbar: true,
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.Admin,{
-      header: <Header />,
-      content: <AdminContent />,
-      footer: <Footer />
-    });
-  }
+  	navbar: true,
+  	name: 'admin',
+  	action: function(params, queryParams) {
+	    ReactLayout.render(CC.Admin,{
+	      	header: <CC.Header />,
+	      	content: <CC.AdminContent />,
+	      	footer: <CC.Footer />
+	    });
+  	}
 });
 
 FlowRouter.route('/private', {
-  navbar: false,
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.Admin,{
-      header: <Header />,
-      content: 'This is private',
-      footer: <Footer />
-    });
-  }
+  	navbar: false,
+  	name: "I'm the captain of a Pirate ship!!!",
+  	action: function(params, queryParams) {
+	    ReactLayout.render(CC.Admin,{
+	      	header: <CC.Header />,
+	      	content: 'This is private',
+	      	footer: <CC.Footer />
+	    });
+  	}
 });
