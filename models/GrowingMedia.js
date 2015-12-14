@@ -6,11 +6,11 @@ GrowingMedium = new Astro.Class({
     name: 'string'
   },
   relations: {
-    media: {
+    plants: {
       type: 'many',
-      class: 'Medium',
+      class: 'Plant',
       local: '_id',
-      foreign: 'areaId'
+      foreign: 'medium'
     }
   },
   behaviours: {
