@@ -27,3 +27,5 @@ reactive-var
 semantic:ui
 underscore
 jagi:astronomy
+jagi:astronomy-relations
+jagi:astronomy-timestamp-behavior
