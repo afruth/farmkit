@@ -1,8 +1,8 @@
 Plants = new Mongo.Collection('plants');
 
 var reqStr = Validators.and([
-  Validators.required(),
-  Validators.string()
+  Validators.required('Plant type is required'),
+  Validators.string('Plant type is wrong')
 ]);
 
 Plant = Astro.Class({
@@ -16,7 +16,9 @@ Plant = Astro.Class({
         return 'Plant ' + Random.id()
       }
     },
-    datePlanted: 'date',
+    datePlanted: {
+      type: 'date'
+    },
     age: {
       type: 'number',
       transient: true
@@ -31,7 +33,8 @@ Plant = Astro.Class({
       nested: 'string',
       default: function() {
         return []
-      }
+      },
+      optional: true
     }
   },
   relations: {
@@ -49,7 +52,9 @@ Plant = Astro.Class({
     }
   },
   validators: {
-    plantType: reqStr
+    plantType: reqStr,
+    datePlanted: Validators.required(),
+    areaId: reqStr
   },
   events: {
     afterInit: function() {

@@ -2,6 +2,7 @@ PlantAreas = new Mongo.Collection('areas');
 
 PlantArea = new Astro.Class({
   name: 'PlantArea',
+  collection: PlantAreas,
   fields: {
     name: 'string'
   },
