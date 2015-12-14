@@ -21,5 +21,8 @@ PlantFamily = new Astro.Class({
       local: '_id',
       foreign: 'plantType'
     }
+  },
+  behaviours: {
+    timestamp: {}
   }
 });

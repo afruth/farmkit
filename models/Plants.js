@@ -61,5 +61,8 @@ Plant = Astro.Class({
       }
     }
 
+  },
+  behaviours: {
+    timestamp: {}
   }
 })

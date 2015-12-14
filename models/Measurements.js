@@ -21,5 +21,8 @@ Measurement = new Astro.Class({
       local: 'measurementType',
       foreign: '_id'
     }
+  },
+  behaviours: {
+    timestamp: {}
   }
 });

@@ -12,5 +12,8 @@ PlantArea = new Astro.Class({
       local: '_id',
       foreign: 'areaId'
     }
+  },
+  behaviours: {
+    timestamp: {}
   }
 })
