@@ -26,3 +26,5 @@ MeasurementType = new Astro.Class({
     timestamp: {}
   }
 });
+
+if (Meteor.isServer) MeasurementTypes.permit(['insert', 'update', 'remove']).apply();

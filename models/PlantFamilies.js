@@ -26,3 +26,5 @@ PlantFamily = new Astro.Class({
     timestamp: {}
   }
 });
+
+if (Meteor.isServer) PlantFamilies.permit(['insert', 'update', 'remove']).apply();

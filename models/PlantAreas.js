@@ -16,4 +16,6 @@ PlantArea = new Astro.Class({
   behaviours: {
     timestamp: {}
   }
-})
+});
+
+if (Meteor.isServer) PlantAreas.permit(['insert', 'update', 'remove']).apply();

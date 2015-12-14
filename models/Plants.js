@@ -1,5 +1,10 @@
 Plants = new Mongo.Collection('plants');
 
+var reqStr = Validators.and([
+  Validators.required(),
+  Validators.string()
+]);
+
 Plant = Astro.Class({
   name: 'Plant',
   collection: Plants,
@@ -43,6 +48,9 @@ Plant = Astro.Class({
       foreign: '_id'
     }
   },
+  validators: {
+    plantType: reqStr
+  },
   events: {
     afterInit: function() {
       var plantDate = this.datePlanted;
@@ -65,4 +73,6 @@ Plant = Astro.Class({
   behaviours: {
     timestamp: {}
   }
-})
+});
+
+if (Meteor.isServer) Plants.permit(['insert', 'update', 'remove']).apply();
