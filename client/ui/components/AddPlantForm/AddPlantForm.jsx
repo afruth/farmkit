@@ -14,27 +14,31 @@ CC.AddPlantForm = React.createClass ({
   },
   resetFieldState(event) {
     var curState = this.state;
-    console.log(event.target.id)
     if(curState.errors[event.target.id]) {
       delete curState.errors[event.target.id];
     }
-    console.log(curState)
     this.setState(curState);
   },
   submitForm(event) {
     event.preventDefault();
     //gathering the data
-
+    console.log(this.refs)
     var plant = new Plant();
     for(field in this.refs) {
-      if (this.refs[field].value) {
-        let ref = this.refs[field];
+      let ref = null;
+      if(this.refs[field].getValue) {
+        ref = this.refs[field].getValue();
+      } else {
+        ref = this.refs[field].value;
+      }
+      console.log(ref)
+      if (ref) {
         if(field === 'tags') {
-          plant[field] = ref.value.split(' ');
+          plant[field] = ref.split(' ');
         } else if (field === 'datePlanted') {
-          plant[field] = new Date(ref.value)
+          plant[field] = new Date(ref)
         } else {
-          plant[field] = ref.value;
+          plant[field] = ref;
         }
 
       }
@@ -58,46 +62,101 @@ CC.AddPlantForm = React.createClass ({
     return <div className="plantFormHolder">
       <form id="plantAdd">
         <h2>Add a new plant</h2>
-        <label htmlFor="plantType">Plant type</label>
-        <select id="plantType" ref="plantType">
-          {this.data.plantTypes.map(function(p) {
-            return <option key={p._id} value={p._id}>{p.name}</option>
-            })}
-        </select>
 
-        {(this.state.errors && this.state.errors.plantType) ?
-            <span className="error">{this.state.errors.plantType}</span> : null}
+        <CC.FormElements.SelectInput
+          fieldName="plantType"
+          ref="plantType"
+          label="Plant type"
+          onChangedEvent={this.resetFieldState}
+          data={this.data.plantTypes}
+          error={this.state.errors} />
 
-        <label htmlFor="plantName">Plant name</label>
-        <input id="plantName" ref="plantName" type="text" />
+        <CC.FormElements.TextInput
+          fieldName="plantName"
+          ref="plantName"
+          label="Plant name"
+          onChangedEvent={this.resetFieldState}
+          error={this.state.errors} />
 
-        {(this.state.errors && this.state.errors.plantName) ?
-        <span className="error">{this.state.errors.plantName}</span> : null}
+        <CC.FormElements.SelectInput
+          fieldName="areaId"
+          ref="areaId"
+          label="Plant area"
+          onChangedEvent={this.resetFieldState}
+          data={this.data.plantAreas}
+          error={this.state.errors} />
 
-        <label htmlFor="areaId">Plant area</label>
-        <select id="areaId" ref="areaId">
-          {this.data.plantAreas.map(function(p) {
-            return <option key={p._id} value={p._id}>{p.name}</option>
-            })}
-        </select>
+        <CC.FormElements.TextInput
+          fieldName="datePlanted"
+          ref="datePlanted"
+          label="Date planted"
+          onChangedEvent={this.resetFieldState}
+          error={this.state.errors} />
 
-        {(this.state.errors && this.state.errors.areaId) ?
-        <span className="error">{this.state.errors.areaId}</span> : null}
-
-        <label htmlFor="datePlanted">Date of plantation</label>
-        <input id="datePlanted" ref="datePlanted" type="text" onChange={this.resetFieldState} />
-
-        {(this.state.errors && this.state.errors.datePlanted) ?
-        <span className="error">{this.state.errors.datePlanted}</span> : null}
-
-        <label htmlFor="tags">Tags</label>
-        <input id="tags" ref="tags" type="text" />
-
-        {(this.state.errors && this.state.errors.tags) ?
-        <span className="error">{this.state.errors.tags}</span> : null}
+        <CC.FormElements.TextInput
+          fieldName="tags"
+          ref="tags"
+          label="Tags"
+          onChangedEvent={this.resetFieldState}
+          error={this.state.errors} />
 
         <button onClick={this.submitForm}>Save</button>
       </form>
+    </div>
+  }
+});
+
+CC.FormElements = {};
+
+CC.FormElements.TextInput = React.createClass({
+  getValue() {
+    return this.refs[this.props.fieldName].value;
+  },
+  render() {
+    return <div className="fieldHolder">
+      <label htmlFor={this.props.fieldName}>
+        {this.props.label}
+      </label>
+      <input
+        id={this.props.fieldName}
+        ref={this.props.fieldName}
+        onChange={this.props.onChangedEvent}
+        type="text" />
+
+      {(this.props.error && this.props.error[this.props.fieldName]) ?
+        <span className="error">
+          {this.props.error[this.props.fieldName]}
+        </span> : null}
+      </div>
+  }
+});
+
+CC.FormElements.SelectInput = React.createClass({
+  getValue() {
+    return this.refs[this.props.fieldName].value;
+  },
+  render() {
+    return <div className="fieldHolder">
+      <label htmlFor={this.props.fieldName}>
+        {this.props.label}
+      </label>
+      <select
+        id={this.props.fieldName}
+        ref={this.props.fieldName}
+        onChange={this.props.onChangedEvent}>
+        <option value="">Choose an option</option>
+        {this.props.data.map(function(p) {
+          return <option
+                  key={p._id}
+                  value={p._id}>{p.name}
+                </option>
+          })}
+      </select>
+
+      {(this.props.error && this.props.error[this.props.fieldName]) ?
+      <span className="error">
+        {this.props.error[this.props.fieldName]}
+      </span> : null}
     </div>
   }
 });
