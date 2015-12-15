@@ -1,13 +1,6 @@
 
 // Standard Layout
 CC.MainLayout = React.createClass ({
-	styles: {
-		footer: {
-			position: 'absolute',
-			width: '100%',
-			bottom: 0
-		}
-	},
   	render() {
 	    return <div>
 	      	<header>
@@ -16,7 +9,7 @@ CC.MainLayout = React.createClass ({
 	      	<main>
 	        	{this.props.content}
 	      	</main>
-	      	<footer style={this.styles.footer}>
+	      	<footer className="footer">
 	        	{this.props.footer}
 	      	</footer>
 

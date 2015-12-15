@@ -10,9 +10,8 @@ CC.Navbar = React.createClass ({
 	    let routes = _.filter( FlowRouter._routes, function (x) {
 	      	return x.options.navbar[self.props.navId] === true;
 	    });
-	    console.log( routes )
 	    return (
-	    	<div className="ui secondary  menu">
+	    	<div className="ui secondary menu">
 	    		{routes.map( ( route ) => {
 	    			return <CC.NavbarLinks key={Random.id()} route={route} uiStyle={this.props.uiStyle}/>
 	    		})}
@@ -22,35 +21,11 @@ CC.Navbar = React.createClass ({
 });
 
 
-// Displays the footer Navigation
-//		changes the UI depending on the route displayed
-CC.FooterNav = React.createClass ({
-  	render () {
-	    let routes = _.filter( FlowRouter._routes, function (x) {
-	      	return x.options.navbar.footer === true;
-	    });
-	    console.log( routes )
-	    return (
-	    	<div className="ui secondary menu">
-	    		{routes.map( function( route ){
-	    			return <CC.NavbarLinks route={route} uiStyle="ui button" />
-	    		})}
-			</div>
-	    );
-  	}
-});
-
 // Displays the actual nav link
 CC.NavbarLinks = React.createClass ({
-	styles: {
-		link: {
-			textTransform: 'uppercase',
-			display: 'inline-block'
-		}
-	},
   	render () {
   		return (
-			<a href={this.props.route.path} className={this.props.uiStyle} style={this.styles.link} >{this.props.route.name}</a>
+			<a href={this.props.route.path} className={this.props.uiStyle} >{this.props.route.name}</a>
   		);
   	}
 });
