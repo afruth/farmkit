@@ -30,7 +30,7 @@ CC.FooterNav = React.createClass ({
 	    });
 	    console.log( routes )
 	    return (
-	    	<div className="ui secondary  menu">
+	    	<div className="ui secondary menu">
 	    		{routes.map( function( route ){
 	    			return <CC.NavbarLinks route={route} uiStyle="ui button" />
 	    		})}
