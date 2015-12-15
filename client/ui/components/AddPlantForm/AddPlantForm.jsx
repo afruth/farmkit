@@ -12,6 +12,15 @@ CC.AddPlantForm = React.createClass ({
   getInitialState() {
     return {}
   },
+  resetFieldState(event) {
+    var curState = this.state;
+    console.log(event.target.id)
+    if(curState.errors[event.target.id]) {
+      delete curState.errors[event.target.id];
+    }
+    console.log(curState)
+    this.setState(curState);
+  },
   submitForm(event) {
     event.preventDefault();
     //gathering the data
@@ -42,8 +51,7 @@ CC.AddPlantForm = React.createClass ({
     } else {
       this.setState({
         errors: plant.getValidationErrors()
-      })
-      //console.log('error', plant.getValidationErrors());
+      });
     }
   },
   render() {
@@ -77,7 +85,7 @@ CC.AddPlantForm = React.createClass ({
         <span className="error">{this.state.errors.areaId}</span> : null}
 
         <label htmlFor="datePlanted">Date of plantation</label>
-        <input id="datePlanted" ref="datePlanted" type="text" />
+        <input id="datePlanted" ref="datePlanted" type="text" onChange={this.resetFieldState} />
 
         {(this.state.errors && this.state.errors.datePlanted) ?
         <span className="error">{this.state.errors.datePlanted}</span> : null}
