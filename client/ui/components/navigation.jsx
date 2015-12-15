@@ -6,14 +6,15 @@
 //		changes the UI depending on the route displayed
 CC.Navbar = React.createClass ({
   	render () {
+      let self = this;
 	    let routes = _.filter( FlowRouter._routes, function (x) {
-	      	return x.options.navbar.topnav === true;
+	      	return x.options.navbar[self.props.navId] === true;
 	    });
 	    console.log( routes )
 	    return (
 	    	<div className="ui secondary  menu">
-	    		{routes.map( function( route ){
-	    			return <CC.NavbarLinks route={route} uiStyle="item"/>
+	    		{routes.map( ( route ) => {
+	    			return <CC.NavbarLinks key={Random.id()} route={route} uiStyle={this.props.uiStyle}/>
 	    		})}
 			</div>
 	    );
@@ -49,7 +50,7 @@ CC.NavbarLinks = React.createClass ({
 	},
   	render () {
   		return (
-			<a href={this.props.route.path} className={this.props.uiStyle} style={this.props.styles.link} >{this.props.route.name}</a>
+			<a href={this.props.route.path} className={this.props.uiStyle} style={this.styles.link} >{this.props.route.name}</a>
   		);
   	}
 });

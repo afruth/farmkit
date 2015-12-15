@@ -2,7 +2,7 @@
 CC.Header = React.createClass ({
   	render () {
     	return <div>
-    		<CC.Navbar />
+    		<CC.Navbar navId="topnav" uiStyle="item" />
     	</div>
   	}
 });
