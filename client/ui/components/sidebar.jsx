@@ -2,16 +2,33 @@
 
 
 
-// Displays the sidebar
+// Displays the top nav
 //		changes the UI depending on the route displayed
 CC.Navbar = React.createClass ({
   	render () {
 	    let routes = _.filter( FlowRouter._routes, function (x) {
-	      	return x.options.navbar === true;
+	      	return x.options.navbar.topnav === true;
 	    });
-	    // let paths = _.pluck( routes, 'path' );
 	    console.log( routes )
-	    // console.log( paths )
+	    return (
+	    	<div className="ui secondary  menu">
+	    		{routes.map( function( route ){
+	    			return <CC.NavbarLinks route={route} />
+	    		})}
+			</div>
+	    );
+  	}
+});
+
+
+// Displays the footer Navigation
+//		changes the UI depending on the route displayed
+CC.FooterNav = React.createClass ({
+  	render () {
+	    let routes = _.filter( FlowRouter._routes, function (x) {
+	      	return x.options.navbar.footer === true;
+	    });
+	    console.log( routes )
 	    return (
 	    	<div className="ui secondary  menu">
 	    		{routes.map( function( route ){

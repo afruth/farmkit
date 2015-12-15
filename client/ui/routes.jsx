@@ -1,6 +1,9 @@
 
 FlowRouter.route('/', {
-  navbar: false,
+  navbar: { 
+    topnav: false, 
+    footer: false 
+  },
   name: 'home',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
@@ -12,7 +15,10 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/plant-inventory', {
-  navbar: true,
+  navbar: { 
+    topnav: false, 
+    footer: true 
+  },
   name: 'inventory',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
@@ -24,7 +30,10 @@ FlowRouter.route('/plant-inventory', {
 });
 
 FlowRouter.route('/plant-list', {
-  navbar: true,
+  navbar: { 
+    topnav: false, 
+    footer: true 
+  },
   name: 'plants',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
@@ -36,7 +45,10 @@ FlowRouter.route('/plant-list', {
 });
 
 FlowRouter.route('/systems', {
-  navbar: true,
+  navbar: { 
+    topnav: false, 
+    footer: true 
+  },
   name: 'systems',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
@@ -48,7 +60,10 @@ FlowRouter.route('/systems', {
 });
 
 FlowRouter.route('/tasks', {
-  navbar: true,
+  navbar: { 
+    topnav: false, 
+    footer: true 
+  },
   name: 'tasks',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
@@ -60,7 +75,10 @@ FlowRouter.route('/tasks', {
 });
 
 FlowRouter.route('/plant/add', {
-  navbar: false,
+  navbar: { 
+    topnav: false, 
+    footer: false 
+  },
   name: 'addPlant',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
