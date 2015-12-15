@@ -14,7 +14,7 @@ CC.AddPlantForm = React.createClass ({
   },
   resetFieldState(event) {
     var curState = this.state;
-    if(curState.errors[event.target.id]) {
+    if(curState.errors && curState.errors[event.target.id]) {
       delete curState.errors[event.target.id];
     }
     this.setState(curState);
@@ -22,7 +22,6 @@ CC.AddPlantForm = React.createClass ({
   submitForm(event) {
     event.preventDefault();
     //gathering the data
-    console.log(this.refs)
     var plant = new Plant();
     for(field in this.refs) {
       let ref = null;
@@ -31,7 +30,6 @@ CC.AddPlantForm = React.createClass ({
       } else {
         ref = this.refs[field].value;
       }
-      console.log(ref)
       if (ref) {
         if(field === 'tags') {
           plant[field] = ref.split(' ');
@@ -44,7 +42,7 @@ CC.AddPlantForm = React.createClass ({
       }
     }
 
-    if(plant.validate()) {
+    if(plant.validate(false)) {
       Meteor.call('/plant/add', plant, function(e) {
         if (e) {
           console.log('error', plant.catchValidationException(e));
@@ -102,61 +100,6 @@ CC.AddPlantForm = React.createClass ({
 
         <button onClick={this.submitForm}>Save</button>
       </form>
-    </div>
-  }
-});
-
-CC.FormElements = {};
-
-CC.FormElements.TextInput = React.createClass({
-  getValue() {
-    return this.refs[this.props.fieldName].value;
-  },
-  render() {
-    return <div className="fieldHolder">
-      <label htmlFor={this.props.fieldName}>
-        {this.props.label}
-      </label>
-      <input
-        id={this.props.fieldName}
-        ref={this.props.fieldName}
-        onChange={this.props.onChangedEvent}
-        type="text" />
-
-      {(this.props.error && this.props.error[this.props.fieldName]) ?
-        <span className="error">
-          {this.props.error[this.props.fieldName]}
-        </span> : null}
-      </div>
-  }
-});
-
-CC.FormElements.SelectInput = React.createClass({
-  getValue() {
-    return this.refs[this.props.fieldName].value;
-  },
-  render() {
-    return <div className="fieldHolder">
-      <label htmlFor={this.props.fieldName}>
-        {this.props.label}
-      </label>
-      <select
-        id={this.props.fieldName}
-        ref={this.props.fieldName}
-        onChange={this.props.onChangedEvent}>
-        <option value="">Choose an option</option>
-        {this.props.data.map(function(p) {
-          return <option
-                  key={p._id}
-                  value={p._id}>{p.name}
-                </option>
-          })}
-      </select>
-
-      {(this.props.error && this.props.error[this.props.fieldName]) ?
-      <span className="error">
-        {this.props.error[this.props.fieldName]}
-      </span> : null}
     </div>
   }
 });
