@@ -13,7 +13,7 @@ CC.Navbar = React.createClass ({
 	    return (
 	    	<div className="ui secondary  menu">
 	    		{routes.map( function( route ){
-	    			return <CC.NavbarLinks route={route} />
+	    			return <CC.NavbarLinks route={route} uiStyle="item"/>
 	    		})}
 			</div>
 	    );
@@ -32,7 +32,7 @@ CC.FooterNav = React.createClass ({
 	    return (
 	    	<div className="ui secondary  menu">
 	    		{routes.map( function( route ){
-	    			return <CC.NavbarLinks route={route} />
+	    			return <CC.NavbarLinks route={route} uiStyle="ui button" />
 	    		})}
 			</div>
 	    );
@@ -41,9 +41,15 @@ CC.FooterNav = React.createClass ({
 
 // Displays the actual nav link
 CC.NavbarLinks = React.createClass ({
+	styles: {
+		link: {
+			textTransform: 'uppercase',
+			display: 'inline-block'
+		}
+	},
   	render () {
   		return (
-			<a href={this.props.route.path} className="item">{this.props.route.name}</a>
+			<a href={this.props.route.path} className={this.props.uiStyle} style={this.props.styles.link} >{this.props.route.name}</a>
   		);
   	}
 });
