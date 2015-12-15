@@ -1,4 +1,3 @@
-var Content = CC.Content;
 
 FlowRouter.route('/', {
   action: function(params, queryParams) {
