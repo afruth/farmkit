@@ -46,7 +46,7 @@ Plant = Astro.Class({
   },
   validators: {
     plantType: reqStr,
-    datePlanted: Validators.required(),
+    datePlanted: Validators.required('Date of plantation is required'),
     areaId: reqStr
   },
   behaviours: {

@@ -58,7 +58,7 @@ CC.AddPlantForm = React.createClass ({
   },
   render() {
     return <div className="plantFormHolder">
-      <form id="plantAdd">
+      <form className="ui form" id="plantAdd">
         <h2>Add a new plant</h2>
 
         <CC.FormElements.SelectInput
@@ -98,7 +98,7 @@ CC.AddPlantForm = React.createClass ({
           onChangedEvent={this.resetFieldState}
           error={this.state.errors} />
 
-        <button onClick={this.submitForm}>Save</button>
+        <button className="ui primary large button" onClick={this.submitForm}>Save</button>
       </form>
     </div>
   }
