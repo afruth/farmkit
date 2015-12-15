@@ -1,7 +1,7 @@
 
 FlowRouter.route('/', {
   navbar: { 
-    topnav: false, 
+    topnav: true,
     footer: false 
   },
   name: 'home',
