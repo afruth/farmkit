@@ -43,10 +43,10 @@ Plant = Astro.Class({
       local: 'areaId',
       foreign: '_id'
     },
-    medium: {
+    growingMedium: {
       type: 'one',
       class: 'GrowingMedium',
-      local: 'medium',
+      local: 'growingMedium',
       foreign: '_id'
     },
     watering: {

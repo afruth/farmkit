@@ -1,4 +1,4 @@
-GrowingMedia = new Mongo.Collection('media');
+GrowingMedia = new Mongo.Collection('growingMedia');
 
 GrowingMedium = new Astro.Class({
   name: 'GrowingMedium',
@@ -10,7 +10,7 @@ GrowingMedium = new Astro.Class({
       type: 'many',
       class: 'Plant',
       local: '_id',
-      foreign: 'medium'
+      foreign: 'growingMedium'
     }
   },
   behaviours: {
