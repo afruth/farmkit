@@ -8,6 +8,7 @@ var reqStr = Validators.and([
 Plant = Astro.Class({
   name: 'Plant',
   collection: Plants,
+  transform: null,
   fields: {
     plantType: 'string',
     plantName: {
@@ -18,14 +19,6 @@ Plant = Astro.Class({
     },
     datePlanted: {
       type: 'date'
-    },
-    age: {
-      type: 'number',
-      transient: true
-    },
-    dateOfHarvest: {
-      type: 'number',
-      transient: true
     },
     areaId: 'string',
     tags: {
@@ -55,25 +48,6 @@ Plant = Astro.Class({
     plantType: reqStr,
     datePlanted: Validators.required(),
     areaId: reqStr
-  },
-  events: {
-    afterInit: function() {
-      var plantDate = this.datePlanted;
-      var plantFam = this.plantFamily();
-
-      if(plantDate) {
-        var diff = Date.now() - plantDate.getTime();
-
-        this.set('age', Math.abs((new Date(diff)).getUTCFullYear() - 1970));
-
-        if(plantFam && plantFam.daysToHarvest) {
-          let msToHarvest = plantFam.daysToHarvest * 24 * 60 * 60 * 1000;
-          let msAtPlant = plantDate.getTime();
-          this.set('dateOfHarvest', new Date().setTime(msAtPlant + msToHarvest));
-        }
-      }
-    }
-
   },
   behaviours: {
     timestamp: {}

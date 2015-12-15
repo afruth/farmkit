@@ -8,4 +8,4 @@ Meteor.methods({
     console.log(plant)
     plant.throwValidationException();
   }
-})
+});

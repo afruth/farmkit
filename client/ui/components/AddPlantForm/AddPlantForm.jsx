@@ -9,6 +9,9 @@ CC.AddPlantForm = React.createClass ({
       plantAreas: PlantAreas.find().fetch()
     }
   },
+  getInitialState() {
+    return {}
+  },
   submitForm(event) {
     event.preventDefault();
     //gathering the data
@@ -36,7 +39,12 @@ CC.AddPlantForm = React.createClass ({
           FlowRouter.go('/');
         }
       })
-    } else console.log(plant.get())
+    } else {
+      this.setState({
+        errors: plant.getValidationErrors()
+      })
+      //console.log('error', plant.getValidationErrors());
+    }
   },
   render() {
     return <div className="plantFormHolder">
@@ -48,18 +56,38 @@ CC.AddPlantForm = React.createClass ({
             return <option key={p._id} value={p._id}>{p.name}</option>
             })}
         </select>
+
+        {(this.state.errors && this.state.errors.plantType) ?
+            <span className="error">{this.state.errors.plantType}</span> : null}
+
         <label htmlFor="plantName">Plant name</label>
         <input id="plantName" ref="plantName" type="text" />
+
+        {(this.state.errors && this.state.errors.plantName) ?
+        <span className="error">{this.state.errors.plantName}</span> : null}
+
         <label htmlFor="areaId">Plant area</label>
         <select id="areaId" ref="areaId">
           {this.data.plantAreas.map(function(p) {
             return <option key={p._id} value={p._id}>{p.name}</option>
             })}
         </select>
+
+        {(this.state.errors && this.state.errors.areaId) ?
+        <span className="error">{this.state.errors.areaId}</span> : null}
+
         <label htmlFor="datePlanted">Date of plantation</label>
         <input id="datePlanted" ref="datePlanted" type="text" />
+
+        {(this.state.errors && this.state.errors.datePlanted) ?
+        <span className="error">{this.state.errors.datePlanted}</span> : null}
+
         <label htmlFor="tags">Tags</label>
         <input id="tags" ref="tags" type="text" />
+
+        {(this.state.errors && this.state.errors.tags) ?
+        <span className="error">{this.state.errors.tags}</span> : null}
+
         <button onClick={this.submitForm}>Save</button>
       </form>
     </div>
