@@ -21,6 +21,7 @@ Plant = Astro.Class({
       type: 'date'
     },
     areaId: 'string',
+    growingMedium: 'string',
     tags: {
       type: 'array',
       nested: 'string',
