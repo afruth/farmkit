@@ -7,28 +7,10 @@ GrowingMedium = new Astro.Class({
   name: 'GrowingMedium',
   collection: GrowingMedia,
   fields: {
-    mediumType: {
-      type: 'array',
-      default: function () {
-        [
-          'air', 
-          'clay pellets', 
-          'coconut fiber', 
-          'dirt', 
-          'gravel', 
-          'lava rock', 
-          'nutrient film technique', 
-          'oasis cubes', 
-          'perlite', 
-          'rockwool', 
-          'sand', 
-          'saw dust',
-          'sphagnum moss', 
-          'vermiculite'
-        ]
-      }
-    },
-    growingMediumId: 'string'
+    name: 'string',
+    mediumType: 'string',
+    growingMediumId: 'string',
+    description: 'string'
   },
   // May want to know which plants have been grown in which medium
   relations: {
