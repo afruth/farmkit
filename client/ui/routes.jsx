@@ -103,3 +103,18 @@ FlowRouter.route('/plant/edit/:docId', {
 		});
 	}
 });
+
+FlowRouter.route('/plant/list/', {
+	navbar: {
+		topnav: false,
+		footer: false
+	},
+	name: 'listPlants',
+	action: function(params, queryParams) {
+		ReactLayout.render(CC.MainLayout,{
+			header: 'this is the header',
+			content: <CC.PlantList />,
+			footer: 'this is the footer'
+		});
+	}
+});
