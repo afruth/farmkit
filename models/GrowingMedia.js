@@ -5,6 +5,7 @@ GrowingMedia = new Mongo.Collection('growingMedia');
 
 GrowingMedium = new Astro.Class({
   name: 'GrowingMedium',
+  collection: GrowingMedia,
   fields: {
     mediumType: {
       type: 'array',

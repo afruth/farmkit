@@ -6,6 +6,7 @@ Fertilizers = new Mongo.Collection('fertilizers');
 
 Fertilizer = new Astro.Class({
   name: 'Fertilizer',
+  collection: Fertilizers,
   fields: {
     name: 'string',
     mix: {
