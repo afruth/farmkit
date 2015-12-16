@@ -14,7 +14,9 @@ CC.PlantList = React.createClass({
 			});
 		}
 		return {
-			plants: Plant.find({}).fetch(),
+			plants: Plant.find({}, {
+				limit: this.state.limit
+			}).fetch(),
 			pages: pages,
 			loading: !handle.ready(),
 			noOfPages: noOfPages
@@ -67,12 +69,20 @@ CC.PlantList = React.createClass({
 						<th>Plant type</th>
 						<th>Plant area</th>
 						<th>Date planted</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 				{(!this.data.loading) ? this.data.plants.map(function(item) {
 						return <CC.PlantListItem key={item._id} rowData={item} />
-					}) : <tr><td>Loading</td></tr>
+					}) : (() => {
+						let arr = [];
+						for (a=0; a < this.state.limit; a++) {
+							arr.push(<tr key={a}><td>Loading</td><td></td><td></td><td></td></tr>)
+							}
+
+						return arr;
+					})()
 					}
 				</tbody>
 				<tfoot>
@@ -138,6 +148,10 @@ CC.PlantListItem = React.createClass({
 			</td>
 			<td>
 				{(this.props.rowData.datePlanted) ? this.props.rowData.datePlanted.getTime() : null}
+			</td>
+			<td>
+				<a href={'/plant/edit/' + this.props.rowData._id} className="ui green button">X</a>
+				<a href={'/plant/remove/' + this.props.rowData._id} className="ui red button">X</a>
 			</td>
 		</tr>
 			: null;

@@ -7,5 +7,16 @@ Meteor.methods({
     }
     console.log(plant)
     plant.throwValidationException();
-  }
+  },
+	"/plant/remove": function(plantId) {
+		check(plantId, String);
+
+		var plant = Plant.findOne(plantId);
+
+		if(plant)
+			plant.remove()
+		//if(plant.remove()) {
+		//	return (null, true);
+		//}
+	}
 });

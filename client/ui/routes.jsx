@@ -76,7 +76,7 @@ FlowRouter.route('/tasks', {
 
 FlowRouter.route('/plant/add', {
   navbar: { 
-    topnav: true, 
+    topnav: false,
     footer: false 
   },
   name: 'addPlant',
@@ -106,7 +106,7 @@ FlowRouter.route('/plant/edit/:docId', {
 
 FlowRouter.route('/plant/list/', {
 	navbar: {
-		topnav: false,
+		topnav: true,
 		footer: false
 	},
 	name: 'listPlants',
@@ -114,6 +114,21 @@ FlowRouter.route('/plant/list/', {
 		ReactLayout.render(CC.MainLayout,{
 			header: 'this is the header',
 			content: <CC.PlantList />,
+			footer: 'this is the footer'
+		});
+	}
+});
+
+FlowRouter.route('/plant/remove/:docId', {
+	navbar: {
+		topnav: false,
+		footer: false
+	},
+	name: 'removePlant',
+	action: function(params, queryParams) {
+		ReactLayout.render(CC.MainLayout,{
+			header: 'this is the header',
+			content: <CC.PlantRemove docId={params.docId} />,
 			footer: 'this is the footer'
 		});
 	}
