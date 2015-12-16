@@ -22,6 +22,8 @@ Plant = Astro.Class({
     },
     areaId: 'string',
     growingMediumId: 'string',
+    nutrientId: 'string',
+    phId: 'string',
     wateringId: 'string',
     tags: {
       type: 'array',

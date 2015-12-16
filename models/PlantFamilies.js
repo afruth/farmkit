@@ -17,6 +17,10 @@ PlantFamily = new Astro.Class({
     avgPlantYield: { // Needs a unit of measurement, or change type to string
       type: 'number', 
       optional: true
+    },
+    requiresPollination: {
+      type: 'boolean',
+      optional: true
     }
   },
   relations: {

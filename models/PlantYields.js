@@ -3,22 +3,44 @@
 
 PlantYields = new Mongo.Collection('plantYields');
 
-PlantYield = new Astro.Class({
-  name: 'PlantYield',
+Harvest = Astro.Class({
+  name: 'Harvest',
   fields: {
-    yieldId: 'string',
     amount: 'number',
     unit: {
       type: 'string',
       default: 'fruits'
+    },
+    harvestDate: 'date'
+  }
+});
+
+PlantYield = new Astro.Class({
+  name: 'PlantYield',
+  collection: PlantYields,
+  fields: {
+    yieldId: 'string',
+    harvests: {
+      type: 'array',
+      nested: 'Harvest',
+      default: function () {
+        return [];
+      }
     }
   },
+  // Need to track the individual plant and plantFamily 
   relations: {
     plants: {
       type: 'many',
       class: 'Plant',
       local: '_id',
       foreign: 'yieldId'
+    },
+    plantFamily: {
+      type: 'one',
+      class: 'PlantFamily',
+      foreign: 'plantType',
+      local: '_id'
     }
   },
   behaviours: {
