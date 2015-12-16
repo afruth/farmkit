@@ -58,7 +58,7 @@ CC.PlantForm = React.createClass ({
 				if (e) {
 					console.log('error', plant.catchValidationException(e));
 				} else {
-					FlowRouter.go('/');
+					FlowRouter.go('/plant/list');
 				}
 			})
 		} else {
