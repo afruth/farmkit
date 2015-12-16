@@ -42,6 +42,18 @@ Plant = Astro.Class({
       class: 'PlantArea',
       local: 'areaId',
       foreign: '_id'
+    },
+    growingMedium: {
+      type: 'one',
+      class: 'GrowingMedium',
+      local: 'growingMedium',
+      foreign: '_id'
+    },
+    watering: {
+      type: 'one',
+      class: 'Watering',
+      local: 'watering',
+      foreign: '_id'
     }
   },
   validators: {
