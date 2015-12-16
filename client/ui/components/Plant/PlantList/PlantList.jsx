@@ -28,8 +28,11 @@ CC.PlantList = React.createClass({
 	componentDidUpdate() {
 		$('#gridSel').dropdown('refresh');
 	},
+	componentWillUnmount() {
+		Session.set('plantListState', this.state);
+	},
 	getInitialState() {
-		let state = {
+		let state = Session.get('plantListState') || {
 			limit: 5,
 			skip: 0,
 			page: 1
@@ -78,7 +81,7 @@ CC.PlantList = React.createClass({
 					}) : (() => {
 						let arr = [];
 						for (a=0; a < this.state.limit; a++) {
-							arr.push(<tr key={a}><td>Loading</td><td></td><td></td><td></td></tr>)
+							arr.push(<tr key={a}><td></td><td></td><td></td><td></td></tr>)
 							}
 
 						return arr;
@@ -134,6 +137,7 @@ CC.PlantList = React.createClass({
 CC.PlantListItem = React.createClass({
 
 	render() {
+		console.log(this.props.rowData);
 		return (this.props.rowData) ? <tr>
 			<td>
 				<a href={"/plant/edit/" + this.props.rowData._id} >
