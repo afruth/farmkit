@@ -76,7 +76,7 @@ FlowRouter.route('/tasks', {
 
 FlowRouter.route('/plant/add', {
   navbar: { 
-    topnav: false, 
+    topnav: true, 
     footer: false 
   },
   name: 'addPlant',

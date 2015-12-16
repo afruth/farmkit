@@ -3,6 +3,7 @@ CC.PlantForm = React.createClass ({
 	getMeteorData() {
 		var handlePlantTypes = Meteor.subscribe('plantTypes');
 		var handlePlantAreas = Meteor.subscribe('plantAreas');
+		var handleGrowingMedia = Meteor.subscribe('growingMedia');
 
 		if(this.props.docId)
 			var handlePlant = Meteor.subscribe('plant', this.props.docId);
@@ -11,7 +12,8 @@ CC.PlantForm = React.createClass ({
 		return {
 			plantTypes: PlantFamilies.find().fetch(),
 			plantAreas: PlantAreas.find().fetch(),
-			plant: this.props.docId && Plant.findOne(this.props.docId)
+			plant: this.props.docId && Plant.findOne(this.props.docId),
+			growingMedia: GrowingMedia.find().fetch()
 		}
 	},
 	getInitialState() {
@@ -107,6 +109,14 @@ CC.PlantForm = React.createClass ({
 						defValue={plant.datePlanted}
 						onChangedEvent={this.resetFieldState}
 						error={this.state.errors}/>
+
+					<CC.FormElements.SelectInput
+						fieldName="growingMedium"
+						ref="growingMedium"
+						label="Growing Medium"
+						onChangedEvent={this.resetFieldState}
+						data={this.data.growingMedia}
+						error={this.state.errors} />
 
 					<CC.FormElements.TextInput
 						fieldName="tags"

@@ -5,12 +5,17 @@ PlantFamily = new Astro.Class({
   collection: PlantFamilies,
   fields: {
     name: 'string',
+    plantType: 'string',
     description: {
       type: 'string',
       optional: true
     },
     daysToHarvest: {
       type: 'number',
+      optional: true
+    },
+    avgPlantYield: { // Needs a unit of measurement, or change type to string
+      type: 'number', 
       optional: true
     }
   },
