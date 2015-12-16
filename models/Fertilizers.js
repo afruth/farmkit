@@ -8,7 +8,14 @@ Fertilizer = new Astro.Class({
   name: 'Fertilizer',
   fields: {
     name: 'string',
-    mix: 'string',
+    mix: {
+      nitrogen: 'number',
+      phosophorus: 'number',
+      potassium: 'number'
+    },
+    applications: { // TODO: need to force the array to contain dates only
+      type: 'array'
+    },
     fertilizerId: 'string'
   },
   behaviours: {
