@@ -14,7 +14,9 @@ CC.PlantList = React.createClass({
 			});
 		}
 		return {
-			plants: Plant.find({}).fetch(),
+			plants: Plant.find({}, {
+				limit: this.state.limit
+			}).fetch(),
 			pages: pages,
 			loading: !handle.ready(),
 			noOfPages: noOfPages
@@ -72,7 +74,14 @@ CC.PlantList = React.createClass({
 				<tbody>
 				{(!this.data.loading) ? this.data.plants.map(function(item) {
 						return <CC.PlantListItem key={item._id} rowData={item} />
-					}) : <tr><td>Loading</td></tr>
+					}) : (() => {
+						let arr = [];
+						for (a=0; a < this.state.limit; a++) {
+							arr.push(<tr key={a}><td>Loading</td><td></td><td></td><td></td></tr>)
+							}
+
+						return arr;
+					})()
 					}
 				</tbody>
 				<tfoot>

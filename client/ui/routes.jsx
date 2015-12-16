@@ -76,7 +76,7 @@ FlowRouter.route('/tasks', {
 
 FlowRouter.route('/plant/add', {
   navbar: { 
-    topnav: true, 
+    topnav: false,
     footer: false 
   },
   name: 'addPlant',
@@ -106,7 +106,7 @@ FlowRouter.route('/plant/edit/:docId', {
 
 FlowRouter.route('/plant/list/', {
 	navbar: {
-		topnav: false,
+		topnav: true,
 		footer: false
 	},
 	name: 'listPlants',
