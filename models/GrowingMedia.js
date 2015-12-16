@@ -3,14 +3,15 @@ GrowingMedia = new Mongo.Collection('growingMedia');
 GrowingMedium = new Astro.Class({
   name: 'GrowingMedium',
   fields: {
-    name: 'string'
+    name: 'string',
+    growingMediumId: 'string'
   },
   relations: {
     plants: {
       type: 'many',
       class: 'Plant',
       local: '_id',
-      foreign: 'growingMedium'
+      foreign: 'growingMediumId'
     }
   },
   behaviours: {

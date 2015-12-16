@@ -21,7 +21,8 @@ Plant = Astro.Class({
       type: 'date'
     },
     areaId: 'string',
-    growingMedium: 'string',
+    growingMediumId: 'string',
+    wateringId: 'string',
     tags: {
       type: 'array',
       nested: 'string',
@@ -35,26 +36,62 @@ Plant = Astro.Class({
     plantFamily: {
       type: 'one',
       class: 'PlantFamily',
-      local: 'plantType',
-      foreign: '_id'
+      foreign: 'plantType',
+      local: '_id'
     },
     plantArea: {
       type: 'one',
       class: 'PlantArea',
-      local: 'areaId',
-      foreign: '_id'
+      foreign: 'areaId',
+      local: '_id'
+    },
+    fertilizer: {
+      type: 'one',
+      class: 'Fertilizer',
+      foreign: 'fertilizerId',
+      local: '_id'
     },
     growingMedium: {
       type: 'one',
       class: 'GrowingMedium',
-      local: 'growingMedium',
-      foreign: '_id'
+      foreign: 'growingMediumId',
+      local: '_id'
+    },
+    lightingCycle: {
+      type: 'one',
+      class: 'LightingCycle',
+      foreign: 'lightingId',
+      local: '_id'
+    },
+    nutrientMix: {
+      type: 'one',
+      class: 'NutrientMix',
+      foreign: 'nutrientId',
+      local: '_id'
+    },
+    phValue: {
+      type: 'one',
+      class: 'PHValue',
+      foreign: 'phId',
+      local: '_id'
+    },
+    plantYield: {
+      type: 'one',
+      class: 'plantYield',
+      foreign: 'yieldId',
+      local: '_id'
+    },
+    pollinate: {
+      type: 'one',
+      class: 'Pollinate',
+      foreign: 'pollenId',
+      local: '_id'
     },
     watering: {
       type: 'one',
       class: 'Watering',
-      local: 'watering',
-      foreign: '_id'
+      foreign: 'wateringId',
+      local: '_id'
     }
   },
   validators: {
