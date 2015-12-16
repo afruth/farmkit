@@ -1,7 +1,7 @@
 // A collection of different growing media (dirt, clay pellets, NTF, etc..)
 
 
-GrowingMedia = new Mongo.Collection('growingMedia');
+GrowingMedia = new Mongo.Collection('growingmedia');
 
 GrowingMedium = new Astro.Class({
   name: 'GrowingMedium',

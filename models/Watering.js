@@ -1,6 +1,6 @@
 // Tracks when a plant has been watered. 
 
-Waterings = new Mongo.Collection('media');
+Waterings = new Mongo.Collection('waterings');
 
 WateringHistory = Astro.Class({
   name: 'WateringHistory',
