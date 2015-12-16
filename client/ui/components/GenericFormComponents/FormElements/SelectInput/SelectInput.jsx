@@ -15,6 +15,7 @@ CC.FormElements.SelectInput = React.createClass({
           {this.props.label}
         </label>
         <select
+					defaultValue={this.props.defValue}
           className="ui dropdown"
           id={this.props.fieldName}
           ref={this.props.fieldName}

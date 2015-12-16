@@ -88,3 +88,18 @@ FlowRouter.route('/plant/add', {
     });
   }
 });
+
+FlowRouter.route('/plant/edit/:docId', {
+	navbar: {
+		topnav: false,
+		footer: false
+	},
+	name: 'editPlant',
+	action: function(params, queryParams) {
+		ReactLayout.render(CC.MainLayout,{
+			header: 'this is the header',
+			content: <CC.EditPlantForm docId={params.docId} />,
+			footer: 'this is the footer'
+		});
+	}
+});
