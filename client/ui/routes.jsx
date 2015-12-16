@@ -118,3 +118,18 @@ FlowRouter.route('/plant/list/', {
 		});
 	}
 });
+
+FlowRouter.route('/plant/remove/:docId', {
+	navbar: {
+		topnav: false,
+		footer: false
+	},
+	name: 'removePlant',
+	action: function(params, queryParams) {
+		ReactLayout.render(CC.MainLayout,{
+			header: 'this is the header',
+			content: <CC.PlantRemove docId={params.docId} />,
+			footer: 'this is the footer'
+		});
+	}
+});

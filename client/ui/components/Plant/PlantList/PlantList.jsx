@@ -69,6 +69,7 @@ CC.PlantList = React.createClass({
 						<th>Plant type</th>
 						<th>Plant area</th>
 						<th>Date planted</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -147,6 +148,10 @@ CC.PlantListItem = React.createClass({
 			</td>
 			<td>
 				{(this.props.rowData.datePlanted) ? this.props.rowData.datePlanted.getTime() : null}
+			</td>
+			<td>
+				<a href={'/plant/edit/' + this.props.rowData._id} className="ui green button">X</a>
+				<a href={'/plant/remove/' + this.props.rowData._id} className="ui red button">X</a>
 			</td>
 		</tr>
 			: null;
