@@ -1,13 +1,17 @@
-CC.EditPlantForm = React.createClass ({
+CC.PlantForm = React.createClass ({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		var handlePlantTypes = Meteor.subscribe('plantTypes');
 		var handlePlantAreas = Meteor.subscribe('plantAreas');
-		var handlePlant = Meteor.subscribe('plant', this.props.docId);
+
+		if(this.props.docId)
+			var handlePlant = Meteor.subscribe('plant', this.props.docId);
+
+
 		return {
 			plantTypes: PlantFamilies.find().fetch(),
 			plantAreas: PlantAreas.find().fetch(),
-			plant: Plant.findOne(this.props.docId)
+			plant: this.props.docId && Plant.findOne(this.props.docId)
 		}
 	},
 	getInitialState() {
@@ -24,7 +28,12 @@ CC.EditPlantForm = React.createClass ({
 	submitForm(event) {
 		event.preventDefault();
 		//gathering the data
-		var plant = this.data.plant;
+		if(this.props.docId) {
+			var plant = this.data.plant;
+		} else {
+			var plant = new Plant();
+		}
+
 		for(field in this.refs) {
 			let ref = null;
 			if(this.refs[field].getValue) {
@@ -59,9 +68,8 @@ CC.EditPlantForm = React.createClass ({
 		}
 	},
 	render() {
-		if(this.data.plant) {
-			const plant = this.data.plant;
-			console.log(plant)
+		if(this.data.plant || !this.props.docId) {
+			const plant = this.data.plant || {};
 			return <div className="plantFormHolder">
 				<form className="ui form" id="plantAdd">
 					<h2>Edit plant</h2>

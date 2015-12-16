@@ -83,7 +83,7 @@ FlowRouter.route('/plant/add', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: 'this is the header',
-      content: <CC.AddPlantForm />,
+      content: <CC.PlantForm />,
       footer: 'this is the footer'
     });
   }
@@ -98,7 +98,7 @@ FlowRouter.route('/plant/edit/:docId', {
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: 'this is the header',
-			content: <CC.EditPlantForm docId={params.docId} />,
+			content: <CC.PlantForm docId={params.docId} />,
 			footer: 'this is the footer'
 		});
 	}
