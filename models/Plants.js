@@ -36,14 +36,14 @@ Plant = Astro.Class({
     plantFamily: {
       type: 'one',
       class: 'PlantFamily',
-      foreign: 'plantType',
-      local: '_id'
+      foreign: '_id',
+      local: 'plantType'
     },
     plantArea: {
       type: 'one',
       class: 'PlantArea',
-      foreign: 'areaId',
-      local: '_id'
+      foreign: '_id',
+      local: 'areaId'
     },
     fertilizer: {
       type: 'one',
