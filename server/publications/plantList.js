@@ -5,15 +5,21 @@ Meteor.publishComposite('plantList', function(context) {
 			Counts.publish(this, 'totalPlants', Plants.find());
 			var query = {};
 
-			if (context.searchTerm) {
-				let parsedSearchTerm = new RegExp(context.searchTerm.split(' ').join('|'));
-
-				query['plantName'] =
-					{
-						$regex: parsedSearchTerm, $options: 'i'
+			if (context.searchTerm && !_.isEmpty(context.searchTerm)) {
+				query['$and'] = [];
+				for (key in context.searchTerm) {
+					if (!_.isEmpty(context.searchTerm[key])) {
+						let regex = new RegExp(context.searchTerm[key].split(' ').join('|'));
+						let tempObj = {};
+						tempObj[key] = {
+							$regex: regex, $options: 'i'
+						};
+						query['$and'].push(tempObj);
 					}
+				}
 			}
 			delete context.searchTerm;
+			console.log(query);
 			return Plants.find(query,context);
 		},
 		children: [

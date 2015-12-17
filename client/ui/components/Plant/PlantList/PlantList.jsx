@@ -11,6 +11,8 @@ CC.PlantList = React.createClass({
 		if(this.state.sort)
 			context.sort = this.state.sort;
 
+		console.log(context)
+
 		let handle = Meteor.subscribe('plantList', context);
 		let pages = [];
 		let totalPlants = Counts.get('totalPlants');
@@ -40,7 +42,7 @@ CC.PlantList = React.createClass({
 	},
 	getInitialState() {
 		let state = Session.get('plantListState') || {
-				limit: 5,
+				limit: 10,
 				skip: 0,
 				page: 1,
 				searchTerm: null,
@@ -54,9 +56,19 @@ CC.PlantList = React.createClass({
 		Session.set("pageState", this.state);
 	},
 	setSearchTerm (event) {
+
+		let query = this.state.searchTerm || {};
+
+
+		query[event.target.dataset.fieldname] = event.target.value;
+
+		if(_.isEmpty(event.target.value)) {
+			delete query[event.target.dataset.fieldname]
+		}
+
 		this.setState({
-			searchTerm: event.target.value
-		})
+			searchTerm: query
+		});
 	},
 	changePage(event) {
 		let page = parseInt(event.target.dataset.page);
@@ -86,7 +98,6 @@ CC.PlantList = React.createClass({
 							<CC.SearchForm
 								field="plantName"
 								setSearchTerm={this.setSearchTerm}
-								value={this.state.searchTerm}
 							/>
 						</th>
 						<th>Plant type</th>
@@ -141,9 +152,9 @@ CC.PlantList = React.createClass({
 									null }
 
 								<select defaultValue={this.state.limit} id="gridSel" className="ui dropdown" onChange={this.changeLimit}>
-									<option value="5">5</option>
 									<option value="10">10</option>
-									<option value="15">15</option>
+									<option value="25">25</option>
+									<option value="50">50</option>
 								</select>
 							</div>
 						</th>
@@ -188,7 +199,7 @@ CC.SearchForm = React.createClass({
 		return <input
 							type="text"
 							onChange={this.props.setSearchTerm}
-							value={this.props.value}
+							data-fieldname={this.props.field}
 							/>
 	}
 });
