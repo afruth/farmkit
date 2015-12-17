@@ -4,18 +4,29 @@
 
 Fertilizers = new Mongo.Collection('fertilizers');
 
+FertilizerHistory = Astro.Class({
+  name: 'FertilizerHistory',
+  fields: {
+    applicationDate: 'date',
+    mix: {
+      nitrogen: 'number',
+      phosophorus: 'number',
+      potassium: 'number'
+    }
+  }
+});
+
 Fertilizer = new Astro.Class({
   name: 'Fertilizer',
   collection: Fertilizers,
   fields: {
     name: 'string',
-    mix: {
-      nitrogen: 'number',
-      phosophorus: 'number',
-      potassium: 'number'
-    },
-    applications: { // TODO: need to force the array to contain dates only
-      type: 'array'
+    applications: { 
+      type: 'array',
+      nested: 'FertilizerHistory',
+      default: function () {
+        return [];
+      }
     },
     fertilizerId: 'string'
   },

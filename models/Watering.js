@@ -1,10 +1,26 @@
-Waterings = new Mongo.Collection('media');
+// Tracks when a plant has been watered. 
+
+Waterings = new Mongo.Collection('waterings');
+
+WateringHistory = Astro.Class({
+  name: 'WateringHistory',
+  fields: {
+    wateringDate: 'date'
+  }
+});
 
 Watering = new Astro.Class({
   name: 'Watering',
   fields: {
     name: 'string',
-    wateringId: 'string'
+    wateringId: 'string',
+    WateringHistory: {
+      type: 'array',
+      nested: 'WateringHistory',
+      default: function () {
+        return [];
+      }
+    }
   },
   relations: {
     plants: {

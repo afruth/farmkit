@@ -123,7 +123,7 @@ CC.PlantForm = React.createClass ({
 					<CC.FormElements.SelectInput
 						fieldName="growingMedium"
 						ref="growingMedium"
-						label="Growing Medium"
+						label="Growing medium"
 						onChangedEvent={this.resetFieldState}
 						data={this.data.growingMedia}
 						error={this.state.errors} />

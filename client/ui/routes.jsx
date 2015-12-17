@@ -82,9 +82,9 @@ FlowRouter.route('/plant/add', {
   name: 'addPlant',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
-      header: 'this is the header',
+      header: <CC.Header />,
       content: <CC.PlantForm />,
-      footer: 'this is the footer'
+      footer: <CC.Footer />
     });
   }
 });
@@ -97,9 +97,9 @@ FlowRouter.route('/plant/edit/:docId', {
 	name: 'editPlant',
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
-			header: 'this is the header',
+			header: <CC.Header />,
 			content: <CC.PlantForm docId={params.docId} />,
-			footer: 'this is the footer'
+			footer: <CC.Footer />
 		});
 	}
 });
@@ -112,9 +112,9 @@ FlowRouter.route('/plant/list/', {
 	name: 'listPlants',
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
-			header: 'this is the header',
+			header: <CC.Header />,
 			content: <CC.PlantList />,
-			footer: 'this is the footer'
+			footer: <CC.Footer />
 		});
 	}
 });
@@ -127,9 +127,9 @@ FlowRouter.route('/plant/remove/:docId', {
 	name: 'removePlant',
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
-			header: 'this is the header',
+			header: <CC.Header />,
 			content: <CC.PlantRemove docId={params.docId} />,
-			footer: 'this is the footer'
+			footer: <CC.Footer />
 		});
 	}
 });
