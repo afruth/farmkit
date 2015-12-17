@@ -24,8 +24,8 @@ CC.FormElements.SelectInput = React.createClass({
           <option value="">Choose an option</option>
           {this.props.data.map(function(p) {
             return <option
-              key={p._id}
-              value={p._id}>{p.name}
+              key={p.value}
+              value={p.value}>{p.label}
             </option>
             })}
         </select>

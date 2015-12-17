@@ -10,8 +10,18 @@ CC.PlantForm = React.createClass ({
 
 
 		return {
-			plantTypes: PlantFamilies.find().fetch(),
-			plantAreas: PlantAreas.find().fetch(),
+			plantTypes: PlantFamilies.find().fetch().map((i) => {
+				return {
+					value: i._id,
+					label: i.name
+				}
+			}),
+			plantAreas: PlantAreas.find().fetch().map((i) => {
+				return {
+					value: i._id,
+					label: i.name
+				}
+			}),
 			plant: this.props.docId && Plant.findOne(this.props.docId),
 			growingMedia: GrowingMedia.find().fetch()
 		}

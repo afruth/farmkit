@@ -120,7 +120,7 @@ CC.PlantList = React.createClass({
 									</a> :
 									null }
 
-								<select id="gridSel" className="ui dropdown" onChange={this.changeLimit}>
+								<select defaultValue={this.state.limit} id="gridSel" className="ui dropdown" onChange={this.changeLimit}>
 									<option value="5">5</option>
 									<option value="10">10</option>
 									<option value="15">15</option>
