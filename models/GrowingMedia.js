@@ -10,7 +10,10 @@ GrowingMedium = new Astro.Class({
     name: 'string',
     mediumType: 'string',
     growingMediumId: 'string',
-    description: 'string'
+    description: {
+      type: 'string',
+      optional: true
+    }
   },
   // May want to know which plants have been grown in which medium
   relations: {
