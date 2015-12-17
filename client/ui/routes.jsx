@@ -19,11 +19,11 @@ FlowRouter.route('/plant-inventory', {
     topnav: false, 
     footer: true 
   },
-  name: 'inventory',
+  name: 'my plants',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantInventory />,
+      content: <CC.PlantList />,
       footer: <CC.Footer />
     });
   }
@@ -38,7 +38,7 @@ FlowRouter.route('/plant-list', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantList />,
+      content: <CC.PossiblePlants />,
       footer: <CC.Footer />
     });
   }
