@@ -3,7 +3,18 @@ Meteor.publishComposite('plantList', function(context) {
 		find: function() {
 			context.transform = null;
 			Counts.publish(this, 'totalPlants', Plants.find());
-			return Plants.find({},context);
+			var query = {};
+
+			if (context.searchTerm) {
+				let parsedSearchTerm = new RegExp(context.searchTerm.split(' ').join('|'));
+
+				query['plantName'] =
+					{
+						$regex: parsedSearchTerm, $options: 'i'
+					}
+			}
+			delete context.searchTerm;
+			return Plants.find(query,context);
 		},
 		children: [
 			{

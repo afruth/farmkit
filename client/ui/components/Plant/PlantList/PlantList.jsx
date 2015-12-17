@@ -1,10 +1,17 @@
 CC.PlantList = React.createClass({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
-		let handle = Meteor.subscribe('plantList', {
+		let context = {
 			limit: this.state.limit,
 			skip: this.state.skip
-		});
+		}
+		if(this.state.searchTerm)
+			context.searchTerm = this.state.searchTerm;
+
+		if(this.state.sort)
+			context.sort = this.state.sort;
+
+		let handle = Meteor.subscribe('plantList', context);
 		let pages = [];
 		let totalPlants = Counts.get('totalPlants');
 		let noOfPages = Math.ceil(totalPlants / this.state.limit);
@@ -33,16 +40,23 @@ CC.PlantList = React.createClass({
 	},
 	getInitialState() {
 		let state = Session.get('plantListState') || {
-			limit: 5,
-			skip: 0,
-			page: 1
-		};
+				limit: 5,
+				skip: 0,
+				page: 1,
+				searchTerm: null,
+				sort: null
+			}
 		return state
 	},
 	changeLimit(event) {
 		this.state.limit = parseInt(event.target.value);
 		this.setState(this.state);
 		Session.set("pageState", this.state);
+	},
+	setSearchTerm (event) {
+		this.setState({
+			searchTerm: event.target.value
+		})
 	},
 	changePage(event) {
 		let page = parseInt(event.target.dataset.page);
@@ -65,10 +79,16 @@ CC.PlantList = React.createClass({
 	render() {
 		return <div>
 			<h2>Your inventory <a href="/plant/add" className="ui green button">+ Add a plant</a></h2>
-			<table className="ui celled table">
+			<table className="ui celled fixed table">
 				<thead>
 					<tr>
-						<th>Plant name</th>
+						<th>Plant name
+							<CC.SearchForm
+								field="plantName"
+								setSearchTerm={this.setSearchTerm}
+								value={this.state.searchTerm}
+							/>
+						</th>
 						<th>Plant type</th>
 						<th>Plant area</th>
 						<th>Date planted</th>
@@ -160,4 +180,15 @@ CC.PlantListItem = React.createClass({
 		</tr>
 			: null;
 	}
-})
+});
+
+
+CC.SearchForm = React.createClass({
+	render () {
+		return <input
+							type="text"
+							onChange={this.props.setSearchTerm}
+							value={this.props.value}
+							/>
+	}
+});

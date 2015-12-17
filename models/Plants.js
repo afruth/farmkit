@@ -34,6 +34,14 @@ Plant = Astro.Class({
       optional: true
     }
   },
+	indexes: {
+		plantName: {
+			fields: {
+				plantName: 'text',
+				tags: 'text'
+			}
+		}
+	},
   relations: {
     plantFamily: {
       type: 'one',
