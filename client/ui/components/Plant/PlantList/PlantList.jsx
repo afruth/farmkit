@@ -170,7 +170,7 @@ CC.PlantListItem = React.createClass({
 		console.log(this.props.rowData);
 		return (this.props.rowData) ? <tr>
 			<td>
-				<a href={"/plant/edit/" + this.props.rowData._id} >
+				<a href={"/plant/single/" + this.props.rowData._id} >
 					{this.props.rowData.plantName}
 				</a>
 			</td>
