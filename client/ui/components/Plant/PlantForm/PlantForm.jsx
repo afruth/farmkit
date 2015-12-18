@@ -23,7 +23,12 @@ CC.PlantForm = React.createClass ({
 				}
 			}),
 			plant: this.props.docId && Plant.findOne(this.props.docId),
-			growingMedia: GrowingMedia.find().fetch()
+			growingMedia: GrowingMedia.find().fetch().map((i) => {
+				return {
+					value: i._id,
+					label: i.name
+				}
+			}),
 		}
 	},
 	getInitialState() {

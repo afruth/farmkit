@@ -91,7 +91,7 @@ CC.PlantList = React.createClass({
 	render() {
 		return <div>
 			<h2>Your inventory <a href="/plant/add" className="ui green button">+ Add a plant</a></h2>
-			<table className="ui celled fixed table">
+			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
 						<th>Plant name
@@ -114,16 +114,15 @@ CC.PlantList = React.createClass({
 						for (a=0; a < this.state.limit; a++) {
 							arr.push(<tr key={a}><td></td><td></td><td></td><td></td></tr>)
 							}
-
 						return arr;
 					})()
 					}
 				</tbody>
 				<tfoot>
 					<tr>
-						<th colSpan="4">
+						<th colSpan="5">
 							<div className="ui right floated pagination menu">
-
+								<span className="pagin-label">page</span>
 								{(this.state.page > 1) ?
 								<a
 									data-page={this.state.page - 1}
@@ -171,7 +170,7 @@ CC.PlantListItem = React.createClass({
 		console.log(this.props.rowData);
 		return (this.props.rowData) ? <tr>
 			<td>
-				<a href={"/plant/edit/" + this.props.rowData._id} >
+				<a href={"/plant/single/" + this.props.rowData._id} >
 					{this.props.rowData.plantName}
 				</a>
 			</td>

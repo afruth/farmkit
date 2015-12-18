@@ -90,15 +90,30 @@ FlowRouter.route('/plant/add', {
 });
 
 FlowRouter.route('/plant/edit/:docId', {
+  navbar: {
+    topnav: false,
+    footer: false
+  },
+  name: 'editPlant',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header />,
+      content: <CC.PlantForm docId={params.docId} />,
+      footer: <CC.Footer />
+    });
+  }
+});
+
+FlowRouter.route('/plant/single/:docId', {
 	navbar: {
 		topnav: false,
 		footer: false
 	},
-	name: 'editPlant',
+	name: 'singlePlant',
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantForm docId={params.docId} />,
+			content: <CC.PlantSingle docId={params.docId} />,
 			footer: <CC.Footer />
 		});
 	}
