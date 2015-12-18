@@ -3,12 +3,14 @@ CC.PlantSingle = React.createClass ({
 	getMeteorData() {
 		if(this.props.docId){
 			var handlePlant = Meteor.subscribe('plant', this.props.docId);
-			// var handlePlantTypes = Meteor.subscribe('plantTypes');
+			var handlePlantTypes = Meteor.subscribe('plantTypes');
+			var handlePlantArea = Meteor.subscribe('plantAreas');
 		}
 
 		return {
 			plant: this.props.docId && Plant.findOne(this.props.docId),
-			// plantFamily: this.data.plant && PlantFamilies.findOne(this.data.plant.plantType)
+			plantFamilies: PlantFamilies.find().fetch(),
+			plantAreas: PlantAreas.find().fetch(),
 		}
 	},
 	getInitialState() {
@@ -21,11 +23,10 @@ CC.PlantSingle = React.createClass ({
 	},
 	getPlantFamily() {
 		if( this.data.plant ){
-			// Error: returns undefined: 
-			// PlantFamilies is returning an empty array in the console, and undefined here,
-			//  but returns expected data in getMeteorData()
-			let plantType = PlantFamilies.findOne(this.data.plant.plantType);
-			console.log(plantType)
+			let self = this;
+			let plantType = _.find( self.data.plantFamilies, function (family){
+				return family._id === self.data.plant.plantType;
+			});
 			if( plantType ){
 				return plantType.name;   
 			}
@@ -33,11 +34,12 @@ CC.PlantSingle = React.createClass ({
 	},
 	getPlantArea() {
 		if( this.data.plant ){
-			// Error: returns undefined:
-			let plantType = PlantFamilies.findOne(this.data.plant.areaId);
-			console.log(plantType)
-			if( plantType ){
-				return plantType.name;   
+			let self = this;
+			let plantArea = _.find( self.data.plantAreas, function (area){
+				return area._id === self.data.plant.areaId;
+			});
+			if( plantArea ){
+				return plantArea.name;   
 			}
 		}
 	},
