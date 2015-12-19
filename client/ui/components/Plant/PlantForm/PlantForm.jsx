@@ -117,7 +117,7 @@ CC.PlantForm = React.createClass ({
 						data={this.data.plantAreas}
 						error={this.state.errors}/>
 
-					<CC.FormElements.TextInput
+					<CC.FormElements.DateInput
 						fieldName="datePlanted"
 						ref="datePlanted"
 						label="Date planted"

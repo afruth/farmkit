@@ -31,3 +31,5 @@ jagi:astronomy-validators
 jquery
 tmeasday:publish-counts
 reywood:publish-composite
+momentjs:moment
+sarasate:semantic-ui-datetimepicker
