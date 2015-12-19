@@ -108,6 +108,14 @@ CC.PlantForm = React.createClass ({
 						onChangedEvent={this.resetFieldState}
 						error={this.state.errors}/>
 
+					<CC.FormElements.FileUpload
+						fieldName="plantImage"
+						ref="plantImage"
+						label="Plant image"
+						defValue={plant.plantImage}
+						onChangedEvent={this.resetFieldState}
+						error={this.state.errors}/>
+
 					<CC.FormElements.SelectInput
 						fieldName="areaId"
 						ref="areaId"
