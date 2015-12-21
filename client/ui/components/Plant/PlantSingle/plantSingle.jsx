@@ -8,7 +8,7 @@ CC.PlantSingle = React.createClass ({
 		}
 
 		return {
-			plant: this.props.docId && Plant.findOne(this.props.docId),
+			plant: this.props.docId && Inventory.findOne(this.props.docId),
 			plantFamilies: PlantFamilies.find().fetch(),
 			plantAreas: PlantAreas.find().fetch(),
 		}

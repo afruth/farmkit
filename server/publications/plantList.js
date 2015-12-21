@@ -2,7 +2,7 @@ Meteor.publishComposite('plantList', function(context) {
 	return {
 		find: function() {
 			context.transform = null;
-			Counts.publish(this, 'totalPlants', Plants.find());
+			Counts.publish(this, 'totalPlants', Inventories.find());
 			var query = {};
 
 			if (context.searchTerm && !_.isEmpty(context.searchTerm)) {
@@ -19,8 +19,7 @@ Meteor.publishComposite('plantList', function(context) {
 				}
 			}
 			delete context.searchTerm;
-			console.log(query);
-			return Plants.find(query,context);
+			return Inventories.find(query,context);
 		},
 		children: [
 			{

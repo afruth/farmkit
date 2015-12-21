@@ -19,9 +19,9 @@ NutrientMix = new Astro.Class({
   },
   // It's useful to know how many plant you have on the same nutrient mix
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'nutrientId'
     }
