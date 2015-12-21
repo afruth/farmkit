@@ -15,6 +15,22 @@ CC.FormElements.FileUpload = React.createClass({
 			crop: 'fill'
 		}));
 	},
+	onImageRemoval(event) {
+		event.preventDefault();
+		let publicId = event.target.dataset.id;
+
+		Cloudinary.delete(publicId,(err, res) => {
+			if (!err) {
+				let imageUrls = this.state.imageArray;
+
+				this.setState({
+					imageArray: _.filter(imageUrls, (item) => {
+						return item !== publicId
+					})
+				});
+			}
+		})
+	},
 	onChangedEvent(event) {
 		let files = event.target.files;
 		let self = this;
@@ -57,9 +73,11 @@ CC.FormElements.FileUpload = React.createClass({
 					className="fileupload"
 					multiple
 					type="file" />
-				{(this.state.imageArray) ? this.state.imageArray.map((id) => {
-					return <img key={id} src={this.getImageUrl(id)} />
-					}) : null}
+				<div className="ui grid">
+					{(this.state.imageArray) ? this.state.imageArray.map((id) => {
+						return <CC.ImageThumb key={id} publicId={id} onImageRemoval={this.onImageRemoval} />
+						}) : null}
+				</div>
 
 				{(this.state.loading && this.state.loading.length > 0) ? this.state.loading.map((item) => {
 					console.log(item)
