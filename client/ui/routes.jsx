@@ -104,7 +104,7 @@ FlowRouter.route('/inventory/edit/:docId', {
   }
 });
 
-FlowRouter.route('/inventory/single/:docId', {
+FlowRouter.route('/inventory/view/:docId', {
 	navbar: {
 		topnav: false,
 		footer: false
