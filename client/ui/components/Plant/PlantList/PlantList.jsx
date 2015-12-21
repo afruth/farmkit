@@ -23,7 +23,7 @@ CC.PlantList = React.createClass({
 			});
 		}
 		return {
-			plants: Plant.find({}, {
+			plants: Inventory.find({}, {
 				limit: this.state.limit
 			}).fetch(),
 			pages: pages,
@@ -101,7 +101,7 @@ CC.PlantList = React.createClass({
 	},
 	render() {
 		return <div>
-			<h2>Your inventory <a href="/plant/add" className="ui green button"><i className="add icon"></i> Add a plant</a></h2>
+			<h2>Your inventory <a href="/inventory/add" className="ui green button"><i className="add icon"></i> Add a plant</a></h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>

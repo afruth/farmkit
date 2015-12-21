@@ -30,9 +30,9 @@ PlantYield = new Astro.Class({
   },
   // Need to track the individual plant and plantFamily 
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'yieldId'
     },

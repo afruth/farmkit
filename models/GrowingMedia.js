@@ -17,9 +17,9 @@ GrowingMedium = new Astro.Class({
   },
   // May want to know which plants have been grown in which medium
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'growingMediumId'
     }

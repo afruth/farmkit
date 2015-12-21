@@ -1,7 +1,7 @@
 Meteor.publish('plant', function(docId) {
 	check(docId, String);
 
-	return Plants.find({
+	return Inventory.find({
 		_id: docId
 	});
 })

@@ -22,7 +22,7 @@ CC.PlantForm = React.createClass ({
 					label: i.name
 				}
 			}),
-			plant: this.props.docId && Plant.findOne(this.props.docId),
+			plant: this.props.docId && Inventory.findOne(this.props.docId),
 			growingMedia: GrowingMedia.find().fetch().map((i) => {
 				return {
 					value: i._id,
@@ -48,7 +48,7 @@ CC.PlantForm = React.createClass ({
 		if(this.props.docId) {
 			var plant = this.data.plant;
 		} else {
-			var plant = new Plant();
+			var plant = new Inventory();
 		}
 
 		for(field in this.refs) {
@@ -71,11 +71,11 @@ CC.PlantForm = React.createClass ({
 		}
 
 		if(plant.validate(false)) {
-			Meteor.call('/plant/add', plant, function(e) {
+			Meteor.call('/inventory/add', plant, function(e) {
 				if (e) {
 					console.log('error', plant.catchValidationException(e));
 				} else {
-					FlowRouter.go('/plant/list');
+					FlowRouter.go('/inventory/list');
 				}
 			})
 		} else {
@@ -152,7 +152,7 @@ CC.PlantForm = React.createClass ({
 					<div className="ui buttons">
 						<button className="ui primary large button" onClick={this.submitForm}>Save</button>
 						<div className="or"></div>
-						<a className="ui large button" href="/plant/list">Cancel</a>
+						<a className="ui large button" href="/inventory/list">Cancel</a>
 					</div>
 				</form>
 			</div>

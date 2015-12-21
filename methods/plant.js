@@ -1,22 +1,18 @@
 Meteor.methods({
-  "/plant/add": function(plant) {
-    console.log(plant)
+  "/inventory/add": function(plant) {
     if (plant.validate()) {
       plant.save();
       return plant;
     }
-    console.log(plant)
     plant.throwValidationException();
   },
-	"/plant/remove": function(plantId) {
+	"/inventory/delete": function(plantId) {
 		check(plantId, String);
 
-		var plant = Plant.findOne(plantId);
+		var plant = Inventory.findOne(plantId);
 
 		if(plant)
 			plant.remove()
-		//if(plant.remove()) {
-		//	return (null, true);
-		//}
+
 	}
 });

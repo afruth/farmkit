@@ -25,9 +25,9 @@ PHValue = new Astro.Class({
   },
   // Need to know which plant these readings go to
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'phId'
     }

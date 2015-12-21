@@ -1,13 +1,13 @@
-Plants = new Mongo.Collection('plants');
+Inventories = new Mongo.Collection('inventory');
 
 var reqStr = Validators.and([
   Validators.required('Plant type is required'),
   Validators.string('Plant type is wrong')
 ]);
 
-Plant = Astro.Class({
-  name: 'Plant',
-  collection: Plants,
+Inventory = Astro.Class({
+  name: 'Inventory',
+  collection: Inventories,
   transform: null,
   fields: {
     plantType: 'string',
@@ -109,4 +109,4 @@ Plant = Astro.Class({
   }
 });
 
-if (Meteor.isServer) Plants.permit(['insert', 'update', 'remove']).apply();
+if (Meteor.isServer) Inventories.permit(['insert', 'update', 'remove']).apply();

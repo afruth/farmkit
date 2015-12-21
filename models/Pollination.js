@@ -24,9 +24,9 @@ Pollinate = new Astro.Class({
     }
   },
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'pollenId'
     },

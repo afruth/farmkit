@@ -74,7 +74,7 @@ FlowRouter.route('/tasks', {
   }
 });
 
-FlowRouter.route('/plant/add', {
+FlowRouter.route('/inventory/add', {
   navbar: { 
     topnav: false,
     footer: false 
@@ -89,7 +89,7 @@ FlowRouter.route('/plant/add', {
   }
 });
 
-FlowRouter.route('/plant/edit/:docId', {
+FlowRouter.route('/inventory/edit/:docId', {
   navbar: {
     topnav: false,
     footer: false
@@ -104,7 +104,7 @@ FlowRouter.route('/plant/edit/:docId', {
   }
 });
 
-FlowRouter.route('/plant/view/:docId', {
+FlowRouter.route('/inventory/view/:docId', {
 	navbar: {
 		topnav: false,
 		footer: false
@@ -119,7 +119,7 @@ FlowRouter.route('/plant/view/:docId', {
 	}
 });
 
-FlowRouter.route('/plant/list/', {
+FlowRouter.route('/inventory/list/', {
 	navbar: {
 		topnav: true,
 		footer: false
@@ -134,7 +134,7 @@ FlowRouter.route('/plant/list/', {
 	}
 });
 
-FlowRouter.route('/plant/remove/:docId', {
+FlowRouter.route('/inventory/remove/:docId', {
 	navbar: {
 		topnav: false,
 		footer: false
