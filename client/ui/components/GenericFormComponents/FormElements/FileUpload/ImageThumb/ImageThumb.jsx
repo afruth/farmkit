@@ -1,8 +1,8 @@
 CC.ImageThumb = React.createClass({
 	getThumbImageUrl(publicId) {
 		return ($.cloudinary.url(publicId,{
-			width: 100,
-			height: 100,
+			width: 500,
+			height: 500,
 			crop: 'fill'
 		}));
 	},
@@ -19,15 +19,15 @@ CC.ImageThumb = React.createClass({
 		return <div className="four wide column">
 						<div className="ui move up reveal">
 							<div className="visible content">
-								<img src={this.getThumbImageUrl(this.props.publicId)} className="ui small image" />
+								<img src={this.getThumbImageUrl(this.props.publicId)} className="ui fluid image" />
 							</div>
 							<div className="hidden content">
-								<div className="ui mini buttons">
-									<button className="ui positive button" onClick={this.showLargeImage}>View</button>
-									<div className="or"></div>
-									<button className="ui negative button" data-id={this.props.publicId} onClick={this.props.onImageRemoval}>Remove</button>
-								</div>
-							</div>
+								<button className="fluid ui positive button" onClick={this.showLargeImage}>View</button>
+								<br />
+								<button className="fluid ui primary button" data-id={this.props.publicId} onClick={this.props.onMakePrimary}>Make primary</button>
+								<br />
+								<button className="fluid ui negative button" data-id={this.props.publicId} onClick={this.props.onImageRemoval}>Remove</button>
+						</div>
 						</div>
 			</div>
 	}

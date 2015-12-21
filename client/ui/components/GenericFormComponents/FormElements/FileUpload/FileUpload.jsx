@@ -33,6 +33,20 @@ CC.FormElements.FileUpload = React.createClass({
 			});
 		})
 	},
+	onMakePrimary(event) {
+		event.preventDefault();
+		let publicId = event.target.dataset.id;
+
+		let imageUrls = _.filter(this.state.imageArray, (item) => {
+			return item !== publicId
+		});
+
+		imageUrls.unshift(publicId);
+
+		this.setState({
+			imageArray: imageUrls
+		});
+	},
 	onChangedEvent(event) {
 		let files = event.target.files;
 		let self = this;
@@ -77,7 +91,11 @@ CC.FormElements.FileUpload = React.createClass({
 					type="file" />
 				<div className="ui grid">
 					{(this.state.imageArray) ? this.state.imageArray.map((id) => {
-						return <CC.ImageThumb key={id} publicId={id} onImageRemoval={this.onImageRemoval} />
+						return <CC.ImageThumb
+										key={id}
+										publicId={id}
+										onImageRemoval={this.onImageRemoval}
+										onMakePrimary={this.onMakePrimary} />
 						}) : null}
 				</div>
 
