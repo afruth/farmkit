@@ -75,7 +75,7 @@ CC.PlantForm = React.createClass ({
 				if (e) {
 					console.log('error', plant.catchValidationException(e));
 				} else {
-					FlowRouter.go('/inventory/list');
+					FlowRouter.go( CC.previousPath );
 				}
 			})
 		} else {
@@ -170,7 +170,7 @@ CC.PlantForm = React.createClass ({
 					<div className="ui buttons">
 						<button className="ui primary large button" onClick={this.submitForm}>Save</button>
 						<div className="or"></div>
-						<a className="ui large button" href="/inventory/list">Cancel</a>
+						<a className="ui large button" href={ CC.previousPath } >Cancel</a>
 					</div>
 				</form>
 			</div>		
