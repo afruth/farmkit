@@ -70,6 +70,17 @@ CC.PlantList = React.createClass({
 			searchTerm: query
 		});
 	},
+	emptySearchTerm (event) {
+		event.preventDefault();
+		let query = this.state.searchTerm || {};
+
+		let fieldName = event.target.dataset.field;
+		delete query[fieldName];
+
+		this.setState({
+			searchTerm: query
+		});
+	},
 	changePage(event) {
 		let page = parseInt(event.target.dataset.page);
 		this.state.skip = this.state.limit * (page - 1);
@@ -90,7 +101,7 @@ CC.PlantList = React.createClass({
 	},
 	render() {
 		return <div>
-			<h2>Your inventory <a href="/plant/add" className="ui green button">+ Add a plant</a></h2>
+			<h2>Your inventory <a href="/plant/add" className="ui green button"><i className="add icon"></i> Add a plant</a></h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
@@ -98,6 +109,8 @@ CC.PlantList = React.createClass({
 							<CC.SearchForm
 								field="plantName"
 								setSearchTerm={this.setSearchTerm}
+								emptySearchTerm={this.emptySearchTerm}
+								defVal={this.state.searchTerm && this.state.searchTerm.plantName}
 							/>
 						</th>
 						<th>Plant type</th>
@@ -161,44 +174,5 @@ CC.PlantList = React.createClass({
 				</tfoot>
 			</table>
 		</div>
-	}
-});
-
-CC.PlantListItem = React.createClass({
-
-	render() {
-		console.log(this.props.rowData);
-		return (this.props.rowData) ? <tr>
-			<td>
-				<a href={"/plant/single/" + this.props.rowData._id} >
-					{this.props.rowData.plantName}
-				</a>
-			</td>
-			<td>
-				{(this.props.rowData.plantFamily()) ? this.props.rowData.plantFamily().name : null}
-			</td>
-			<td>
-				{(this.props.rowData.plantArea()) ? this.props.rowData.plantArea().name : null}
-			</td>
-			<td>
-				{(this.props.rowData.datePlanted) ? this.props.rowData.datePlanted.getTime() : null}
-			</td>
-			<td>
-				<a href={'/plant/edit/' + this.props.rowData._id} className="ui green button">X</a>
-				<a href={'/plant/remove/' + this.props.rowData._id} className="ui red button">X</a>
-			</td>
-		</tr>
-			: null;
-	}
-});
-
-
-CC.SearchForm = React.createClass({
-	render () {
-		return <input
-							type="text"
-							onChange={this.props.setSearchTerm}
-							data-fieldname={this.props.field}
-							/>
 	}
 });

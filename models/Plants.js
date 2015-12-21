@@ -17,6 +17,9 @@ Plant = Astro.Class({
         return 'Plant ' + Random.id()
       }
     },
+		plantImage: {
+			type: 'array'
+		},
     datePlanted: {
       type: 'date'
     },

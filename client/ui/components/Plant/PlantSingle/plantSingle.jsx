@@ -38,6 +38,27 @@ CC.PlantSingle = React.createClass ({
 			}
 		}
 	},
+	getPlantMainImage () {
+		if(this.data.plant && this.data.plant.plantImage && this.data.plant.plantImage.length > 0) {
+			return <img src={$.cloudinary.url(this.data.plant.plantImage[0])} />;
+		} else {
+			return <div className="plant-single__image"></div>;
+		}
+	},
+	getPlantSecondaryImages () {
+		if(this.data.plant && this.data.plant.plantImage && this.data.plant.plantImage.length > 1) {
+			let plantArray = this.data.plant.plantImage.slice(1);
+			return plantArray;
+		}
+	},
+	getImage(publicId) {
+		console.log(publicId)
+		return $.cloudinary.url(publicId,{
+			width: 100,
+			height: 100,
+			crop: 'fill'
+		});
+	},
 	getPlantArea() {
 		if( this.data.plant ){
 			let self = this;
@@ -85,14 +106,17 @@ CC.PlantSingle = React.createClass ({
 		}
 	},
 	render() {
-		console.log(this.data)
-		return (
-			<div className="plant-single">
+		let images = this.getPlantSecondaryImages();
+		let self = this;
+		return <div className="plant-single">
 				<div className="ui grid container">
 					<div className="eight wide column">
 						<div className="plant-single__image-box">
-							<div className="plant-single__image"></div>
+							{ this.getPlantMainImage() }
 						</div>
+						{(images && images.length > 0) ? images.map(function (item) {
+							return <img key={item} src={self.getImage(item)}/>
+							}) : null}
 					</div>
 					<div className="eight wide column">
 						<div className="plant-single__name">
@@ -109,7 +133,6 @@ CC.PlantSingle = React.createClass ({
 					</div>
 				</div>
 			</div>
-		)
 	}
 
 });
