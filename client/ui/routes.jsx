@@ -104,7 +104,7 @@ FlowRouter.route('/plant/edit/:docId', {
   }
 });
 
-FlowRouter.route('/plant/single/:docId', {
+FlowRouter.route('/plant/view/:docId', {
 	navbar: {
 		topnav: false,
 		footer: false
