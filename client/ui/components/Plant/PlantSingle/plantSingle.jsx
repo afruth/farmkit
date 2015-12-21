@@ -122,6 +122,9 @@ CC.PlantSingle = React.createClass ({
 						<div className="plant-single__name">
 							<h3 className="ui header">{ this.getPlantName() }</h3>
 						</div>
+						<button className="plant__edit-btn ui button">
+							<a href={"/inventory/edit/" + this.props.docId} >edit</a>
+						</button>
 						<div className="plant-single__family">{ this.getPlantFamily() }</div>
 						<div className="plant-single__area">{ this.getPlantArea() }</div>
 						<div className="plant-single__date-planted">{ this.getPlantDate() }</div>

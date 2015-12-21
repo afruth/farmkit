@@ -1,4 +1,10 @@
 
+FlowRouter.triggers.exit([({path}) => {
+  CC.previousPath = path;
+}]);
+
+
+
 FlowRouter.route('/', {
   navbar: { 
     topnav: true,

@@ -75,7 +75,7 @@ CC.PlantForm = React.createClass ({
 				if (e) {
 					console.log('error', plant.catchValidationException(e));
 				} else {
-					FlowRouter.go('/inventory/list');
+					FlowRouter.go( CC.previousPath );
 				}
 			})
 		} else {
@@ -87,75 +87,93 @@ CC.PlantForm = React.createClass ({
 	render() {
 		if(this.data.plant || !this.props.docId) {
 			const plant = this.data.plant || {};
-			return <div className="plantFormHolder">
-				<form className="ui form" id="plantAdd">
-					<h2>Edit plant</h2>
-
-					<CC.FormElements.SelectInput
-						fieldName="plantType"
-						ref="plantType"
-						label="Plant type"
-						onChangedEvent={this.resetFieldState}
-						defValue={plant.plantType}
-						data={this.data.plantTypes}
-						error={this.state.errors}/>
-
-					<CC.FormElements.TextInput
-						fieldName="plantName"
-						ref="plantName"
-						label="Plant name"
-						defValue={plant.plantName}
-						onChangedEvent={this.resetFieldState}
-						error={this.state.errors}/>
-
-					<CC.FormElements.FileUpload
-						fieldName="plantImage"
-						ref="plantImage"
-						label="Plant image"
-						defValue={plant.plantImage}
-						onChangedEvent={this.resetFieldState}
-						error={this.state.errors}/>
-
-					<CC.FormElements.SelectInput
-						fieldName="areaId"
-						ref="areaId"
-						label="Plant area"
-						defValue={plant.areaId}
-						onChangedEvent={this.resetFieldState}
-						data={this.data.plantAreas}
-						error={this.state.errors}/>
-
-					<CC.FormElements.DateInput
-						fieldName="datePlanted"
-						ref="datePlanted"
-						label="Date planted"
-						defValue={plant.datePlanted}
-						onChangedEvent={this.resetFieldState}
-						error={this.state.errors}/>
-
-					<CC.FormElements.SelectInput
-						fieldName="growingMedium"
-						ref="growingMedium"
-						label="Growing medium"
-						onChangedEvent={this.resetFieldState}
-						data={this.data.growingMedia}
-						error={this.state.errors} />
-
-					<CC.FormElements.TextInput
-						fieldName="tags"
-						ref="tags"
-						label="Tags"
-						defValue={plant.tags && plant.tags.join(' ')}
-						onChangedEvent={this.resetFieldState}
-						error={this.state.errors}/>
-
+			return <div className="plantFormHolder plant-single">
+				<form className="ui grid container form" id="plantAdd">
+					<div className="eight wide column">
+						<div className="plant-single__image-box">
+							<CC.FormElements.FileUpload
+								fieldName="plantImage"
+								ref="plantImage"
+								label="Plant image"
+								defValue={plant.plantImage}
+								onChangedEvent={this.resetFieldState}
+								error={this.state.errors}/>
+						</div>
+						{/* {(images && images.length > 0) ? images.map(function (item) {
+							return <img key={item} src={self.getImage(item)}/>
+							}) : null} */}
+					</div>
+					<div className="eight wide column">
+						<div className="plant-single__name">
+							<h3 className="ui header">
+								<CC.FormElements.TextInput
+									fieldName="plantName"
+									ref="plantName"
+									label="Plant name"
+									defValue={plant.plantName}
+									onChangedEvent={this.resetFieldState}
+									error={this.state.errors}/>
+							</h3>
+						</div>
+						<div className="plant-single__family">
+							<CC.FormElements.SelectInput
+								fieldName="plantType"
+								ref="plantType"
+								label="Plant type"
+								onChangedEvent={this.resetFieldState}
+								defValue={plant.plantType}
+								data={this.data.plantTypes}
+								error={this.state.errors}/>
+						</div>
+						<div className="plant-single__area">
+							<CC.FormElements.SelectInput
+								fieldName="areaId"
+								ref="areaId"
+								label="Plant area"
+								defValue={plant.areaId}
+								onChangedEvent={this.resetFieldState}
+								data={this.data.plantAreas}
+								error={this.state.errors}/>
+						</div>
+						<div className="plant-single__date-planted">
+							<CC.FormElements.DateInput
+								fieldName="datePlanted"
+								ref="datePlanted"
+								label="Date planted"
+								defValue={plant.datePlanted}
+								onChangedEvent={this.resetFieldState}
+								error={this.state.errors}/>
+						</div>
+					</div>
+					<div className="sixteen wide column">
+						<div className="plant-single__growing-medium" >
+							<CC.FormElements.SelectInput
+								fieldName="growingMedium"
+								ref="growingMedium"
+								label="Growing medium"
+								onChangedEvent={this.resetFieldState}
+								data={this.data.growingMedia}
+								error={this.state.errors} />
+						</div>
+						<div className="plant-single__tags">
+							<CC.FormElements.TextInput
+								fieldName="tags"
+								ref="tags"
+								label="Tags"
+								defValue={plant.tags && plant.tags.join(' ')}
+								onChangedEvent={this.resetFieldState}
+								error={this.state.errors}/>
+						</div>
+						<div className="plant-single__nutrient"></div>
+						<div className="plant-single__ph"></div>
+					</div>
 					<div className="ui buttons">
 						<button className="ui primary large button" onClick={this.submitForm}>Save</button>
 						<div className="or"></div>
-						<a className="ui large button" href="/inventory/list">Cancel</a>
+						<a className="ui large button" href={ CC.previousPath } >Cancel</a>
 					</div>
 				</form>
-			</div>
+			</div>		
 		} else {
 			return <div>Loading</div>
 		}
