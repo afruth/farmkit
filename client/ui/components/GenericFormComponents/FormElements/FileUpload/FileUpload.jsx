@@ -21,14 +21,16 @@ CC.FormElements.FileUpload = React.createClass({
 
 		Cloudinary.delete(publicId,(err, res) => {
 			if (!err) {
-				let imageUrls = this.state.imageArray;
 
-				this.setState({
-					imageArray: _.filter(imageUrls, (item) => {
-						return item !== publicId
-					})
-				});
+
+
 			}
+			let imageUrls = this.state.imageArray;
+			this.setState({
+				imageArray: _.filter(imageUrls, (item) => {
+					return item !== publicId
+				})
+			});
 		})
 	},
 	onChangedEvent(event) {
