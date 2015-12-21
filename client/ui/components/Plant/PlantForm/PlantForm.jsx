@@ -149,7 +149,11 @@ CC.PlantForm = React.createClass ({
 						onChangedEvent={this.resetFieldState}
 						error={this.state.errors}/>
 
-					<button className="ui primary large button" onClick={this.submitForm}>Save</button>
+					<div className="ui buttons">
+						<button className="ui primary large button" onClick={this.submitForm}>Save</button>
+						<div className="or"></div>
+						<a className="ui large button" href="/plant/list">Cancel</a>
+					</div>
 				</form>
 			</div>
 		} else {

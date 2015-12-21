@@ -70,6 +70,17 @@ CC.PlantList = React.createClass({
 			searchTerm: query
 		});
 	},
+	emptySearchTerm (event) {
+		event.preventDefault();
+		let query = this.state.searchTerm || {};
+
+		let fieldName = event.target.dataset.field;
+		delete query[fieldName];
+
+		this.setState({
+			searchTerm: query
+		});
+	},
 	changePage(event) {
 		let page = parseInt(event.target.dataset.page);
 		this.state.skip = this.state.limit * (page - 1);
@@ -90,7 +101,7 @@ CC.PlantList = React.createClass({
 	},
 	render() {
 		return <div>
-			<h2>Your inventory <a href="/plant/add" className="ui green button">+ Add a plant</a></h2>
+			<h2>Your inventory <a href="/plant/add" className="ui green button"><i className="add icon"></i> Add a plant</a></h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
@@ -98,6 +109,8 @@ CC.PlantList = React.createClass({
 							<CC.SearchForm
 								field="plantName"
 								setSearchTerm={this.setSearchTerm}
+								emptySearchTerm={this.emptySearchTerm}
+								defVal={this.state.searchTerm && this.state.searchTerm.plantName}
 							/>
 						</th>
 						<th>Plant type</th>

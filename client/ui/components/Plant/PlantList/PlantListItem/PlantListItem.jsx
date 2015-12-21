@@ -18,8 +18,8 @@ CC.PlantListItem = React.createClass({
 				{(this.props.rowData.datePlanted) ? moment(this.props.rowData.datePlanted).format('MM/DD/YYYY') : null}
 			</td>
 			<td>
-				<a href={'/plant/edit/' + this.props.rowData._id} className="ui green button">X</a>
-				<a href={'/plant/remove/' + this.props.rowData._id} className="ui red button">X</a>
+				<a href={'/plant/edit/' + this.props.rowData._id} className="ui green icon button"><i className="edit icon"></i></a>
+				<a href={'/plant/remove/' + this.props.rowData._id} className="ui red icon button"><i className="remove icon"></i></a>
 			</td>
 		</tr>
 			: null;
