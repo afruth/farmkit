@@ -6,7 +6,7 @@ CC.MainLayout = React.createClass ({
 	      	<header>
 	        	{this.props.header}
 	      	</header>
-	      	<main>
+	      	<main className="main">
 	        	{this.props.content}
 	      	</main>
 	      	<footer className="footer">
