@@ -32,6 +32,14 @@ CC.PlantSingle = React.createClass ({
 			}
 		}
 	},
+	getPlantMainImage () {
+		console.log(this.data)
+		if(this.data.plant && this.data.plant.plantImage && this.data.plant.plantImage.length > 0) {
+			return <img src={$.cloudinary.url(this.data.plant.plantImage[0])} />;
+		} else {
+			return <div className="plant-single__image"></div>;
+		}
+	},
 	getPlantArea() {
 		if( this.data.plant ){
 			let self = this;
@@ -50,7 +58,7 @@ CC.PlantSingle = React.createClass ({
 				<div className="ui grid container">
 					<div className="eight wide column">
 						<div className="plant-single__image-box">
-							<div className="plant-single__image"></div>
+							{ this.getPlantMainImage() }
 						</div>
 					</div>
 					<div className="eight wide column">
