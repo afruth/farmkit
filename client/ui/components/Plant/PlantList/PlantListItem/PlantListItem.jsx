@@ -1,7 +1,6 @@
 CC.PlantListItem = React.createClass({
 
 	render() {
-		console.log(this.props.rowData);
 		return (this.props.rowData) ? <tr>
 			<td>
 				<a href={"/inventory/view/" + this.props.rowData._id} >

@@ -46,9 +46,17 @@ CC.PlantList = React.createClass({
 				skip: 0,
 				page: 1,
 				searchTerm: null,
-				sort: null
+				sort: null,
+				order: null
 			}
 		return state
+	},
+	orderData( order ) {
+		// Set order to default if there isn't one
+		console.log(order)
+		if( order ){
+			this.setState({ order: order });
+		}
 	},
 	changeLimit(event) {
 		this.state.limit = parseInt(event.target.value);
@@ -105,7 +113,7 @@ CC.PlantList = React.createClass({
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
-						<th>Plant name
+						<th onClick={this.orderData.bind( this, "plantName" )}>Plant name
 							<CC.SearchForm
 								field="plantName"
 								setSearchTerm={this.setSearchTerm}
@@ -113,14 +121,15 @@ CC.PlantList = React.createClass({
 								defVal={this.state.searchTerm && this.state.searchTerm.plantName}
 							/>
 						</th>
-						<th>Plant type</th>
-						<th>Plant area</th>
-						<th>Date planted</th>
+						<th onClick={this.orderData.bind( this, "plantType" )}>Plant type</th>
+						<th onClick={this.orderData.bind( this, "areaId" )}>Plant area</th>
+						<th onClick={this.orderData.bind( this, "datePlanted" )}>Date planted</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
+				{/* 
 				<tbody>
-				{(!this.data.loading) ? this.data.plants.map(function(item) {
+				{(!this.data.loading) ? this.data.plants.map(function(item) { 
 						return <CC.PlantListItem key={item._id} rowData={item} />
 					}) : (() => {
 						let arr = [];
@@ -131,6 +140,9 @@ CC.PlantList = React.createClass({
 					})()
 					}
 				</tbody>
+					*/}
+						<CC.PlantListTable plants={this.data.plants} order={this.state.order} />
+					
 				<tfoot>
 					<tr>
 						<th colSpan="5">
@@ -174,5 +186,24 @@ CC.PlantList = React.createClass({
 				</tfoot>
 			</table>
 		</div>
+	}
+});
+
+CC.PlantListTable = React.createClass({
+
+	render(){
+		console.log(this.props)
+		let plantList = this.props.plants;
+		if(this.props.order){
+			plantList = _.sortBy( plantList, this.props.order );
+		}
+		console.log(plantList)
+		return (
+			<tbody>
+				{ plantList.map(function(item) { 
+					return <CC.PlantListItem key={item._id} rowData={item} />
+				}) }
+			</tbody>
+		)
 	}
 });
