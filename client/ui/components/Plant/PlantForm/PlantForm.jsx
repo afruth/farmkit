@@ -48,6 +48,7 @@ CC.PlantForm = React.createClass ({
 		if(this.props.docId) {
 			var plant = this.data.plant;
 		} else {
+			// Creates base plant, with supplied data
 			var plant = new Inventory();
 		}
 
@@ -63,6 +64,16 @@ CC.PlantForm = React.createClass ({
 					plant.set(field,ref.split(' '));
 				} else if (field === 'datePlanted') {
 					plant.set(field,new Date(ref));
+				} else if (field === 'plantType') {
+					// Set plantTypeName while setting plantType
+					let family = PlantFamilies.findOne( ref );
+					plant.set( 'plantTypeName', family.name );
+					plant.set(field,ref);
+				} else if (field === 'areaId') {
+					// Set areaName while setting areaId
+					let area = PlantAreas.findOne( ref );
+					plant.set( 'areaName', area.name );
+					plant.set(field,ref);
 				} else {
 					plant.set(field,ref);
 				}

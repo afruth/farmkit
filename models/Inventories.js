@@ -11,6 +11,7 @@ Inventory = Astro.Class({
   transform: null,
   fields: {
     plantType: 'string',
+    plantTypeName: 'string',
     plantName: {
       type: 'string',
       default: function() {
@@ -24,6 +25,7 @@ Inventory = Astro.Class({
       type: 'date'
     },
     areaId: 'string',
+    areaName: 'string',
     growingMediumId: 'string',
     nutrientId: 'string',
     phId: 'string',

@@ -197,7 +197,6 @@ CC.PlantListTable = React.createClass({
 		if(this.props.order){
 			plantList = _.sortBy( plantList, this.props.order );
 		}
-		console.log(plantList)
 		return (
 			<tbody>
 				{ plantList.map(function(item) { 
