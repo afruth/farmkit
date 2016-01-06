@@ -47,15 +47,29 @@ CC.PlantList = React.createClass({
 				page: 1,
 				searchTerm: null,
 				sort: null,
-				order: null
+				order: null,
+				reverse: false
 			}
 		return state
 	},
 	orderData( order ) {
-		// Set order to default if there isn't one
-		console.log(order)
-		if( order ){
-			this.setState({ order: order });
+		// Change order state
+		// Toggle reverse if same order is passed again
+		let currentOrder = this.state.order; 
+		let currentReverse = this.state.reverse; 
+		if( order ){ // guarding
+			if( currentOrder === order ){ // if passing the same order, toggle direction
+				if( currentReverse ){
+					this.setState({ reverse: false });
+				} else {
+					this.setState({ reverse: true });
+				}
+			} else { // if order is different, set that. Should never start reversed
+				this.setState({ 
+					order: order,
+					reverse: false 
+				});
+			}
 		}
 	},
 	changeLimit(event) {
@@ -121,28 +135,19 @@ CC.PlantList = React.createClass({
 								defVal={this.state.searchTerm && this.state.searchTerm.plantName}
 							/>
 						</th>
-						<th onClick={this.orderData.bind( this, "plantType" )}>Plant type</th>
-						<th onClick={this.orderData.bind( this, "areaId" )}>Plant area</th>
+						<th onClick={this.orderData.bind( this, "plantTypeName" )}>Plant type</th>
+						<th onClick={this.orderData.bind( this, "areaName" )}>Plant area</th>
 						<th onClick={this.orderData.bind( this, "datePlanted" )}>Date planted</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
-				{/* 
-				<tbody>
-				{(!this.data.loading) ? this.data.plants.map(function(item) { 
-						return <CC.PlantListItem key={item._id} rowData={item} />
-					}) : (() => {
-						let arr = [];
-						for (a=0; a < this.state.limit; a++) {
-							arr.push(<tr key={a}><td></td><td></td><td></td><td></td></tr>)
-							}
-						return arr;
-					})()
-					}
-				</tbody>
-					*/}
-						<CC.PlantListTable plants={this.data.plants} order={this.state.order} />
-					
+
+				<CC.PlantListTableBody 
+					plants = {this.data.plants} 
+					order = {this.state.order} 
+					reverse = {this.state.reverse} 
+				/>
+
 				<tfoot>
 					<tr>
 						<th colSpan="5">
@@ -186,23 +191,5 @@ CC.PlantList = React.createClass({
 				</tfoot>
 			</table>
 		</div>
-	}
-});
-
-CC.PlantListTable = React.createClass({
-
-	render(){
-		console.log(this.props)
-		let plantList = this.props.plants;
-		if(this.props.order){
-			plantList = _.sortBy( plantList, this.props.order );
-		}
-		return (
-			<tbody>
-				{ plantList.map(function(item) { 
-					return <CC.PlantListItem key={item._id} rowData={item} />
-				}) }
-			</tbody>
-		)
 	}
 });
