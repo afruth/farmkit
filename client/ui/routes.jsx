@@ -44,7 +44,7 @@ FlowRouter.route('/plant-list', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PossiblePlants />,
+      content: <CC.PlantFamilies />,
       footer: <CC.Footer />
     });
   }
