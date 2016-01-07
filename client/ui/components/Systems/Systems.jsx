@@ -1,4 +1,4 @@
-CC.PlantFamilies = React.createClass ({
+CC.Systems = React.createClass ({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		let context = {
@@ -11,7 +11,7 @@ CC.PlantFamilies = React.createClass ({
 		if(this.state.sort)
 			context.sort = this.state.sort;
 
-		let handle = Meteor.subscribe('plantTypes', context);
+		let handle = Meteor.subscribe('plantAreas', context);
 		let pages = [];
 		let totalPlants = Counts.get('totalPlants');
 		let noOfPages = Math.ceil(totalPlants / this.state.limit);
@@ -21,7 +21,7 @@ CC.PlantFamilies = React.createClass ({
 			});
 		}
 		return {
-			plants: PlantFamily.find({}, {
+			systems: PlantArea.find({}, {
 				limit: this.state.limit
 			}).fetch(),
 			pages: pages,
@@ -36,10 +36,10 @@ CC.PlantFamilies = React.createClass ({
 		$('#gridSel').dropdown('refresh');
 	},
 	componentWillUnmount() {
-		Session.set('plantFamiliesState', this.state);
+		Session.set('systemListState', this.state);
 	},
 	getInitialState() {
-		let state = Session.get('plantFamiliesState') || {
+		let state = Session.get('systemListState') || {
 				limit: 10,
 				skip: 0,
 				page: 1,
@@ -107,13 +107,13 @@ CC.PlantFamilies = React.createClass ({
 	},
 
 	render () {
-		console.log( this.data.plants )
+		console.log( this.data.systems )
 		return <div>
 			<h2>Plants </h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
-						<th onClick={this.orderData.bind( this, "name" )}>Plant Type
+						<th onClick={this.orderData.bind( this, "name" )}>System
 							<CC.SearchForm
 								field="name"
 								setSearchTerm={this.setSearchTerm}
@@ -121,18 +121,18 @@ CC.PlantFamilies = React.createClass ({
 								defVal={this.state.searchTerm && this.state.searchTerm.plantName}
 							/>
 						</th>
-						<th onClick={this.orderData.bind( this, "daysToHarvest" )}>Days to Harvest</th>
-						<th onClick={this.orderData.bind( this, "avgPlantYield" )}>Average Yield</th>
-						<th onClick={this.orderData.bind( this, "requiresPollination" )}>Requires Pollination</th>
+						<th onClick={this.orderData.bind( this, "daysToHarvest" )}>Active Plants</th>
+						<th onClick={this.orderData.bind( this, "avgPlantYield" )}>Automatic Watering</th>
+						<th onClick={this.orderData.bind( this, "requiresPollination" )}>Lighting Type</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 
-				<CC.PlantTableBody 
-					plants = {this.data.plants} 
+				<CC.TableBody 
+					items = {this.data.systems} 
 					order = {this.state.order} 
 					reverse = {this.state.reverse} 
-					childComponent = {CC.PlantFamilyListItem}
+					childComponent = {CC.SystemListItem}
 				/>
 
 				<tfoot>
@@ -181,11 +181,3 @@ CC.PlantFamilies = React.createClass ({
 	}
 });
 
-CC.PlantListDupe = React.createClass({
-
-	
-	
-	
-	render() {
-	}
-});

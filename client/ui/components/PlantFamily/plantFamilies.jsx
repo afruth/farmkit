@@ -1,4 +1,4 @@
-CC.PlantList = React.createClass({
+CC.PlantFamilies = React.createClass ({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		let context = {
@@ -11,9 +11,7 @@ CC.PlantList = React.createClass({
 		if(this.state.sort)
 			context.sort = this.state.sort;
 
-		console.log(context)
-
-		let handle = Meteor.subscribe('plantList', context);
+		let handle = Meteor.subscribe('plantTypes', context);
 		let pages = [];
 		let totalPlants = Counts.get('totalPlants');
 		let noOfPages = Math.ceil(totalPlants / this.state.limit);
@@ -23,7 +21,7 @@ CC.PlantList = React.createClass({
 			});
 		}
 		return {
-			plants: Inventory.find({}, {
+			plants: PlantFamily.find({}, {
 				limit: this.state.limit
 			}).fetch(),
 			pages: pages,
@@ -38,10 +36,10 @@ CC.PlantList = React.createClass({
 		$('#gridSel').dropdown('refresh');
 	},
 	componentWillUnmount() {
-		Session.set('plantListState', this.state);
+		Session.set('plantFamiliesState', this.state);
 	},
 	getInitialState() {
-		let state = Session.get('plantListState') || {
+		let state = Session.get('plantFamiliesState') || {
 				limit: 10,
 				skip: 0,
 				page: 1,
@@ -107,23 +105,25 @@ CC.PlantList = React.createClass({
 		this.state.page = page;
 		this.setState(this.state);
 	},
-	render() {
+
+	render () {
+		console.log( this.data.plants )
 		return <div>
-			<h2>Your inventory <a href="/inventory/add" className="ui green button"><i className="add icon"></i> Add a plant</a></h2>
+			<h2>Plants </h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
-						<th onClick={this.orderData.bind( this, "plantName" )}>Plant name
+						<th onClick={this.orderData.bind( this, "name" )}>Plant Type
 							<CC.SearchForm
-								field="plantName"
+								field="name"
 								setSearchTerm={this.setSearchTerm}
 								emptySearchTerm={this.emptySearchTerm}
 								defVal={this.state.searchTerm && this.state.searchTerm.plantName}
 							/>
 						</th>
-						<th onClick={this.orderData.bind( this, "plantTypeName" )}>Plant type</th>
-						<th onClick={this.orderData.bind( this, "areaName" )}>Plant area</th>
-						<th onClick={this.orderData.bind( this, "datePlanted" )}>Date planted</th>
+						<th onClick={this.orderData.bind( this, "daysToHarvest" )}>Days to Harvest</th>
+						<th onClick={this.orderData.bind( this, "avgPlantYield" )}>Average Yield</th>
+						<th onClick={this.orderData.bind( this, "requiresPollination" )}>Requires Pollination</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -132,7 +132,7 @@ CC.PlantList = React.createClass({
 					items = {this.data.plants} 
 					order = {this.state.order} 
 					reverse = {this.state.reverse} 
-					childComponent = {CC.PlantListItem}
+					childComponent = {CC.PlantFamilyListItem}
 				/>
 
 				<tfoot>
@@ -180,3 +180,4 @@ CC.PlantList = React.createClass({
 		</div>
 	}
 });
+

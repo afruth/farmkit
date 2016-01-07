@@ -1,20 +1,19 @@
 // This component orders the plant list items
-		// props plants and component are required
+		// props items and childComponent are required
 		// props order and reverse are optional 
-CC.PlantTableBody = React.createClass({
+CC.TableBody = React.createClass({
 	render(){
-		let plantList = this.props.plants;
+		let itemList = this.props.items;
 		if(this.props.order){
-			plantList = _.sortBy( plantList, this.props.order );
+			itemList = _.sortBy( itemList, this.props.order );
 			if( this.props.reverse ){ // reverse if required
-				plantList.reverse();
+				itemList.reverse();
 			}
 		}
-		console.log( this.props )
 		let ListComponent = this.props.childComponent;
 		return (
 			<tbody>
-				{ plantList.map(function(item) { 
+				{ itemList.map(function(item) { 
 					return <ListComponent key={item._id} rowData={item} />
 				}) }
 			</tbody>
