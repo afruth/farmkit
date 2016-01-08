@@ -9,12 +9,14 @@ CC.FormElements.SelectInput = React.createClass({
     $('.ui.dropdown').dropdown('refresh');
   },
   render() {
+    console.log(this)
     return <div className="fieldWrap">
       <div className={(this.props.error && this.props.error[this.props.fieldName]) ? "field error" : "field" }>
         <label htmlFor={this.props.fieldName}>
           {this.props.label}
         </label>
         <select
+					defaultValue={this.props.defValue}
           className="ui dropdown"
           id={this.props.fieldName}
           ref={this.props.fieldName}
@@ -22,8 +24,8 @@ CC.FormElements.SelectInput = React.createClass({
           <option value="">Choose an option</option>
           {this.props.data.map(function(p) {
             return <option
-              key={p._id}
-              value={p._id}>{p.name}
+              key={p.value}
+              value={p.value}>{p.label}
             </option>
             })}
         </select>

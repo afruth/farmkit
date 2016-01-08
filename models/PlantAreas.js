@@ -4,12 +4,13 @@ PlantArea = new Astro.Class({
   name: 'PlantArea',
   collection: PlantAreas,
   fields: {
-    name: 'string'
+    name: 'string',
+    areaId: 'string'
   },
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'areaId'
     }

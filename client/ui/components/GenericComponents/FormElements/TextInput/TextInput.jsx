@@ -11,6 +11,7 @@ CC.FormElements.TextInput = React.createClass({
         <input
           id={this.props.fieldName}
           ref={this.props.fieldName}
+					defaultValue={this.props.defValue}
           onChange={this.props.onChangedEvent}
           type="text" />
       </div>

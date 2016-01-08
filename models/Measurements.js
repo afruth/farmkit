@@ -9,9 +9,9 @@ Measurement = new Astro.Class({
     measurementValue: 'string'
   },
   relations: {
-    plant: {
+    inventory: {
       type: 'one',
-      class: 'Plant',
+      class: 'Inventory',
       local: 'plantId',
       foreign: '_id'
     },

@@ -15,17 +15,23 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 email
-kadira:flow-router
-kadira:react-layout
-lauricio:less-autoprefixer
-react
-reactive-var
-semantic:ui
-underscore
 jagi:astronomy
 jagi:astronomy-relations
 jagi:astronomy-timestamp-behavior
-ongoworks:security
-random
 jagi:astronomy-validators
 jquery
+juliancwirko:s-image-box
+kadira:flow-router
+kadira:react-layout
+lauricio:less-autoprefixer
+lepozepo:cloudinary
+momentjs:moment
+ongoworks:security
+random
+react
+reactive-var
+reywood:publish-composite
+sarasate:semantic-ui-datetimepicker
+semantic:ui
+tmeasday:publish-counts
+underscore

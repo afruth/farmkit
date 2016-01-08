@@ -5,6 +5,7 @@ PlantFamily = new Astro.Class({
   collection: PlantFamilies,
   fields: {
     name: 'string',
+    plantType: 'string',
     description: {
       type: 'string',
       optional: true
@@ -12,12 +13,20 @@ PlantFamily = new Astro.Class({
     daysToHarvest: {
       type: 'number',
       optional: true
+    },
+    avgPlantYield: { // Needs a unit of measurement, or change type to string
+      type: 'number', 
+      optional: true
+    },
+    requiresPollination: {
+      type: 'boolean',
+      optional: true
     }
   },
   relations: {
-    plants: {
+    inventories: {
       type: 'many',
-      class: 'Plant',
+      class: 'Inventory',
       local: '_id',
       foreign: 'plantType'
     }
