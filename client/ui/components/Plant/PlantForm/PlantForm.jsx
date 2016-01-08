@@ -2,7 +2,7 @@ CC.PlantForm = React.createClass ({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		var handlePlantTypes = Meteor.subscribe('plantTypes');
-		var handlePlantAreas = Meteor.subscribe('plantAreas');
+		var handleSystems = Meteor.subscribe('systems');
 		var handleGrowingMedia = Meteor.subscribe('growingMedia');
 
 		if(this.props.docId)
@@ -16,7 +16,7 @@ CC.PlantForm = React.createClass ({
 					label: i.name
 				}
 			}),
-			plantAreas: PlantAreas.find().fetch().map((i) => {
+			systems: Systems.find().fetch().map((i) => {
 				return {
 					value: i._id,
 					label: i.name
@@ -71,7 +71,7 @@ CC.PlantForm = React.createClass ({
 					plant.set(field,ref);
 				} else if (field === 'areaId') {
 					// Set areaName while setting areaId
-					let area = PlantAreas.findOne( ref );
+					let area = Systems.findOne( ref );
 					plant.set( 'areaName', area.name );
 					plant.set(field,ref);
 				} else {
@@ -143,7 +143,7 @@ CC.PlantForm = React.createClass ({
 								label="Plant area"
 								defValue={plant.areaId}
 								onChangedEvent={this.resetFieldState}
-								data={this.data.plantAreas}
+								data={this.data.systems}
 								error={this.state.errors}/>
 						</div>
 						<div className="plant-single__date-planted">

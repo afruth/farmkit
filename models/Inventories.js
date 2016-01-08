@@ -46,42 +46,42 @@ Inventory = Astro.Class({
       foreign: '_id',
       local: 'plantType'
     },
-    plantArea: {
+    system: {
       type: 'one',
-      class: 'PlantArea',
+      class: 'System',
       foreign: '_id',
       local: 'areaId'
     },
-    fertilizer: {
-      type: 'one',
-      class: 'Fertilizer',
-      foreign: 'fertilizerId',
-      local: '_id'
-    },
-    growingMedium: {
-      type: 'one',
-      class: 'GrowingMedium',
-      foreign: 'growingMediumId',
-      local: '_id'
-    },
-    lightingCycle: {
-      type: 'one',
-      class: 'LightingCycle',
-      foreign: 'lightingId',
-      local: '_id'
-    },
-    nutrientMix: {
-      type: 'one',
-      class: 'NutrientMix',
-      foreign: 'nutrientId',
-      local: '_id'
-    },
-    phValue: {
-      type: 'one',
-      class: 'PHValue',
-      foreign: 'phId',
-      local: '_id'
-    },
+    // fertilizer: {
+    //   type: 'one',
+    //   class: 'Fertilizer',
+    //   foreign: 'fertilizerId',
+    //   local: '_id'
+    // },
+    // growingMedium: {
+    //   type: 'one',
+    //   class: 'GrowingMedium',
+    //   foreign: 'growingMediumId',
+    //   local: '_id'
+    // },
+    // lightingCycle: {
+    //   type: 'one',
+    //   class: 'LightingCycle',
+    //   foreign: 'lightingId',
+    //   local: '_id'
+    // },
+    // nutrientMix: {
+    //   type: 'one',
+    //   class: 'NutrientMix',
+    //   foreign: 'nutrientId',
+    //   local: '_id'
+    // },
+    // phValue: {
+    //   type: 'one',
+    //   class: 'PHValue',
+    //   foreign: 'phId',
+    //   local: '_id'
+    // },
     plantYield: {
       type: 'one',
       class: 'plantYield',
@@ -94,12 +94,12 @@ Inventory = Astro.Class({
       foreign: 'pollenId',
       local: '_id'
     },
-    watering: {
-      type: 'one',
-      class: 'Watering',
-      foreign: 'wateringId',
-      local: '_id'
-    }
+    // watering: {
+    //   type: 'one',
+    //   class: 'Watering',
+    //   foreign: 'wateringId',
+    //   local: '_id'
+    // }
   },
   validators: {
     plantType: reqStr,

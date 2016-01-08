@@ -122,7 +122,7 @@ CC.PlantList = React.createClass({
 							/>
 						</th>
 						<th onClick={this.orderData.bind( this, "plantTypeName" )}>Plant type</th>
-						<th onClick={this.orderData.bind( this, "areaName" )}>Plant area</th>
+						<th onClick={this.orderData.bind( this, "areaName" )}>System</th>
 						<th onClick={this.orderData.bind( this, "datePlanted" )}>Date planted</th>
 						<th>Actions</th>
 					</tr>

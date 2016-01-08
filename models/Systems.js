@@ -1,8 +1,8 @@
-PlantAreas = new Mongo.Collection('areas');
+Systems = new Mongo.Collection('systems');
 
-PlantArea = new Astro.Class({
-  name: 'PlantArea',
-  collection: PlantAreas,
+System = new Astro.Class({
+  name: 'System',
+  collection: Systems,
   fields: {
     name: 'string',
     areaId: 'string'
@@ -20,4 +20,4 @@ PlantArea = new Astro.Class({
   }
 });
 
-if (Meteor.isServer) PlantAreas.permit(['insert', 'update', 'remove']).apply();
+if (Meteor.isServer) Systems.permit(['insert', 'update', 'remove']).apply();

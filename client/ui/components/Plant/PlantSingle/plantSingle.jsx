@@ -4,7 +4,7 @@ CC.PlantSingle = React.createClass ({
 		if(this.props.docId){
 			var handlePlant = Meteor.subscribe('plant', this.props.docId);
 			var handlePlantTypes = Meteor.subscribe('plantTypes');
-			var handlePlantArea = Meteor.subscribe('plantAreas');
+			var handleSystem = Meteor.subscribe('systems');
 			var handleGrowingMedia = Meteor.subscribe('growingMedia');
 			var handleNutrientMixes = Meteor.subscribe('nutrientMixes');
 			var handlePHValues = Meteor.subscribe('phValues');
@@ -13,7 +13,7 @@ CC.PlantSingle = React.createClass ({
 		return {
 			plant: this.props.docId && Inventory.findOne(this.props.docId),
 			plantFamilies: PlantFamilies.find().fetch(),
-			plantAreas: PlantAreas.find().fetch(),
+			systems: Systems.find().fetch(),
 			growingMedia: GrowingMedia.find().fetch(),
 			nutrientMixes: NutrientMixes.find().fetch(),
 			phValues: PHValues.find().fetch(),
@@ -59,14 +59,14 @@ CC.PlantSingle = React.createClass ({
 			crop: 'fill'
 		});
 	},
-	getPlantArea() {
+	getSystem() {
 		if( this.data.plant ){
 			let self = this;
-			let plantArea = _.find( self.data.plantAreas, function (area){
+			let system = _.find( self.data.systems, function (area){
 				return area._id === self.data.plant.areaId;
 			});
-			if( plantArea ){
-				return plantArea.name;   
+			if( system ){
+				return system.name;   
 			}
 		}
 	},
@@ -126,7 +126,7 @@ CC.PlantSingle = React.createClass ({
 							<a href={"/inventory/edit/" + this.props.docId} >edit</a>
 						</button>
 						<div className="plant-single__family">{ this.getPlantFamily() }</div>
-						<div className="plant-single__area">{ this.getPlantArea() }</div>
+						<div className="plant-single__area">{ this.getSystem() }</div>
 						<div className="plant-single__date-planted">{ this.getPlantDate() }</div>
 					</div>
 					<div className="sixteen wide column">
