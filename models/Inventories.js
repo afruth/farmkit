@@ -24,12 +24,8 @@ Inventory = Astro.Class({
     datePlanted: {
       type: 'date'
     },
-    areaId: 'string',
-    areaName: 'string',
-    growingMediumId: 'string',
-    nutrientId: 'string',
-    phId: 'string',
-    wateringId: 'string',
+    systemId: 'string',
+    systemName: 'string',
     tags: {
       type: 'array',
       nested: 'string',
@@ -50,61 +46,13 @@ Inventory = Astro.Class({
       type: 'one',
       class: 'System',
       foreign: '_id',
-      local: 'areaId'
-    },
-    // fertilizer: {
-    //   type: 'one',
-    //   class: 'Fertilizer',
-    //   foreign: 'fertilizerId',
-    //   local: '_id'
-    // },
-    // growingMedium: {
-    //   type: 'one',
-    //   class: 'GrowingMedium',
-    //   foreign: 'growingMediumId',
-    //   local: '_id'
-    // },
-    // lightingCycle: {
-    //   type: 'one',
-    //   class: 'LightingCycle',
-    //   foreign: 'lightingId',
-    //   local: '_id'
-    // },
-    // nutrientMix: {
-    //   type: 'one',
-    //   class: 'NutrientMix',
-    //   foreign: 'nutrientId',
-    //   local: '_id'
-    // },
-    // phValue: {
-    //   type: 'one',
-    //   class: 'PHValue',
-    //   foreign: 'phId',
-    //   local: '_id'
-    // },
-    plantYield: {
-      type: 'one',
-      class: 'plantYield',
-      foreign: 'yieldId',
-      local: '_id'
-    },
-    pollinate: {
-      type: 'one',
-      class: 'Pollinate',
-      foreign: 'pollenId',
-      local: '_id'
-    },
-    // watering: {
-    //   type: 'one',
-    //   class: 'Watering',
-    //   foreign: 'wateringId',
-    //   local: '_id'
-    // }
+      local: 'systemId'
+    }
   },
   validators: {
     plantType: reqStr,
     datePlanted: Validators.required('Date of plantation is required'),
-    areaId: reqStr
+    systemId: reqStr
   },
   behaviours: {
     timestamp: {}

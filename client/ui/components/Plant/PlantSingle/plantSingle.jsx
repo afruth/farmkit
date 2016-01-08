@@ -63,7 +63,7 @@ CC.PlantSingle = React.createClass ({
 		if( this.data.plant ){
 			let self = this;
 			let system = _.find( self.data.systems, function (area){
-				return area._id === self.data.plant.areaId;
+				return area._id === self.data.plant.systemId;
 			});
 			if( system ){
 				return system.name;   

@@ -25,7 +25,7 @@ Meteor.publishComposite('plantList', function(context) {
 			{
 				find: function(plant)  {
 					return Systems.find({
-						_id: plant.areaId
+						_id: plant.systemId
 					},{
 						transform: null
 					});

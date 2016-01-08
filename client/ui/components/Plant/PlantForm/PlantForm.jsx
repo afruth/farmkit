@@ -3,7 +3,6 @@ CC.PlantForm = React.createClass ({
 	getMeteorData() {
 		var handlePlantTypes = Meteor.subscribe('plantTypes');
 		var handleSystems = Meteor.subscribe('systems');
-		var handleGrowingMedia = Meteor.subscribe('growingMedia');
 
 		if(this.props.docId)
 			var handlePlant = Meteor.subscribe('plant', this.props.docId);
@@ -22,13 +21,7 @@ CC.PlantForm = React.createClass ({
 					label: i.name
 				}
 			}),
-			plant: this.props.docId && Inventory.findOne(this.props.docId),
-			growingMedia: GrowingMedia.find().fetch().map((i) => {
-				return {
-					value: i._id,
-					label: i.name
-				}
-			}),
+			plant: this.props.docId && Inventory.findOne(this.props.docId)
 		}
 	},
 	getInitialState() {
@@ -69,10 +62,10 @@ CC.PlantForm = React.createClass ({
 					let family = PlantFamilies.findOne( ref );
 					plant.set( 'plantTypeName', family.name );
 					plant.set(field,ref);
-				} else if (field === 'areaId') {
-					// Set areaName while setting areaId
-					let area = Systems.findOne( ref );
-					plant.set( 'areaName', area.name );
+				} else if (field === 'systemId') {
+					// Set systemName while setting systemId
+					let system = Systems.findOne( ref );
+					plant.set( 'systemName', system.name );
 					plant.set(field,ref);
 				} else {
 					plant.set(field,ref);
@@ -81,15 +74,17 @@ CC.PlantForm = React.createClass ({
 			}
 		}
 
-		if(plant.validate(false)) {
+		if(plant.validate(false)) { 
 			Meteor.call('/inventory/add', plant, function(e) {
 				if (e) {
 					console.log('error', plant.catchValidationException(e));
 				} else {
-					FlowRouter.go( CC.previousPath );
+					if( CC.previousPath ){
+						FlowRouter.go( CC.previousPath );
+					}
 				}
 			})
-		} else {
+		} else { // if it fails validation
 			this.setState({
 				errors: plant.getValidationErrors()
 			});
@@ -138,10 +133,10 @@ CC.PlantForm = React.createClass ({
 						</div>
 						<div className="plant-single__area">
 							<CC.FormElements.SelectInput
-								fieldName="areaId"
-								ref="areaId"
-								label="Plant area"
-								defValue={plant.areaId}
+								fieldName="systemId"
+								ref="systemId"
+								label="System"
+								defValue={plant.systemId}
 								onChangedEvent={this.resetFieldState}
 								data={this.data.systems}
 								error={this.state.errors}/>
@@ -157,15 +152,6 @@ CC.PlantForm = React.createClass ({
 						</div>
 					</div>
 					<div className="sixteen wide column">
-						<div className="plant-single__growing-medium" >
-							<CC.FormElements.SelectInput
-								fieldName="growingMedium"
-								ref="growingMedium"
-								label="Growing medium"
-								onChangedEvent={this.resetFieldState}
-								data={this.data.growingMedia}
-								error={this.state.errors} />
-						</div>
 						<div className="plant-single__tags">
 							<CC.FormElements.TextInput
 								fieldName="tags"

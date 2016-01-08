@@ -5,14 +5,14 @@ System = new Astro.Class({
   collection: Systems,
   fields: {
     name: 'string',
-    areaId: 'string'
+    systemId: 'string'
   },
   relations: {
     inventories: {
       type: 'many',
       class: 'Inventory',
       local: '_id',
-      foreign: 'areaId'
+      foreign: 'systemId'
     }
   },
   behaviours: {
