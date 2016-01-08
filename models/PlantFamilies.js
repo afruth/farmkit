@@ -5,23 +5,42 @@ PlantFamily = new Astro.Class({
   collection: PlantFamilies,
   fields: {
     name: 'string',
-    plantType: 'string',
+    plantFamilyImages: {
+      type: 'array'
+    },
     description: {
       type: 'string',
       optional: true
     },
-    daysToHarvest: {
+    avgGerminationTime: {
       type: 'number',
       optional: true
     },
-    avgPlantYield: { // Needs a unit of measurement, or change type to string
+    avgDaysToHarvest: {
+      type: 'number',
+      optional: true
+    },
+    avgPlantYield: { 
       type: 'number', 
       optional: true
     },
+    plantYieldUnit: 'string',
     requiresPollination: {
       type: 'boolean',
       optional: true
-    }
+    },
+    desiredLight: {
+      type: 'string',
+      optional: true
+    },
+    growingZone: {
+      type: 'string',
+      optional: true
+    },
+    preferredConditions: {
+      type: 'string',
+      optional: true
+    },
   },
   relations: {
     inventories: {
