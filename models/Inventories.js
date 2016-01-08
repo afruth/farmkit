@@ -5,11 +5,47 @@ var reqStr = Validators.and([
   Validators.string('Plant type is wrong')
 ]);
 
+// Nested Classes:
+PollinationHistory = Astro.Class({
+  name: 'PollinationHistory',
+  fields: {
+    pollinationDate: 'date',
+    method: 'string'
+  }
+});
+
+HeightHistory = Astro.Class({
+  name: 'HeightHistory',
+  fields: {
+    measurementDate: 'date',
+    unit: 'string',
+    height: 'number'
+  }
+});
+
+SystemHistory = Astro.Class({
+  name: 'SystemHistory',
+  fields: {
+    systemId: 'string',
+    systemName: 'string',
+    enteredSystem: 'date',
+    exitedSystem: 'date'
+  }
+});
+
 Inventory = Astro.Class({
   name: 'Inventory',
   collection: Inventories,
   transform: null,
   fields: {
+    harvestDate: 'date',
+    heightHistory: {
+      type: 'array',
+      nested: 'HeightHistory',
+      default: function () {
+        return [];
+      }
+    },
     plantType: 'string',
     plantTypeName: 'string',
     plantName: {
@@ -21,10 +57,25 @@ Inventory = Astro.Class({
 		plantImage: {
 			type: 'array'
 		},
+    pollinationHistory: {
+      type: 'array',
+      nested: 'PollinationHistory',
+      default: function () {
+        return [];
+      }
+    },
     datePlanted: {
       type: 'date'
     },
-    systemId: 'string',
+    siblings: 'array', // array of sibling id's
+    systemHistory: {
+      type: 'array',
+      nested: 'SystemHistory',
+      default: function () {
+        return [];
+      }
+    },
+    systemId: 'string', // current system
     systemName: 'string',
     tags: {
       type: 'array',
@@ -33,7 +84,14 @@ Inventory = Astro.Class({
         return []
       },
       optional: true
-    }
+    },
+    yeild: {
+      type: 'object',
+      fields: {
+        amount: 'number',
+        unit: 'string'
+      }
+    },
 	},
   relations: {
     plantFamily: {
