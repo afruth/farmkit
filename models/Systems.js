@@ -74,8 +74,8 @@ NutrientMix = Astro.Class({
   }
 });
 
-NutrientMix = Astro.Class({
-  name: 'NutrientMix',
+GrowingMedia = Astro.Class({
+  name: 'GrowingMedia',
   fields: {
     name: 'string',
     mediumType: 'string',
