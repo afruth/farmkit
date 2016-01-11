@@ -5,18 +5,12 @@ CC.PlantSingle = React.createClass ({
 			var handlePlant = Meteor.subscribe('plant', this.props.docId);
 			var handlePlantTypes = Meteor.subscribe('plantTypes');
 			var handleSystem = Meteor.subscribe('systems');
-			var handleGrowingMedia = Meteor.subscribe('growingMedia');
-			var handleNutrientMixes = Meteor.subscribe('nutrientMixes');
-			var handlePHValues = Meteor.subscribe('phValues');
 		}
 
 		return {
 			plant: this.props.docId && Inventory.findOne(this.props.docId),
 			plantFamilies: PlantFamilies.find().fetch(),
 			systems: Systems.find().fetch(),
-			growingMedia: GrowingMedia.find().fetch(),
-			nutrientMixes: NutrientMixes.find().fetch(),
-			phValues: PHValues.find().fetch(),
 		}
 	},
 	getInitialState() {
@@ -130,9 +124,6 @@ CC.PlantSingle = React.createClass ({
 						<div className="plant-single__date-planted">{ this.getPlantDate() }</div>
 					</div>
 					<div className="sixteen wide column">
-						<div className="plant-single__growing-medium" >{ this.getPlantGrowingMedium() }</div>
-						<div className="plant-single__nutrient">{ this.getPlantNutrients() }</div>
-						<div className="plant-single__ph">{ this.getPlantPh() }</div>
 					</div>
 				</div>
 			</div>
