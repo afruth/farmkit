@@ -6,6 +6,13 @@ Meteor.methods({
     }
     plant.throwValidationException();
   },
+  "/system/add": function(system) {
+    if (system.validate()) {
+      system.save();
+      return system;
+    }
+    system.throwValidationException();
+  },
 	"/inventory/delete": function(plantId) {
 		check(plantId, String);
 
@@ -13,6 +20,5 @@ Meteor.methods({
 
 		if(plant)
 			plant.remove()
-
 	}
 });

@@ -33,7 +33,6 @@ CC.PlantForm = React.createClass ({
 			delete curState.errors[event.target.id];
 			this.setState(curState);
 		}
-
 	},
 	submitForm(event) {
 		event.preventDefault();

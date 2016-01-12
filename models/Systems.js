@@ -119,6 +119,7 @@ System = new Astro.Class({
     activePlants: 'array', // active plants' IDs
     historicPlants: 'array', // historic plants' IDs
     description: 'string',
+    hydroponic: 'boolean',  // false is for soil systems
     naturalLighting: 'boolean',
     dailyLightingSchedule: { 
       type: 'array',

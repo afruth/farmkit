@@ -109,7 +109,7 @@ CC.Systems = React.createClass ({
 	render () {
 		console.log( this.data.systems )
 		return <div>
-			<h2>Plants </h2>
+			<h2>Systems  <a href="/system/add" className="ui green button"><i className="add icon"></i> Add a system</a></h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>
