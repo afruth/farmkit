@@ -1,4 +1,4 @@
 
-Meteor.publish('growingMedia', function() {
+Meteor.publish('growingmedia', function() {
   return GrowingMedia.find();
 });
