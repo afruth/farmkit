@@ -1,11 +1,11 @@
 // A collection of different growing media (dirt, clay pellets, NTF, etc..)
 
 
-GrowingMedia = new Mongo.Collection('growingmedia');
+GrowingSubstance = new Mongo.Collection('growingsubstance');
 
 GrowingMedium = new Astro.Class({
   name: 'GrowingMedium',
-  collection: GrowingMedia,
+  collection: GrowingSubstance,
   fields: {
     name: 'string',
     growingMediumId: 'string',
@@ -28,4 +28,4 @@ GrowingMedium = new Astro.Class({
   }
 });
 
-if (Meteor.isServer) GrowingMedia.permit(['insert', 'update', 'remove']).apply();
+if (Meteor.isServer) GrowingSubstance.permit(['insert', 'update', 'remove']).apply();

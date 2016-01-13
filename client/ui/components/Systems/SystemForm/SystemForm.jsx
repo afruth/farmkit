@@ -2,7 +2,7 @@ CC.SystemForm = React.createClass ({
 	mixins: [ReactMeteorData],
 	getMeteorData() {
 		var handleSystems = Meteor.subscribe('systems');
-		var handleGrowingMedia = Meteor.subscribe('growingmedia');
+		var handleGrowingMedia = Meteor.subscribe('growingsubstance');
 
 		return {
 			allSystems: Systems.find().fetch().map((i) => {
@@ -11,7 +11,7 @@ CC.SystemForm = React.createClass ({
 					label: i.name
 				}
 			}),
-			growingMedia: GrowingMedia.find().fetch(),
+			growingMedia: GrowingSubstance.find().fetch(),
 			system: this.props.docId && Systems.findOne(this.props.docId)
 		}
 	},
