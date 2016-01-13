@@ -10,6 +10,7 @@ CC.SystemForm = React.createClass ({
 					label: i.name
 				}
 			}),
+			growingMedia: GrowingMedia.find().fetch(),
 			system: this.props.docId && Systems.findOne(this.props.docId)
 		}
 	},
@@ -176,19 +177,19 @@ CC.SystemForm = React.createClass ({
 								onChangedEvent={this.resetFieldState}
 								error={this.state.errors}/>
 						</div>
+						<div className="system-add__growing-media">
+							<CC.FormElements.SelectInput
+								fieldName="growingMedium"
+								ref="growingMedium"
+								label="Growing Medium"
+								defValue={system.media}
+								onChangedEvent={this.resetFieldState}
+								data={this.data.growingMedia}
+								error={this.state.errors}/>
+						</div>
 
 					</div>
 {/*
-						<div className="system-add__area">
-							<CC.FormElements.SelectInput
-								fieldName="systemId"
-								ref="systemId"
-								label="System"
-								defValue={plant.systemId}
-								onChangedEvent={this.resetFieldState}
-								data={this.data.systems}
-								error={this.state.errors}/>
-						</div>
 						<div className="system-add__date-planted">
 							<CC.FormElements.DateInput
 								fieldName="datePlanted"
