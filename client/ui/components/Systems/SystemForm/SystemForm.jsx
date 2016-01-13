@@ -184,14 +184,66 @@ CC.SystemForm = React.createClass ({
 								onChangedEvent={this.resetFieldState}
 								error={this.state.errors}/>
 						</div>
+
 						<div className="system-add__growing-media">
 							<CC.FormElements.SelectInput
-								fieldName="addSystemGrowingMedia"
+								fieldName="growingMedium"
 								ref="growingMedium"
 								label="Growing Medium"
 								defValue={system.media}
 								onChangedEvent={this.resetFieldState}
 								data={this.data.growingMedia}
+								error={this.state.errors}/>
+						</div>
+
+						<div className="system-add__ph">
+							<CC.FormElements.NumberInput
+								fieldName="currentPH"
+								ref="currentPH"
+								label="Current PH"
+								defValue={system.ph}
+								onChangedEvent={this.resetFieldState}
+								step="0.1"
+								min="0"
+								max="14"
+								error={this.state.errors}/>
+						</div>
+
+						<div className="system-add__nutrient-mix">
+							<div className="system-add__nutrient-mix__title">Nutrient Mix</div>
+							<CC.FormElements.NumberInput
+								fieldName="nitrogen"
+								ref="nitrogen"
+								label="Nitrogen"
+								defValue={system.nitrogen}
+								onChangedEvent={this.resetFieldState}
+								step="1"
+								min="0"
+								error={this.state.errors}/>
+							<CC.FormElements.NumberInput
+								fieldName="phosphorus"
+								ref="phosphorus"
+								label="Phosphorus"
+								defValue={system.phosphorus}
+								onChangedEvent={this.resetFieldState}
+								step="1"
+								min="0"
+								error={this.state.errors}/>
+							<CC.FormElements.NumberInput
+								fieldName="potassium"
+								ref="potassium"
+								label="Potassium"
+								defValue={system.potassium}
+								onChangedEvent={this.resetFieldState}
+								step="1"
+								min="0"
+								error={this.state.errors}/>
+							<CC.FormElements.TextInput
+								fieldName="dilution"
+								ref="dilution"
+								label="Dilution"
+								defValue={system.dilution}
+								onChangedEvent={this.resetFieldState}
 								error={this.state.errors}/>
 						</div>
 

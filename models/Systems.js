@@ -52,7 +52,7 @@ FertilizerHistory = Astro.Class({
     applicationDate: 'date',
     mix: {
       nitrogen: 'number',
-      phosophorus: 'number',
+      phosphorus: 'number',
       potassium: 'number'
     }  
   }
@@ -67,7 +67,7 @@ NutrientMix = Astro.Class({
     state: 'string', // solid, liquid, etc... 
     mix: {
       nitrogen: 'number',
-      phosophorus: 'number',
+      phosphorus: 'number',
       potassium: 'number',
       dilution: 'string'
     }
