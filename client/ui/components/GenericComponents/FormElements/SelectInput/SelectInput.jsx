@@ -9,7 +9,7 @@ CC.FormElements.SelectInput = React.createClass({
     $('.ui.dropdown').dropdown('refresh');
   },
   render() {
-    console.log(this)
+    console.log(this) 
     return <div className="fieldWrap">
       <div className={(this.props.error && this.props.error[this.props.fieldName]) ? "field error" : "field" }>
         <label htmlFor={this.props.fieldName}>
@@ -23,6 +23,7 @@ CC.FormElements.SelectInput = React.createClass({
           onChange={this.props.onChangedEvent}>
           <option value="">Choose an option</option>
           {this.props.data.map(function(p) {
+            console.log(p)
             return <option
               key={p.value}
               value={p.value}>{p.label}

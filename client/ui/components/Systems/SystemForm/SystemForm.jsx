@@ -11,7 +11,12 @@ CC.SystemForm = React.createClass ({
 					label: i.name
 				}
 			}),
-			growingMedia: GrowingSubstance.find().fetch(),
+			growingMedia: GrowingSubstance.find().fetch().map( (i) => {
+				return {
+					value: i._id,
+					label: i.name
+				}
+			}),
 			system: this.props.docId && Systems.findOne(this.props.docId)
 		}
 	},
@@ -103,6 +108,7 @@ CC.SystemForm = React.createClass ({
 	},
 	render() {
 		console.log(this.props.docId )
+		console.log(this.data )
 		if(this.data.systems || !this.props.docId) {
 			const allSystems = this.data.allSystems || {};
 			const system = this.data.system || {};
@@ -180,7 +186,7 @@ CC.SystemForm = React.createClass ({
 						</div>
 						<div className="system-add__growing-media">
 							<CC.FormElements.SelectInput
-								fieldName="growingMedium"
+								fieldName="addSystemGrowingMedia"
 								ref="growingMedium"
 								label="Growing Medium"
 								defValue={system.media}
