@@ -23,6 +23,10 @@ CC.SystemForm = React.createClass ({
 	getInitialState() {
 		return { systemType: 'hydro' }
 	},
+	getValue() {
+		console.log('GRANDE!~!!!!!!')
+    return this.refs[this.props.fieldName].value;
+  },
 	componentDidMount() {
 		// systemType radio boxes
 		$('.ui.radio.checkbox.hydro').checkbox({
@@ -72,13 +76,19 @@ CC.SystemForm = React.createClass ({
 			// Creates base system, with supplied data
 			var system = new System(); // 'System' is not a reserved keywork
 		}
+		
+		console.log(this.refs)
 
 		for(field in this.refs) {
 			let ref = null;
 			if(this.refs[field].getValue) {
 				ref = this.refs[field].getValue();
+				console.log( field )
+				console.log( ref )
 			} else {
 				ref = this.refs[field].value;
+				console.log( field )
+				console.log( ref )
 			}
 			// For specific fields
 			if (ref) {
@@ -99,6 +109,20 @@ CC.SystemForm = React.createClass ({
 
 				if( field === 'phHistory' ){
 					system.set(field, ref, new Date() )
+				} else if( field === 'hydroponic' ) {
+					if( this.state.systemType === 'soil'){
+						ref = false;
+					} else {
+						ref = true;
+					}
+					system.set(field,ref);
+				} else if( field === 'sunlight' ) {
+					if( this.state.lightType === 'artificial'){
+						ref = false;
+					} else {
+						ref = true;
+					}
+					system.set(field,ref);
 				} else {
 					system.set(field,ref);
 				}
@@ -175,7 +199,6 @@ CC.SystemForm = React.createClass ({
 					          name='hydroponic'
 					          ref='hydroponic'
 					          className="hidden"
-					          value="true"
 					          defaultChecked="true"
 					          type="radio" />
 					        <label>Hydroponic</label>
@@ -187,7 +210,6 @@ CC.SystemForm = React.createClass ({
 					          name='hydroponic'
 					          ref='hydroponic'
 					          className="hidden"
-					          value="false"
 					          type="radio" />
 					        <label>Soil</label>
 			        	</div>
@@ -214,7 +236,6 @@ CC.SystemForm = React.createClass ({
 					          name='sunlight'
 					          ref='sunlight'
 					          className="hidden"
-					          value="true"
 					          defaultChecked="true"
 					          type="radio" />
 					        <label>Sunlight</label>
@@ -226,7 +247,6 @@ CC.SystemForm = React.createClass ({
 					          name='sunlight'
 					          ref='sunlight'
 					          className="hidden"
-					          value="false"
 					          type="radio" />
 					        <label>Artificial</label>
 			        	</div>
