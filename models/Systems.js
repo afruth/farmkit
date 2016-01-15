@@ -120,7 +120,10 @@ System = new Astro.Class({
     historicPlants: 'array', // historic plants' IDs
     description: 'string',
     hydroponic: 'boolean',  // false is for soil systems
-    naturalLighting: 'boolean',
+    sunlight: 'boolean', 
+    systemImage: {
+      type: 'array'
+    },
     dailyLightingSchedule: { 
       type: 'array',
       nested: 'DailyLightingSchedule',

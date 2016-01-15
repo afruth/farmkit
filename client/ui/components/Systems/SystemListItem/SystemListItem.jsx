@@ -18,8 +18,8 @@ CC.SystemListItem = React.createClass({
 				{this.props.rowData.requiresPollination}
 			</td>
 			<td>
-				<a href={'/inventory/edit/' + this.props.rowData._id} className="ui green icon button"><i className="edit icon"></i></a>
-				<a href={'/inventory/remove/' + this.props.rowData._id} className="ui red icon button"><i className="remove icon"></i></a>
+				<a href={'/system/edit/' + this.props.rowData._id} className="ui green icon button"><i className="edit icon"></i></a>
+				<a href={'/system/remove/' + this.props.rowData._id} className="ui red icon button"><i className="remove icon"></i></a>
 			</td>
 		</tr>
 			: null;

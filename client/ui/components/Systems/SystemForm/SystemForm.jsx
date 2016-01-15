@@ -21,17 +21,33 @@ CC.SystemForm = React.createClass ({
 		}
 	},
 	getInitialState() {
-		return {}
+		return { systemType: 'hydro' }
 	},
 	componentDidMount() {
+		// systemType radio boxes
 		$('.ui.radio.checkbox.hydro').checkbox({
 			onChange: () => {
-				this.state.systemType = 'hydro';
+				this.setState({ systemType: 'hydro' });
+				console.log(this.state)
 			}
 		});
 		$('.ui.radio.checkbox.soil').checkbox({
 			onChange: () => {
-				this.state.systemType = 'soil';
+				this.setState({ systemType: 'soil' });
+				console.log(this.state)
+			}
+		});
+		// Lighting radio boxes
+		$('.ui.radio.checkbox.sunlight').checkbox({
+			onChange: () => {
+				this.setState({ lightType: 'sunlight' });
+				console.log(this.state)
+			}
+		});
+		$('.ui.radio.checkbox.artificial').checkbox({
+			onChange: () => {
+				this.setState({ lightType: 'artificial' });
+				console.log(this.state)
 			}
 		});
 	},
@@ -46,12 +62,9 @@ CC.SystemForm = React.createClass ({
 		}
 
 	},
-	hydroToggle(event) {
-		console.log( this )
-		console.log( event )
-	},
 	submitForm(event) {
 		event.preventDefault();
+		console.log('submitForm')
 		//gathering the data
 		if(this.props.docId) {
 			var system = this.data.system;
@@ -67,51 +80,60 @@ CC.SystemForm = React.createClass ({
 			} else {
 				ref = this.refs[field].value;
 			}
-			// // For specific fields
-			// if (ref) {
-			// 	if(field === 'tags') {
-			// 		plant.set(field,ref.split(' '));
-			// 	} else if (field === 'datePlanted') {
-			// 		plant.set(field,new Date(ref));
-			// 	} else if (field === 'plantType') {
-			// 		// Set plantTypeName while setting plantType
-			// 		let family = PlantFamilies.findOne( ref );
-			// 		plant.set( 'plantTypeName', family.name );
-			// 		plant.set(field,ref);
-			// 	} else if (field === 'systemId') {
-			// 		// Set systemName while setting systemId
-			// 		let system = Systems.findOne( ref );
-			// 		plant.set( 'systemName', system.name );
-			// 		plant.set(field,ref);
-			// 	} else {
-			// 		plant.set(field,ref);
-			// 	}
+			// For specific fields
+			if (ref) {
+				// if(field === 'tags') {
+				// 	plant.set(field,ref.split(' '));
+				// } else if (field === 'datePlanted') {
+				// 	plant.set(field,new Date(ref));
+				// } else if (field === 'plantType') {
+				// 	// Set plantTypeName while setting plantType
+				// 	let family = PlantFamilies.findOne( ref );
+				// 	plant.set( 'plantTypeName', family.name );
+				// 	plant.set(field,ref);
+				// } else if (field === 'systemId') {
+				// 	// Set systemName while setting systemId
+				// 	let system = Systems.findOne( ref );
+				// 	plant.set( 'systemName', system.name );
+				// 	plant.set(field,ref);
 
-			// }
+				if( field === 'phHistory' ){
+					system.set(field, ref, new Date() )
+				} else {
+					system.set(field,ref);
+				}
+
+			}
 		}
 
 		if(system.validate(false)) { 
+			console.log(system)
 			Meteor.call('/system/add', system, function(e) {
 				if (e) {
 					console.log('error', system.catchValidationException(e));
 				} else {
 					if( CC.previousPath ){
 						FlowRouter.go( CC.previousPath );
+					} else {
+						FlowRouter.go( '/systems' );
 					}
 				}
 			})
 		} else { // if it fails validation
+			console.log('system failed')
+			console.log(system)
 			this.setState({
 				errors: system.getValidationErrors()
 			});
 		}
 	},
 	render() {
-		console.log(this.props.docId )
 		console.log(this.data )
+
 		if(this.data.systems || !this.props.docId) {
 			const allSystems = this.data.allSystems || {};
 			const system = this.data.system || {};
+
 
 			return <div className="system-add">
 				<form className="ui grid container form" id="systemAdd">
@@ -130,13 +152,14 @@ CC.SystemForm = React.createClass ({
 							}) : null} */}
 					</div>
 					<div className="eight wide column">
+
 						<div className="system-add__name field">
 							<h3 className="ui header">
 								<CC.FormElements.TextInput
-									fieldName="systemName"
-									ref="systemName"
+									fieldName="name"
+									ref="name"
 									label="System Name"
-									defValue={system.systemName}
+									defValue={system.name}
 									onChangedEvent={this.resetFieldState}
 									error={this.state.errors}/>
 							</h3>
@@ -149,13 +172,11 @@ CC.SystemForm = React.createClass ({
 			        <div className="field">
 			        	<div className="ui radio checkbox hydro">
 					        <input
-					          name='systemType'
-					          ref='systemType'
+					          name='hydroponic'
+					          ref='hydroponic'
 					          className="hidden"
-					          value="hydroponic"
-					          // checked="true"
-					          // onChecked={this.hydroToggle}
-					          // onChange={this.resetFieldState}
+					          value="true"
+					          defaultChecked="true"
 					          type="radio" />
 					        <label>Hydroponic</label>
 			        	</div>
@@ -163,12 +184,10 @@ CC.SystemForm = React.createClass ({
 			        <div className="field">
 			        	<div className="ui radio checkbox soil">
 					        <input
-					          name='systemType'
-					          ref='systemType'
+					          name='hydroponic'
+					          ref='hydroponic'
 					          className="hidden"
-					          value="soil"
-					          // onChecked={this.hydroToggle}
-					          // onChange={this.resetFieldState}
+					          value="false"
 					          type="radio" />
 					        <label>Soil</label>
 			        	</div>
@@ -185,23 +204,58 @@ CC.SystemForm = React.createClass ({
 								error={this.state.errors}/>
 						</div>
 
-						<div className="system-add__growing-media">
-							<CC.FormElements.SelectInput
-								fieldName="growingMedium"
-								ref="growingMedium"
-								label="Growing Medium"
-								defValue={system.media}
-								onChangedEvent={this.resetFieldState}
-								data={this.data.growingMedia}
-								error={this.state.errors}/>
+						<div className="system-add__lighting inline fields">
+							<label htmlFor='type'>
+			          Lighting Type
+			        </label>
+			        <div className="field">
+			        	<div className="ui radio checkbox sunlight">
+					        <input
+					          name='sunlight'
+					          ref='sunlight'
+					          className="hidden"
+					          value="true"
+					          defaultChecked="true"
+					          type="radio" />
+					        <label>Sunlight</label>
+			        	</div>
+			        </div>
+			        <div className="field">
+			        	<div className="ui radio checkbox artificial">
+					        <input
+					          name='sunlight'
+					          ref='sunlight'
+					          className="hidden"
+					          value="false"
+					          type="radio" />
+					        <label>Artificial</label>
+			        	</div>
+			        </div>
 						</div>
+
+						<CC.SystemFormToggleLight 
+							system = {system}
+							onChangedEvent = {this.onChangedEvent}
+							lightType = {this.state.lightType}
+							error = {this.state.errors} />
+
+					</div>
+
+					<div className="sixteen wide column">
+
+						<CC.SystemFormToggleSystemType 
+							system = {system}
+							onChangedEvent = {this.onChangedEvent}
+							systemType = {this.state.systemType}
+							growingMedia = {this.data.growingMedia}
+							error = {this.state.errors} />
+						
 
 						<div className="system-add__ph">
 							<CC.FormElements.NumberInput
-								fieldName="currentPH"
-								ref="currentPH"
+								fieldName="phHistory"
+								ref="phHistory"
 								label="Current PH"
-								defValue={system.ph}
 								onChangedEvent={this.resetFieldState}
 								step="0.1"
 								min="0"
@@ -209,70 +263,8 @@ CC.SystemForm = React.createClass ({
 								error={this.state.errors}/>
 						</div>
 
-						<div className="system-add__nutrient-mix">
-							<div className="system-add__nutrient-mix__title">Nutrient Mix</div>
-							<CC.FormElements.NumberInput
-								fieldName="nitrogen"
-								ref="nitrogen"
-								label="Nitrogen"
-								defValue={system.nitrogen}
-								onChangedEvent={this.resetFieldState}
-								step="1"
-								min="0"
-								error={this.state.errors}/>
-							<CC.FormElements.NumberInput
-								fieldName="phosphorus"
-								ref="phosphorus"
-								label="Phosphorus"
-								defValue={system.phosphorus}
-								onChangedEvent={this.resetFieldState}
-								step="1"
-								min="0"
-								error={this.state.errors}/>
-							<CC.FormElements.NumberInput
-								fieldName="potassium"
-								ref="potassium"
-								label="Potassium"
-								defValue={system.potassium}
-								onChangedEvent={this.resetFieldState}
-								step="1"
-								min="0"
-								error={this.state.errors}/>
-							<CC.FormElements.TextInput
-								fieldName="dilution"
-								ref="dilution"
-								label="Dilution"
-								defValue={system.dilution}
-								onChangedEvent={this.resetFieldState}
-								error={this.state.errors}/>
-						</div>
+					</div>
 
-					</div>
-{/*
-						<div className="system-add__date-planted">
-							<CC.FormElements.DateInput
-								fieldName="datePlanted"
-								ref="datePlanted"
-								label="Date planted"
-								defValue={plant.datePlanted}
-								onChangedEvent={this.resetFieldState}
-								error={this.state.errors}/>
-						</div>
-					</div> !!!!!
-					<div className="sixteen wide column">
-						<div className="system-add__tags">
-							<CC.FormElements.TextInput
-								fieldName="tags"
-								ref="tags"
-								label="Tags"
-								defValue={plant.tags && plant.tags.join(' ')}
-								onChangedEvent={this.resetFieldState}
-								error={this.state.errors}/>
-						</div>
-						<div className="system-add__nutrient"></div>
-						<div className="system-add__ph"></div>
-					</div>
-*/}
 					<div className="ui buttons">
 						<button className="ui primary large button" onClick={this.submitForm}>Save</button>
 						<div className="or"></div>
