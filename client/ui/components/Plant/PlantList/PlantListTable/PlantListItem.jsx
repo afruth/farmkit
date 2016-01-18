@@ -1,6 +1,8 @@
 CC.PlantListItem = React.createClass({
 
 	render() {
+		console.log(this.props.rowData )
+
 		return (this.props.rowData) ? <tr>
 			<td>
 				<a href={"/inventory/view/" + this.props.rowData._id} >
@@ -11,7 +13,7 @@ CC.PlantListItem = React.createClass({
 				{(this.props.rowData.plantFamily()) ? this.props.rowData.plantFamily().name : null}
 			</td>
 			<td>
-				{(this.props.rowData.plantArea()) ? this.props.rowData.plantArea().name : null}
+				{(this.props.rowData.system()) ? this.props.rowData.system().name : null }
 			</td>
 			<td>
 				{(this.props.rowData.datePlanted) ? moment(this.props.rowData.datePlanted).format('MM/DD/YYYY') : null}

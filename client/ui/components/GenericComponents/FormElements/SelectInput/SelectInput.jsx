@@ -9,7 +9,6 @@ CC.FormElements.SelectInput = React.createClass({
     $('.ui.dropdown').dropdown('refresh');
   },
   render() {
-    console.log(this)
     return <div className="fieldWrap">
       <div className={(this.props.error && this.props.error[this.props.fieldName]) ? "field error" : "field" }>
         <label htmlFor={this.props.fieldName}>

@@ -1,3 +1,3 @@
-Meteor.publish('growingMedia', function() {
-  return GrowingMedia.find();
+Meteor.publish('growingsubstance', function() {
+  return GrowingSubstance.find();
 });

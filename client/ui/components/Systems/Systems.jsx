@@ -11,7 +11,7 @@ CC.Systems = React.createClass ({
 		if(this.state.sort)
 			context.sort = this.state.sort;
 
-		let handle = Meteor.subscribe('plantAreas', context);
+		let handle = Meteor.subscribe('systems', context);
 		let pages = [];
 		let totalPlants = Counts.get('totalPlants');
 		let noOfPages = Math.ceil(totalPlants / this.state.limit);
@@ -21,7 +21,7 @@ CC.Systems = React.createClass ({
 			});
 		}
 		return {
-			systems: PlantArea.find({}, {
+			systems: System.find({}, {
 				limit: this.state.limit
 			}).fetch(),
 			pages: pages,
@@ -109,7 +109,7 @@ CC.Systems = React.createClass ({
 	render () {
 		console.log( this.data.systems )
 		return <div>
-			<h2>Plants </h2>
+			<h2>Systems  <a href="/system/add" className="ui green button"><i className="add icon"></i> Add a system</a></h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>

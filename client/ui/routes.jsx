@@ -154,3 +154,52 @@ FlowRouter.route('/inventory/remove/:docId', {
 		});
 	}
 });
+
+
+
+FlowRouter.route('/system/add', {
+  navbar: { 
+    topnav: false,
+    footer: false 
+  },
+  name: 'addSystem',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header />,
+      content: <CC.SystemForm />,
+      footer: <CC.Footer />
+    });
+  }
+});
+
+FlowRouter.route('/system/edit/:docId', {
+  navbar: {
+    topnav: false,
+    footer: false
+  },
+  name: 'editPlant',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header />,
+      content: <CC.SystemForm docId={params.docId} />,
+      footer: <CC.Footer />
+    });
+  }
+});
+
+FlowRouter.route('/system/remove/:docId', {
+  navbar: {
+    topnav: false,
+    footer: false
+  },
+  name: 'removePlant',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header />,
+      content: <CC.SystemRemove docId={params.docId} />,
+      footer: <CC.Footer />
+    });
+  }
+});
+
+

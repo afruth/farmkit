@@ -5,11 +5,47 @@ var reqStr = Validators.and([
   Validators.string('Plant type is wrong')
 ]);
 
+// Nested Classes:
+PollinationHistory = Astro.Class({
+  name: 'PollinationHistory',
+  fields: {
+    pollinationDate: 'date',
+    method: 'string'
+  }
+});
+
+HeightHistory = Astro.Class({
+  name: 'HeightHistory',
+  fields: {
+    measurementDate: 'date',
+    unit: 'string',
+    height: 'number'
+  }
+});
+
+SystemHistory = Astro.Class({
+  name: 'SystemHistory',
+  fields: {
+    systemId: 'string',
+    systemName: 'string',
+    enteredSystem: 'date',
+    exitedSystem: 'date'
+  }
+});
+
 Inventory = Astro.Class({
   name: 'Inventory',
   collection: Inventories,
   transform: null,
   fields: {
+    harvestDate: 'date',
+    heightHistory: {
+      type: 'array',
+      nested: 'HeightHistory',
+      default: function () {
+        return [];
+      }
+    },
     plantType: 'string',
     plantTypeName: 'string',
     plantName: {
@@ -21,15 +57,26 @@ Inventory = Astro.Class({
 		plantImage: {
 			type: 'array'
 		},
+    pollinationHistory: {
+      type: 'array',
+      nested: 'PollinationHistory',
+      default: function () {
+        return [];
+      }
+    },
     datePlanted: {
       type: 'date'
     },
-    areaId: 'string',
-    areaName: 'string',
-    growingMediumId: 'string',
-    nutrientId: 'string',
-    phId: 'string',
-    wateringId: 'string',
+    siblings: 'array', // array of sibling id's
+    systemHistory: {
+      type: 'array',
+      nested: 'SystemHistory',
+      default: function () {
+        return [];
+      }
+    },
+    systemId: 'string', // current system
+    systemName: 'string',
     tags: {
       type: 'array',
       nested: 'string',
@@ -37,7 +84,14 @@ Inventory = Astro.Class({
         return []
       },
       optional: true
-    }
+    },
+    yeild: {
+      type: 'object',
+      fields: {
+        amount: 'number',
+        unit: 'string'
+      }
+    },
 	},
   relations: {
     plantFamily: {
@@ -46,65 +100,17 @@ Inventory = Astro.Class({
       foreign: '_id',
       local: 'plantType'
     },
-    plantArea: {
+    system: {
       type: 'one',
-      class: 'PlantArea',
+      class: 'System',
       foreign: '_id',
-      local: 'areaId'
-    },
-    fertilizer: {
-      type: 'one',
-      class: 'Fertilizer',
-      foreign: 'fertilizerId',
-      local: '_id'
-    },
-    growingMedium: {
-      type: 'one',
-      class: 'GrowingMedium',
-      foreign: 'growingMediumId',
-      local: '_id'
-    },
-    lightingCycle: {
-      type: 'one',
-      class: 'LightingCycle',
-      foreign: 'lightingId',
-      local: '_id'
-    },
-    nutrientMix: {
-      type: 'one',
-      class: 'NutrientMix',
-      foreign: 'nutrientId',
-      local: '_id'
-    },
-    phValue: {
-      type: 'one',
-      class: 'PHValue',
-      foreign: 'phId',
-      local: '_id'
-    },
-    plantYield: {
-      type: 'one',
-      class: 'plantYield',
-      foreign: 'yieldId',
-      local: '_id'
-    },
-    pollinate: {
-      type: 'one',
-      class: 'Pollinate',
-      foreign: 'pollenId',
-      local: '_id'
-    },
-    watering: {
-      type: 'one',
-      class: 'Watering',
-      foreign: 'wateringId',
-      local: '_id'
+      local: 'systemId'
     }
   },
   validators: {
     plantType: reqStr,
     datePlanted: Validators.required('Date of plantation is required'),
-    areaId: reqStr
+    systemId: reqStr
   },
   behaviours: {
     timestamp: {}
