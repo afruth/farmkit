@@ -10,34 +10,6 @@ FlowRouter.route('/', {
     topnav: true,
     footer: false 
   },
-  name: 'home',
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.Content />
-    });
-  }
-});
-
-FlowRouter.route('/plant-inventory', {
-  navbar: { 
-    topnav: false, 
-    footer: false 
-  },
-  name: 'my plants',
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.PlantList />
-    });
-  }
-});
-
-FlowRouter.route('/plant-list', {
-  navbar: { 
-    topnav: false, 
-    footer: true 
-  },
   name: 'plants',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
@@ -47,9 +19,23 @@ FlowRouter.route('/plant-list', {
   }
 });
 
+// FlowRouter.route('/plant-inventory', {
+//   navbar: { 
+//     topnav: false, 
+//     footer: false 
+//   },
+//   name: 'my plants',
+//   action: function(params, queryParams) {
+//     ReactLayout.render(CC.MainLayout,{
+//       header: <CC.Header />,
+//       content: <CC.PlantList />
+//     });
+//   }
+// });
+
 FlowRouter.route('/systems', {
   navbar: { 
-    topnav: false, 
+    topnav: true, 
     footer: true 
   },
   name: 'systems',
@@ -105,7 +91,7 @@ FlowRouter.route('/inventory/view/:docId', {
 
 FlowRouter.route('/inventory/list/', {
 	navbar: {
-		topnav: true,
+		topnav: false,
 		footer: false
 	},
 	name: 'listPlants',
