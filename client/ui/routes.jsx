@@ -13,7 +13,7 @@ FlowRouter.route('/', {
   name: 'plants',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
+      header: <CC.Header route="plants" />,
       content: <CC.PlantFamilies />
     });
   }
@@ -41,7 +41,7 @@ FlowRouter.route('/systems', {
   name: 'systems',
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
+      header: <CC.Header route="systems"/>,
       content: <CC.Systems />
     });
   }
