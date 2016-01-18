@@ -19,6 +19,20 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/plants', {
+  navbar: { 
+    topnav: true,
+    footer: false 
+  },
+  name: 'plants',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header route="plants" />,
+      content: <CC.PlantFamilies />
+    });
+  }
+});
+
 // FlowRouter.route('/plant-inventory', {
 //   navbar: { 
 //     topnav: false, 
@@ -157,6 +171,20 @@ FlowRouter.route('/system/remove/:docId', {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
       content: <CC.SystemRemove docId={params.docId} />
+    });
+  }
+});
+
+FlowRouter.route('/settings', {
+  navbar: {
+    topnav: false,
+    footer: false
+  },
+  name: 'settings',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header />,
+      content: <CC.Settings />
     });
   }
 });

@@ -1,3 +1,5 @@
+// Import variables
+@import '/lib/variables.import.less';
 
 //  All headers
 .fk-header {
@@ -6,7 +8,26 @@
  	background-size: cover;
  	background-position: center top;
  	background-repeat: no-repeat;
+	.header__nav {
+		position: relative;
+		width: 100%;
+	}
+	.header {
+		font-size: 17px;
+		color: @white;
+		font-family: @mainfont;
+		text-transform: uppercase;
+		text-align: center;
+		letter-spacing: 0.125em;
+	}
+	.header__settings {
+		color: @white;
+	}
+	.header__link {
+		font-family: @mainfont-bold;
+		color: @white;
 
+	}
 
 }
 
