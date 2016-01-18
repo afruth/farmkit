@@ -23,7 +23,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/plant-inventory', {
   navbar: { 
     topnav: false, 
-    footer: true 
+    footer: false 
   },
   name: 'my plants',
   action: function(params, queryParams) {
@@ -60,21 +60,6 @@ FlowRouter.route('/systems', {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
       content: <CC.Systems />,
-      footer: <CC.Footer />
-    });
-  }
-});
-
-FlowRouter.route('/tasks', {
-  navbar: { 
-    topnav: false, 
-    footer: true 
-  },
-  name: 'tasks',
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.Tasks />,
       footer: <CC.Footer />
     });
   }
