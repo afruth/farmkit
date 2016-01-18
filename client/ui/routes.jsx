@@ -14,8 +14,7 @@ FlowRouter.route('/', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.Content />,
-      footer: <CC.Footer />
+      content: <CC.Content />
     });
   }
 });
@@ -29,8 +28,7 @@ FlowRouter.route('/plant-inventory', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantList />,
-      footer: <CC.Footer />
+      content: <CC.PlantList />
     });
   }
 });
@@ -44,8 +42,7 @@ FlowRouter.route('/plant-list', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantFamilies />,
-      footer: <CC.Footer />
+      content: <CC.PlantFamilies />
     });
   }
 });
@@ -59,8 +56,7 @@ FlowRouter.route('/systems', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.Systems />,
-      footer: <CC.Footer />
+      content: <CC.Systems />
     });
   }
 });
@@ -74,8 +70,7 @@ FlowRouter.route('/inventory/add', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantForm />,
-      footer: <CC.Footer />
+      content: <CC.PlantForm />
     });
   }
 });
@@ -89,8 +84,7 @@ FlowRouter.route('/inventory/edit/:docId', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantForm docId={params.docId} />,
-      footer: <CC.Footer />
+      content: <CC.PlantForm docId={params.docId} />
     });
   }
 });
@@ -104,8 +98,7 @@ FlowRouter.route('/inventory/view/:docId', {
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantSingle docId={params.docId} />,
-			footer: <CC.Footer />
+			content: <CC.PlantSingle docId={params.docId} />
 		});
 	}
 });
@@ -119,8 +112,7 @@ FlowRouter.route('/inventory/list/', {
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantList />,
-			footer: <CC.Footer />
+			content: <CC.PlantList />
 		});
 	}
 });
@@ -134,8 +126,7 @@ FlowRouter.route('/inventory/remove/:docId', {
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantRemove docId={params.docId} />,
-			footer: <CC.Footer />
+			content: <CC.PlantRemove docId={params.docId} />
 		});
 	}
 });
@@ -151,8 +142,7 @@ FlowRouter.route('/system/add', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.SystemForm />,
-      footer: <CC.Footer />
+      content: <CC.SystemForm />
     });
   }
 });
@@ -166,8 +156,7 @@ FlowRouter.route('/system/edit/:docId', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.SystemForm docId={params.docId} />,
-      footer: <CC.Footer />
+      content: <CC.SystemForm docId={params.docId} />
     });
   }
 });
@@ -181,8 +170,7 @@ FlowRouter.route('/system/remove/:docId', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.SystemRemove docId={params.docId} />,
-      footer: <CC.Footer />
+      content: <CC.SystemRemove docId={params.docId} />
     });
   }
 });
