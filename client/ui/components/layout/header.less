@@ -43,7 +43,67 @@
 	.header__link:hover {
 		color: @white-hover;
 	}
+	// Count
+	.header__count__box {
+		position: relative;
+		height: 75px;
+		margin-top: 50px;
+		text-align: center;
+	}
+	.header__count {
+		position: absolute;
+	}
+	.header__count__number {
+		font-size: 40px;
+		height: 35px;
+		color: @white;
+		font-family: @mainfont-light;
+	}
+	.header__count__title {
+		position: relative;
+		margin-left: 8px;
+		.header__count__icon {
+			position: absolute;
+			left: -13px;
+			font-size: 17px;
+			color: @lime;
+		}
+		.header__count__title-text {
+			margin-left: 8px;
+			text-align: left;
+			span {
+				color: @teal;
+				text-transform: capitalize;
+			}
+		}
+	}
+	.header__count__icon {
+		display: inline;
+	}
+	.header__count.center{
+		position: relative;
+		.header__count__number {
+			height: 50px;
+			padding-top: 10px;
+			font-size: 60px;
+		}
+		.header__count__title {
+			width: 35px;
+			margin: 0 auto;
+		}
+	}
+	.header__count.left{
+		width: 70px;
+		top: 15px;
+		left: 25px;
+	}
+	.header__count.right{
+		width: 70px;
+		top: 15px;
+		right: 25px;
+	}
 
+	
 }
 
 // .plants header only
