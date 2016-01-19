@@ -8,11 +8,13 @@
  	background-size: cover;
  	background-position: center top;
  	background-repeat: no-repeat;
+ 	overflow: hidden;
 	.header__nav {
 		position: relative;
 		width: 100%;
 	}
 	.header {
+		margin-top: 25px;
 		font-size: 17px;
 		color: @white;
 		font-family: @mainfont;
@@ -21,12 +23,25 @@
 		letter-spacing: 0.125em;
 	}
 	.header__settings {
+		position: absolute;
+		left: 12px;
+		top: 0px;
+		font-size: 20px;
 		color: @white;
 	}
 	.header__link {
-		font-family: @mainfont-bold;
+		position: absolute;
+		display: block;
+		top: 0px;
+		right: 10px;
+		font-family: @mainfont;
 		color: @white;
-
+		letter-spacing: 0.0625em;
+		text-transform: capitalize;
+	}
+	.header__settings:hover,
+	.header__link:hover {
+		color: @white-hover;
 	}
 
 }
