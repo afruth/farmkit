@@ -1,0 +1,31 @@
+// This is the main data layer. 
+// Should be called for each route, and pass data to each sub route
+
+CC.DataLayer = React.createClass ({
+	mixins: [ReactMeteorData],
+	getMeteorData() {
+
+		let handlePlantTypes = Meteor.subscribe( 'plantTypes' );
+		let handleSystems = Meteor.subscribe( 'systems' );
+
+		return {
+			plants: PlantFamily.find().fetch(),
+			systems: System.find().fetch(),
+			loading: !handleSystems.ready()
+		}
+	},
+	render () {
+		console.log(this.props)
+		let routeComponent;
+		if( this.props.route === 'PlantFamilies' ){
+			routeComponent = <CC.PlantFamilies data={this.data} />; 
+		}else if ( this.props.route === 'Systems' ) {
+			routeComponent = <CC.Systems data={this.data} />; 
+		}
+		return (
+			<div>
+				{ routeComponent }
+			</div>
+		)
+	}
+});

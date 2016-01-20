@@ -1,15 +1,21 @@
-
 // Standard Layout
 CC.MainLayout = React.createClass ({
-  	render() {
-	    return <div>
-	      	<header>
-	        	{this.props.header}
-	      	</header>
-	      	<main className="main">
-	        	{this.props.content}
-	      	</main>
+	
+	render() {
+		console.log( 'MainLayout' )
+		console.log( this.props )
 
-	    </div>
-  	}
+    return (
+    	<div>
+      	<header className="main-header">
+        	{this.props.header} 
+      	</header>
+      	<main className="main">
+        	{this.props.content}
+      	</main>
+    	</div>
+		)
+	}
 });
+
+
