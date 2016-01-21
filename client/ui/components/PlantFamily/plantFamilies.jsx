@@ -82,6 +82,12 @@ CC.PlantFamilies = React.createClass ({
 				<CC.PlantCount data={this.props.data} />
 			</div>
 
+			<div className="sort-control-panel">
+				<CC.SortControl />
+				<CC.AddButton />
+				<CC.SortSearch />
+			</div>
+
 			<h2>Plants </h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>

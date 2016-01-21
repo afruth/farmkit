@@ -12,7 +12,8 @@
 	.header__count__box {
 		position: relative;
 		height: 75px;
-		margin-top: 90px;
+		max-width: 400px;
+		margin: 90px auto 0 auto;
 		text-align: center;
 	}
 	.header__count {
@@ -26,20 +27,17 @@
 	}
 	.header__count__title {
 		position: relative;
-		margin-left: 8px;
-		.header__count__icon {
-			position: absolute;
-			left: -13px;
+		i {
 			font-size: 17px;
 			color: @lime;
+			margin-right: 8px;
+			vertical-align: sub;
 		}
-		.header__count__title-text {
-			margin-left: 8px;
-			text-align: left;
-			span {
-				color: @teal;
-				text-transform: capitalize;
-			}
+		span {
+			color: @teal;
+		}
+		.fk-varieties { // individual icon is off
+			margin-right: 4px;
 		}
 	}
 	.header__count__icon {
@@ -53,17 +51,17 @@
 			font-size: 60px;
 		}
 		.header__count__title {
-			width: 35px;
+			width: 80px;
 			margin: 0 auto;
 		}
 	}
 	.header__count.left{
-		width: 70px;
+		width: 80px;
 		top: 15px;
 		left: 25px;
 	}
 	.header__count.right{
-		width: 70px;
+		width: 80px;
 		top: 15px;
 		right: 25px;
 	}

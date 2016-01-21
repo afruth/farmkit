@@ -7,15 +7,16 @@ CC.DataLayer = React.createClass ({
 
 		let handlePlantTypes = Meteor.subscribe( 'plantTypes' );
 		let handleSystems = Meteor.subscribe( 'systems' );
+		let handlePlantList = Meteor.subscribe('plantList');  // Inventory
 
 		return {
 			plants: PlantFamily.find().fetch(),
 			systems: System.find().fetch(),
+		  plantInventory: Inventory.find().fetch(),
 			loading: !handleSystems.ready()
 		}
 	},
 	render () {
-		console.log(this.props)
 		let routeComponent;
 		if( this.props.route === 'PlantFamilies' ){
 			routeComponent = <CC.PlantFamilies data={this.data} />; 
