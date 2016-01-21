@@ -46,6 +46,7 @@ lauricio:less-autoprefixer@2.5.0_3
 lepozepo:cloudinary@4.1.2
 livedata@1.0.15
 logging@1.0.8
+maxharris9:classnames@0.0.1
 meteor@1.1.10
 meteor-base@1.0.1
 minifiers@1.1.7

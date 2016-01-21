@@ -26,6 +26,7 @@ kadira:flow-router
 kadira:react-layout
 lauricio:less-autoprefixer
 lepozepo:cloudinary
+maxharris9:classnames   				# for conditionally joining classNames together.
 momentjs:moment
 ongoworks:security
 random
