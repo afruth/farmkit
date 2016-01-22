@@ -1,21 +1,53 @@
 // Import variables
 @import '/lib/variables.import.less';
 
-.sort-control_all {
+// Sort Control Buttons
+.sort-control-panel {
+	max-width: 400px;
+	margin: -29px auto 0 auto;
+	.sort-control_all,
+	.sort-control__hydro,
+	.sort-control_soil {
+		display: inline-block;
+		margin: 0 10px;
+		color: @white;
+		font-family: @mainfont;
+		letter-spacing: 0.1em;
+		cursor: pointer;
+		.active {
 
-}
-.sort-control__hydro {
-
-}
-.sort-control_soil {
-
-}
-
-.sort-control_all,
-.sort-control__hydro,
-.sort-control_soil{
-	.active {
-		font-size: 20px;
+		}
+		.active ~ .sort-control__underline {
+			height: 3px;
+			margin-top: 3px;
+			border-radius: 3px;
+			background-color: @lime;
+		}
+	}
+	.sort-control_all {
+		margin-left: 18px;
+		.sort-control__underline {
+			width: 180%;
+			margin-left: -40%;
+		}
+	}
+	.sort-control__hydro {
+		.sort-control__underline {
+			width: 116%;
+			margin-left: -8%;
+		}
+	}
+	.sort-control_soil {
+		.sort-control__underline {
+			width: 150%;
+			margin-left: -25%;
+		}
+	}
+	.sort-control_all:hover,
+	.sort-control__hydro:hover,
+	.sort-control_soil:hover {
+		color: @white-hover;
 	}
 }
+
 

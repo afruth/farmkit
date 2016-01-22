@@ -13,12 +13,15 @@ CC.SortControl = React.createClass({
 			<div className="sort-control">
 				<div className='sort-control_all' onClick={ this.setAll }>
 					<CC.ToggleActiveDiv text="All" active={this.props.state.sortAll} />
+					<div className="sort-control__underline"></div>
 				</div>
 				<div className='sort-control__hydro' onClick={ this.setHydro }>
 					<CC.ToggleActiveDiv text="Hydroponics" active={this.props.state.sortHydro} />
+					<div className="sort-control__underline"></div>
 				</div>
 				<div className='sort-control_soil' onClick={ this.setSoil }>
 					<CC.ToggleActiveDiv text="Soil" active={this.props.state.sortSoil} />
+					<div className="sort-control__underline"></div>
 				</div>
 			</div>
 		)

@@ -44,6 +44,6 @@ CC.store = Redux.createStore( CC.sortControlReducer );
 
 // You can subscribe to the updates manually, or use bindings to your view layer.
 CC.store.subscribe(() => {
-	Session.set( 'reduxState', CC.store.getState() )
+	Session.set( 'reduxState', CC.store.getState() );
   // console.log(CC.store.getState())
 });

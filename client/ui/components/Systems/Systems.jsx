@@ -82,6 +82,12 @@ CC.Systems = React.createClass ({
 				<CC.SystemCount data={this.props.data} />
 			</div>
 
+			<div className="sort-control-panel">
+				<CC.SortControl state={this.props.reduxState} />
+				<CC.AddButton state={this.props.reduxState} />
+				<CC.SortSearch state={this.props.reduxState} />
+			</div>
+
 			<h2>Systems  <a href="/system/add" className="ui green button"><i className="add icon"></i> Add a system</a></h2>
 			<table className="ui celled fixed table unstackable">
 				<thead>
