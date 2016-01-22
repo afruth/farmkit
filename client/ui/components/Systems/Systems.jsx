@@ -85,7 +85,7 @@ CC.Systems = React.createClass ({
 			<div className="sort-control-panel">
 				<CC.SortControl state={this.props.reduxState} />
 				<CC.AddButton state={this.props.reduxState} />
-				<CC.SortSearch state={this.props.reduxState} />
+				<CC.SortSearch state={this.props.reduxState} placeholder="Find plant..." />
 			</div>
 
 			<h2>Systems  <a href="/system/add" className="ui green button"><i className="add icon"></i> Add a system</a></h2>

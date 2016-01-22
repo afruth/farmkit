@@ -63,7 +63,7 @@ CC.PlantFamilies = React.createClass ({
 			<div className="sort-control-panel">
 				<CC.SortControl state={this.props.reduxState} />
 				<CC.AddButton state={this.props.reduxState} />
-				<CC.SortSearch state={this.props.reduxState} />
+				<CC.SortSearch state={this.props.reduxState} placeholder="Find a system..." />
 			</div>
 
 			<h2>Plants </h2>
