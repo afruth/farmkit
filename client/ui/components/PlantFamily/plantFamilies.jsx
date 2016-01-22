@@ -52,40 +52,18 @@ CC.PlantFamilies = React.createClass ({
 			searchTerm: query
 		});
 	},
-	// changeLimit(event) {
-	// 	this.state.limit = parseInt(event.target.value);
-	// 	this.setState(this.state);
-	// 	Session.set("pageState", this.state);
-	// },
-	// changePage(event) {
-	// 	let page = parseInt(event.target.dataset.page);
-	// 	this.state.skip = this.state.limit * (page - 1);
-	// 	this.state.page = page;
-	// 	this.setState(this.state);
-	// },
-	// pageUp(event) {
-	// 	let page = this.state.page + 1;
-	// 	this.state.skip = this.state.limit * (page - 1);
-	// 	this.state.page = page;
-	// 	this.setState(this.state);
-	// },
-	// pageDown(event) {
-	// 	let page = this.state.page - 1;
-	// 	this.state.skip = this.state.limit * (page - 1);
-	// 	this.state.page = page;
-	// 	this.setState(this.state);
-	// },
 
 	render () {
+		console.log(this.data)
 		return <div>
 			<div className="fk-header plants">
 				<CC.PlantCount data={this.props.data} />
 			</div>
 
 			<div className="sort-control-panel">
-				<CC.SortControl />
-				<CC.AddButton />
-				<CC.SortSearch />
+				<CC.SortControl state={this.props.reduxState} />
+				<CC.AddButton state={this.props.reduxState} />
+				<CC.SortSearch state={this.props.reduxState} />
 			</div>
 
 			<h2>Plants </h2>

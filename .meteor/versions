@@ -41,6 +41,7 @@ jsx@0.2.3
 juliancwirko:s-image-box@0.2.0
 kadira:flow-router@2.10.0
 kadira:react-layout@1.5.3
+kyutaekang:react-redux@0.0.2
 launch-screen@1.0.4
 lauricio:less-autoprefixer@2.5.0_3
 lepozepo:cloudinary@4.1.2
@@ -86,6 +87,8 @@ tmeasday:publish-counts@0.7.2
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4
+universe:modules@0.6.8
+universe:modules-compiler@1.0.5
 url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5

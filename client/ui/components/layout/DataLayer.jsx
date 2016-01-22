@@ -8,24 +8,24 @@ CC.DataLayer = React.createClass ({
 		let handlePlantTypes = Meteor.subscribe( 'plantTypes' );
 		let handleSystems = Meteor.subscribe( 'systems' );
 		let handlePlantList = Meteor.subscribe('plantList');  // Inventory
-
+console.log( '*******|||||||||||||||||||| finding all data |||||||||||||||||||||||||********')
 		return {
 			plants: PlantFamily.find().fetch(),
 			systems: System.find().fetch(),
 		  plantInventory: Inventory.find().fetch(),
-			loading: !handleSystems.ready()
+			loading: !handleSystems.ready(),
 		}
 	},
 	render () {
-		let routeComponent;
-		if( this.props.route === 'PlantFamilies' ){
-			routeComponent = <CC.PlantFamilies data={this.data} />; 
-		}else if ( this.props.route === 'Systems' ) {
-			routeComponent = <CC.Systems data={this.data} />; 
-		}
+		// let routeComponent;
+		// if( this.props.route === 'PlantFamilies' ){
+		// 	routeComponent = <CC.PlantFamilies data={this.data} />; 
+		// }else if ( this.props.route === 'Systems' ) {
+		// 	routeComponent = <CC.Systems data={this.data} />; 
+		// }
 		return (
 			<div>
-				{ routeComponent }
+				<CC.ReduxState data={this.data} route={this.props.route} />
 			</div>
 		)
 	}

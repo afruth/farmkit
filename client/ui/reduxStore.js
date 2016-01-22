@@ -1,5 +1,19 @@
+// How to use:
+// Redux.createStore()
+// Redux.combineReducers()
+// Redux.applyMiddleware()
+// Redux.bindActionCreators()
+// Redux.compose()
 
-CC.sortControlReducer = function sortControlReducer(state = 'all', action) {
+
+CC.defaultState = { 
+	  		'sortAll': true,
+	  		'sortHydro': false,
+	  		'sortSoil': false
+	  	};
+
+
+CC.sortControlReducer = function sortControlReducer(state = CC.defaultState, action) {
   switch (action.type) {
 	  case 'all':
 	  	return Object.assign({}, state, { 
@@ -29,10 +43,7 @@ CC.sortControlReducer = function sortControlReducer(state = 'all', action) {
 CC.store = Redux.createStore( CC.sortControlReducer );
 
 // You can subscribe to the updates manually, or use bindings to your view layer.
-CC.store.subscribe(() =>
-    console.log(CC.store.getState())
-);
-
-// store.dispatch({ type: 'INCREMENT' })
-// store.dispatch({ type: 'INCREMENT' })
-// store.dispatch({ type: 'DECREMENT' })
+CC.store.subscribe(() => {
+	Session.set( 'reduxState', CC.store.getState() )
+  // console.log(CC.store.getState())
+});

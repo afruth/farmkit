@@ -24,6 +24,7 @@ jquery
 juliancwirko:s-image-box
 kadira:flow-router
 kadira:react-layout
+kyutaekang:react-redux					# Official React bindings for Redux.
 lauricio:less-autoprefixer
 lepozepo:cloudinary
 maxharris9:classnames   				# for conditionally joining classNames together.
@@ -37,3 +38,4 @@ sarasate:semantic-ui-datetimepicker
 semantic:ui
 tmeasday:publish-counts
 underscore
+universe:modules 								# support for ES6 modules
