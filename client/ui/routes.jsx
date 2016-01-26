@@ -12,6 +12,7 @@ FlowRouter.route('/', {
   },
   name: 'plants',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header route="plants" />,
       content: <CC.DataLayer route="PlantFamilies" />
@@ -26,6 +27,7 @@ FlowRouter.route('/plants', {
   },
   name: 'plants',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header route="plants" />,
       content: <CC.DataLayer route="PlantFamilies" />
@@ -54,6 +56,7 @@ FlowRouter.route('/systems', {
   },
   name: 'systems',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header route="systems"/>,
       content: <CC.DataLayer route="Systems" />
@@ -68,6 +71,7 @@ FlowRouter.route('/inventory/add', {
   },
   name: 'addPlant',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
       content: <CC.PlantForm />
@@ -140,6 +144,7 @@ FlowRouter.route('/system/add', {
   },
   name: 'addSystem',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
       content: <CC.SystemForm />

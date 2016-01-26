@@ -76,7 +76,9 @@ CC.Systems = React.createClass ({
 	// 	this.setState(this.state);
 	// },
 
+
 	render () {
+		console.log("Systems Rendered")
 		return <div>
 			<div className="fk-header systems">
 				<CC.SystemCount data={this.props.data} />
@@ -85,7 +87,11 @@ CC.Systems = React.createClass ({
 			<div className="sort-control-panel">
 				<CC.SortControl state={this.props.reduxState} />
 				<CC.AddButton state={this.props.reduxState} />
-				<CC.SortSearch state={this.props.reduxState} placeholder="Find plant..." />
+				<CC.SortSearch 
+					id="system-sort-search"
+					state={this.props.reduxState} 
+					placeholder="Find plant..."
+					submit={this.submit} />
 			</div>
 
 			<h2>Systems  <a href="/system/add" className="ui green button"><i className="add icon"></i> Add a system</a></h2>
