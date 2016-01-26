@@ -6,7 +6,6 @@
 // 		class: 		string of classnames
 CC.ToggleActiveDiv = React.createClass ({
 	render () {
-		console.log("ToggleActiveDiv Rendered")
 		const classes = classNames( this.props.class, {
 			'active': this.props.active
 		});

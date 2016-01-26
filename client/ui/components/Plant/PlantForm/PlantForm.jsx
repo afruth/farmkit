@@ -72,6 +72,7 @@ CC.PlantForm = React.createClass ({
 
 			}
 		}
+		console.log(plant)
 
 		if(plant.validate(false)) { 
 			Meteor.call('/inventory/add', plant, function(e) {
@@ -80,6 +81,8 @@ CC.PlantForm = React.createClass ({
 				} else {
 					if( CC.previousPath ){
 						FlowRouter.go( CC.previousPath );
+					} else {
+						FlowRouter.go( '/plants' );
 					}
 				}
 			})

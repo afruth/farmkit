@@ -54,7 +54,6 @@ CC.PlantFamilies = React.createClass ({
 	},
 
 	render () {
-		console.log(this.data)
 		return <div>
 			<div className="fk-header plants">
 				<CC.PlantCount data={this.props.data} />
@@ -66,7 +65,10 @@ CC.PlantFamilies = React.createClass ({
 				<CC.SortSearch state={this.props.reduxState} placeholder="Find a system..." />
 			</div>
 
-			<h2>Plants </h2>
+			{ this.props.data.systems.map(function(item) { 
+				return <CC.PlantFamilyListing key={item._id} data={item} />
+			}) }
+
 			<table className="ui celled fixed table unstackable">
 				<thead>
 					<tr>

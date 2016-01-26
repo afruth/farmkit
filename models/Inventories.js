@@ -46,8 +46,14 @@ Inventory = Astro.Class({
         return [];
       }
     },
-    plantType: 'string',
-    plantTypeName: 'string',
+    plantType: {
+      type: 'string', 
+      optional: false
+    },
+    plantTypeName: {
+      type: 'string', 
+      optional: false
+    },
     plantName: {
       type: 'string',
       default: function() {
@@ -65,7 +71,8 @@ Inventory = Astro.Class({
       }
     },
     datePlanted: {
-      type: 'date'
+      type: 'date',
+      optional: false
     },
     siblings: 'array', // array of sibling id's
     systemHistory: {
@@ -75,8 +82,14 @@ Inventory = Astro.Class({
         return [];
       }
     },
-    systemId: 'string', // current system
-    systemName: 'string',
+    systemId: {
+      type: 'string', // current system
+      optional: false
+    },
+    systemName: {
+      type: 'string', 
+      optional: false
+    },
     tags: {
       type: 'array',
       nested: 'string',

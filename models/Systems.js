@@ -1,6 +1,17 @@
 Systems = new Mongo.Collection('systems');
 
 // Nested Classes
+ActivePlantFamilies = Astro.Class({
+  // array of on/off times for artificial lights
+  name: 'ActivePlantFamilies',
+  fields: {
+    name: 'string',
+    familyId: 'string',
+    requiresPollination: 'boolean',
+    plants: 'array' // will be an array of active plants' IDs
+  }
+});
+
 DailyLightingSchedule = Astro.Class({
   // array of on/off times for artificial lights
   name: 'DailyLightingSchedule',
@@ -116,13 +127,19 @@ System = new Astro.Class({
   fields: {
     name: 'string',
     systemId: 'string', 
-    activePlants: 'array', // active plants' IDs
     historicPlants: 'array', // historic plants' IDs
     description: 'string',
     hydroponic: 'boolean',  // false is for soil systems
     sunlight: 'boolean', 
     systemImage: {
       type: 'array'
+    },
+    activePlantFamilies: { 
+      type: 'array',
+      nested: 'ActivePlantFamilies',
+      default: function () {
+        return [];
+      }
     },
     dailyLightingSchedule: { 
       type: 'array',
