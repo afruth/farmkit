@@ -52,8 +52,24 @@ CC.PlantFamilies = React.createClass ({
 			searchTerm: query
 		});
 	},
-
 	render () {
+		const plantMap = [];
+		const systems = this.props.data.systems
+		for( let i = 0; i < systems.length; i++ ){
+			let activePlants = systems[i].activePlantFamilies;
+			if( systems[i].activePlantFamilies.length > 0 ) { // Only if system has active plants
+				for( let o = 0; o < activePlants.length; o++ ){
+					let family = {};
+					family.key = systems[i]._id + '-' + activePlants[o].familyId;
+					family.plantType = activePlants[o].name;
+					family.plantNumber = activePlants[o].plants.length;
+					family.system = systems[i].name;
+					family.systemType = systems[i].hydroponic;
+					plantMap.push( family );
+				}
+			}
+		}
+
 		return <div>
 			<div className="fk-header plants">
 				<CC.PlantCount data={this.props.data} />
@@ -65,9 +81,10 @@ CC.PlantFamilies = React.createClass ({
 				<CC.SortSearch state={this.props.reduxState} placeholder="Find a system..." />
 			</div>
 
-			{ this.props.data.systems.map(function(item) { 
-				return <CC.PlantFamilyListing key={item._id} data={item} />
-			}) }
+			{ plantMap.map(function(item, x) { 
+					return <CC.PlantFamilyListing key={item.key} data={item}  />
+				})
+			}
 
 			<table className="ui celled fixed table unstackable">
 				<thead>

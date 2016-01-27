@@ -12,7 +12,7 @@ console.log( '*******|||||||||||||||||||| finding all data |||||||||||||||||||||
 		return {
 			plants: PlantFamily.find().fetch(),
 			systems: System.find().fetch(),
-		  // plantInventory: Inventory.find().fetch(),
+		  plantInventory: Inventory.find().fetch(),
 			loading: !handleSystems.ready(),
 		}
 	},

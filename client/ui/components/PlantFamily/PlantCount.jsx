@@ -14,9 +14,9 @@ CC.PlantCount = React.createClass ({
 				</div>
 				<div className="header__count center">
 					{/*
-					<div className="header__count__number">{this.props.data.plantInventory.length}</div>
-					*/}
 					<div className="header__count__number">Nope</div>
+					*/}
+					<div className="header__count__number">{this.props.data.plantInventory.length}</div>
 					<div className="header__count__title">
 						<i className="fk-plant"></i>
 						<span>Total</span>
