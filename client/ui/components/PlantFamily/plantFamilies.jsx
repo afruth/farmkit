@@ -29,7 +29,7 @@ CC.PlantFamilies = React.createClass ({
 				<CC.SortSearch state={this.props.reduxState} placeholder="Find a plant..." />
 			</div>
 
-			{ plantMap.map(function(item, x) { 
+			{ plantMap.map(function(item) { 
 					return <CC.PlantFamilyListing key={item.key} data={item}  />
 				})
 			}

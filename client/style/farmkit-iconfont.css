@@ -74,3 +74,28 @@
 .fk-water:before {
   content: "\6c";
 }
+.fk-clean:before {
+  content: "\6d";
+}
+.fk-flow:before {
+  content: "\6e";
+}
+.fk-bulb:before {
+  content: "\6f";
+}
+.fk-nutrients:before {
+  content: "\70";
+}
+.fk-partly-sunny:before {
+  content: "\71";
+}
+.fk-ph:before {
+  content: "\72";
+}
+.fk-drop:before {
+  content: "\73";
+}
+.fk-water-level:before {
+  content: "\74";
+}
+
