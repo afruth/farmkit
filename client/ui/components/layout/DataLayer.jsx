@@ -7,12 +7,12 @@ CC.DataLayer = React.createClass ({
 
 		let handlePlantTypes = Meteor.subscribe( 'plantTypes' );
 		let handleSystems = Meteor.subscribe( 'systems' );
-		let handlePlantList = Meteor.subscribe('plantList');  // Inventory
+		// let handlePlantList = Meteor.subscribe( 'plantList' );  // Inventory
 console.log( '*******|||||||||||||||||||| finding all data |||||||||||||||||||||||||********')
 		return {
 			plants: PlantFamily.find().fetch(),
 			systems: System.find().fetch(),
-		  plantInventory: Inventory.find().fetch(),
+		  // plantInventory: Inventory.find().fetch(),
 			loading: !handleSystems.ready(),
 		}
 	},

@@ -3,32 +3,26 @@ Meteor.methods({
     if (plant.validate()) {
       plant.save();
 
-      console.log("plant method")
-      console.log(plant)
-
+      // Save new plant to it's parent System
       let system = Systems.findOne( plant.systemId )
-      console.log(system)
 
+      // returns a string if it finds a match, otherwise undefined
+      let familyMatch = _.find( system.activePlantFamilies, function(x) {
+        return x.familyId === plant.plantType;
+      });
       // if the plant type is in the system, add it to the array
-      if( system.activePlantFamilies.familyId === plant.plantType ){
-        // system.activePlantFamilies.plants.push( plant._id );
-
-        Systems.update( { _id: plant.systemId, familyId: plant.plantType }, {
+      if( familyMatch ){
+        Systems.update( { 
+          _id: plant.systemId, 
+          "activePlantFamilies.familyId": plant.plantType // sets wildcard '$'
+        }, {
           $push: {
-            activePlantFamilies: {
-              plants: plant._id
-            }
+            "activePlantFamilies.$.plants": plant._id
           }
         });
       } else { // otherwise add the plant family
-        // system.activePlantFamilies.push({
-        //   name: plant.plantTypeName,
-        //   familyId: plant.plantType,
-        //   plants: [ plant._id ]
-        // });
-
         Systems.update( plant.systemId, {
-          $set: {
+          $push: {
             activePlantFamilies: {
               name: plant.plantTypeName,
               familyId: plant.plantType,
@@ -37,7 +31,6 @@ Meteor.methods({
           }
         });
       }
-
 
       return plant;
     }

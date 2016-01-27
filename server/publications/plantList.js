@@ -1,6 +1,9 @@
 Meteor.publishComposite('plantList', function(context) {
 	return {
 		find: function() {
+			if( !context ){
+				context = 'falsePositive';
+			}
 			context.transform = null;
 			Counts.publish(this, 'totalPlants', Inventories.find());
 			var query = {};
