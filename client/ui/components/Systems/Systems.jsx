@@ -90,7 +90,7 @@ CC.Systems = React.createClass ({
 				<CC.SortSearch 
 					id="system-sort-search"
 					state={this.props.reduxState} 
-					placeholder="Find plant..."
+					placeholder="Find system..."
 					submit={this.submit} />
 			</div>
 

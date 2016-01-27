@@ -4,7 +4,68 @@
 
 
 .listing {
-	
+	height: 74px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	.listing__system-type {
+		position: absolute;
+		margin: 30px 0 0 18px;
+		font-size: 18px;
+	}	
+	.listing__system-type:before { // default is soil
+		content: "\69";
+		color: @tan-1;
+		font-family: "farmkit" !important;
+	  font-style: normal !important;
+	  font-weight: normal !important;
+	  font-variant: normal !important;
+	  text-transform: none !important;
+	  speak: none;
+	  line-height: 1;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	}	
+	.listing__system-type.hydro:before {
+		content: "\63";
+		color: @blue-1;
+	}
+	.listing__name {
+		margin: 20px 0 0 50px;
+		font-family: @mainfont-bold;
+		text-transform: uppercase;
+	}
+	.listing__sub-heading {
+		margin-left: 50px;
+		font-family: @mainfont;
+	}
+	.listing__plant-count {
+		position: absolute;
+		top: 30px;
+		right: 18px;
+		span {
+			display: block;
+			float: left;
+			margin-right: 5px;
+			color: @grey-3;
+			font-family: @mainfont-bold;
+		}
+	}
+	.fk-plant {
+		display: block;
+		float: left;
+		font-size: 18px;
+		color: @lime-1;
+		margin-top: -2px;
+	}
+	.listing__bottom-line {
+		position: absolute;
+		width: 92%;
+		height: 2px;
+		bottom: 0;
+		margin: 0 4%;
+		background-color: @lt-grey-2;
+	}
 }
 
 
