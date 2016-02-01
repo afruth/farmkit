@@ -7,9 +7,12 @@
 
 
 CC.defaultState = { 
-	  		'sortAll': true,
-	  		'sortHydro': false,
-	  		'sortSoil': false,
+	  		'sortPlantsAll': true,
+	  		'sortPlantsHydro': false,
+	  		'sortPlantsSoil': false,
+	  		'sortSystemsAll': true,
+	  		'sortSystemsHydro': false,
+	  		'sortSystemsSoil': false,
 	  		'search': null,
 	  		'addBtn': false
 	  	};
@@ -17,23 +20,41 @@ CC.defaultState = {
 
 CC.reduxReducer = function sortControlReducer(state = CC.defaultState, action) {
   switch (action.type) {
-	  case 'all':
+	  case 'plantsAll':
 	  	return Object.assign({}, state, { 
-	  		'sortAll': true,
-	  		'sortHydro': false,
-	  		'sortSoil': false
+	  		'sortPlantsAll': true,
+	  		'sortPlantsHydro': false,
+	  		'sortPlantsSoil': false
 	  	});
-	  case 'hydro':
+	  case 'plantsHydro':
 	    return Object.assign({}, state, { 
-	  		'sortAll': false,
-	  		'sortHydro': true,
-	  		'sortSoil': false
+	  		'sortPlantsAll': false,
+	  		'sortPlantsHydro': true,
+	  		'sortPlantsSoil': false
 	  	});
-	  case 'soil':
+	  case 'plantsSoil':
 	  	return Object.assign({}, state, { 
-	  		'sortAll': false,
-	  		'sortHydro': false,
-	  		'sortSoil': true
+	  		'sortPlantsAll': false,
+	  		'sortPlantsHydro': false,
+	  		'sortPlantsSoil': true
+	  	});
+	  case 'systemsAll':
+	  	return Object.assign({}, state, { 
+	  		'sortSystemsAll': true,
+	  		'sortSystemsHydro': false,
+	  		'sortSystemsSoil': false
+	  	});
+	  case 'systemsHydro':
+	    return Object.assign({}, state, { 
+	  		'sortSystemsAll': false,
+	  		'sortSystemsHydro': true,
+	  		'sortSystemsSoil': false
+	  	});
+	  case 'systemsSoil':
+	  	return Object.assign({}, state, { 
+	  		'sortSystemsAll': false,
+	  		'sortSystemsHydro': false,
+	  		'sortSystemsSoil': true
 	  	});
 	  case 'search':
 	  	return Object.assign({}, state, { 
@@ -41,15 +62,11 @@ CC.reduxReducer = function sortControlReducer(state = CC.defaultState, action) {
 	  	});
 	  // Toggles Add button open state 
 	  case 'toggleAddBtn':
-	  	console.log( 'toggleAddBtn')
-	  	console.log( state )
 	  	if( !state.addBtn ){
-	  	console.log( 'toggleAddBtn -  true')
 		  	return Object.assign({}, state, { 
 		  		'addBtn': true
 		  	});	  		
 	  	} else {
-	  	console.log( 'toggleAddBtn -  false')
 	  		return Object.assign({}, state, { 
 		  		'addBtn': false
 		  	});	  

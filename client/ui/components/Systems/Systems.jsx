@@ -5,11 +5,11 @@ CC.Systems = React.createClass ({
 		systemMap.reverse();
 
 		// Sort by selected System type
-		if( this.props.reduxState.sortHydro ){
+		if( this.props.reduxState.sortSystemsHydro ){
 			systemMap = _.filter( systemMap, function(item){
 				return item.hydroponic;
 			});
-		} else if( this.props.reduxState.sortSoil ){
+		} else if( this.props.reduxState.sortSystemsSoil ){
 			systemMap = _.reject( systemMap, function(item){
 				return item.hydroponic;
 			});
@@ -22,7 +22,7 @@ CC.Systems = React.createClass ({
 			</div>
 
 			<div className="sort-control-panel">
-				<CC.SortControl state={this.props.reduxState} />
+				<CC.SortControl state={this.props.reduxState} type="systems" />
 				<CC.AddButton state={this.props.reduxState} />
 				<CC.SortSearch state={this.props.reduxState} placeholder="Find system..." />
 			</div>
