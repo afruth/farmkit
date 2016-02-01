@@ -11,9 +11,21 @@ CC.ReduxState = React.createClass ({
       reduxState: reduxState
     }
   },
-  clickoutHandler ( event ) {
-  	console.log('clickoutHandler')
-  	console.log(event)
+  componentDidMount () {
+  	// This is bound to the DOM, so state must be accessed through Session var
+  	document.getElementById( "react-root" ).addEventListener( "click", function (event) {
+  		let state = Session.get( 'reduxState' ); 		
+  		const clickedElementID = event.target.id; // Clicked object's ID
+  		// console.log('click ID - ', clickedElementID )
+
+  		// Check state. Some states trigger an action no matter what
+  		if( state.addBtn === true ) { // Add button is open
+  			if( clickedElementID !== 'sort-control__add-btn' ){
+	  			CC.store.dispatch({ type: 'closeAddBtn' });
+	  			return;
+  			}
+  		}
+  	});
   },
   render () {
   	// Render different component based on props
@@ -26,16 +38,17 @@ CC.ReduxState = React.createClass ({
 			Component = <CC.Loading />;
 		}
 
-		// Render ShadowClick conditionally 
-		let ShadowClick;
-		if( this.data.reduxState.addBtn ){
-			ShadowClick =	<CC.ShadowClick reduxState={this.data.reduxState} />
-		}
+		// // Render ShadowClick conditionally 
+		// let ShadowClick;
+		// if( this.data.reduxState.addBtn ){
+		// 	ShadowClick =	<CC.ShadowClick reduxState={this.data.reduxState} />
+		// }
+
 
 		return (
-			<div onClick={this.clickoutHandler.bind( this, event )}>
+			<div>
 				{ Component }
-				{ ShadowClick }
+				{ /* ShadowClick */ }
 			</div>
 		)
   }

@@ -1,8 +1,21 @@
 CC.Systems = React.createClass ({
 	render () {
-		console.log(this.props)
+		// organize system data
 		let systemMap = _.sortBy( this.props.data.systems, this.props.data.systems.activePlantFamilies );
 		systemMap.reverse();
+
+		// Sort by selected System type
+		if( this.props.reduxState.sortHydro ){
+			systemMap = _.filter( systemMap, function(item){
+				return item.hydroponic;
+			});
+		} else if( this.props.reduxState.sortSoil ){
+			systemMap = _.reject( systemMap, function(item){
+				return item.hydroponic;
+			});
+		} 
+
+
 		return <div>
 			<div className="fk-header systems">
 				<CC.SystemCount data={this.props.data} />

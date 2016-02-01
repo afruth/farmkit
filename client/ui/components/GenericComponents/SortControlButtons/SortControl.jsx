@@ -9,7 +9,6 @@ CC.SortControl = React.createClass({
 		CC.store.dispatch({ type: 'soil' });
 	},
 	render () {
-		console.log("SortControl Rendered")
 		return (
 			<div className="sort-control">
 				<div className='sort-control_all' onClick={ this.setAll }>

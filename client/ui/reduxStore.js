@@ -41,11 +41,15 @@ CC.reduxReducer = function sortControlReducer(state = CC.defaultState, action) {
 	  	});
 	  // Toggles Add button open state 
 	  case 'toggleAddBtn':
+	  	console.log( 'toggleAddBtn')
+	  	console.log( state )
 	  	if( !state.addBtn ){
+	  	console.log( 'toggleAddBtn -  true')
 		  	return Object.assign({}, state, { 
 		  		'addBtn': true
 		  	});	  		
 	  	} else {
+	  	console.log( 'toggleAddBtn -  false')
 	  		return Object.assign({}, state, { 
 		  		'addBtn': false
 		  	});	  

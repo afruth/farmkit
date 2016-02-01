@@ -1,6 +1,6 @@
 CC.PlantFamilies = React.createClass ({
 	render () {
-		const plantMap = [];
+		let plantMap = [];
 		const systems = this.props.data.systems
 		// Pull plant data from Systems
 		for( let i = 0; i < systems.length; i++ ){
@@ -17,6 +17,17 @@ CC.PlantFamilies = React.createClass ({
 				}
 			}
 		}
+
+		// Sort by selected System type
+		if( this.props.reduxState.sortHydro ){
+			plantMap = _.filter( plantMap, function(item){
+				return item.systemType;
+			});
+		} else if( this.props.reduxState.sortSoil ){
+			plantMap = _.reject( plantMap, function(item){
+				return item.systemType;
+			});
+		} 
 
 		return <div>
 			<div className="fk-header plants">
