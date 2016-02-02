@@ -84,34 +84,17 @@ CC.reduxReducer = function sortControlReducer(state = CC.defaultState, action) {
   		});
   	// Toggles Listing options
   	case 'toggleOption':
-  	console.log(action)
   	 	return Object.assign({}, state, {
-  	 		'openOption': null
+  	 		'openOption': action.id
   	 	});
 	  default:
 	    return state;
   }
 }
 
-// // Sort Search Reducer. From SortSearch Component
-// CC.sortSearchReducer = function sortControlReducer(state = CC.defaultState, action, term) {
-// 	console.log(state)
-// 	console.log(term)
-// 	console.log(action)
-//   switch (action.type) {
-// 	  case 'search':
-// 	  	return Object.assign({}, state, { 
-// 	  		'search': term
-// 	  	});
-// 	  default:
-// 	    return state;
-//   }
-// }
-
 // Create a Redux store holding the state of your app.
 // Its API is { subscribe, dispatch, getState }.
 CC.store = Redux.createStore( CC.reduxReducer );
-// CC.store = Redux.createStore( CC.sortSearchReducer );
 
 // You can subscribe to the updates manually, or use bindings to your view layer.
 CC.store.subscribe(() => {

@@ -2,6 +2,7 @@ CC.PlantFamilies = React.createClass ({
 	render () {
 		let plantMap = [];
 		const systems = this.props.data.systems
+		const state = this.props.reduxState
 		// Pull plant data from Systems
 		for( let i = 0; i < systems.length; i++ ){
 			let activePlants = systems[i].activePlantFamilies;
@@ -29,6 +30,11 @@ CC.PlantFamilies = React.createClass ({
 			});
 		} 
 
+		// Splice state onto systemMap
+		for( let i = 0; i < plantMap.length; i++ ) {
+			plantMap[i].state = state;
+		}
+
 		return <div>
 			<div className="fk-header plants">
 				<CC.PlantCount data={this.props.data} />
@@ -41,7 +47,10 @@ CC.PlantFamilies = React.createClass ({
 			</div>
 
 			{ plantMap.map(function(item) { 
-					return <CC.PlantFamilyListing key={item.key} data={item}  />
+					return <CC.PlantFamilyListing 
+										key={item.key} 
+										data={item}  
+										reduxState={item.state} />
 				})
 			}
 

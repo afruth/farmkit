@@ -1,5 +1,6 @@
 CC.Systems = React.createClass ({
 	render () {
+		let state = this.props.reduxState;
 		// organize system data
 		let systemMap = _.sortBy( this.props.data.systems, this.props.data.systems.activePlantFamilies );
 		systemMap.reverse();
@@ -15,6 +16,10 @@ CC.Systems = React.createClass ({
 			});
 		} 
 
+		// Splice state onto systemMap
+		for( let i = 0; i < systemMap.length; i++ ) {
+			systemMap[i].state = state;
+		}
 
 		return <div>
 			<div className="fk-header systems">
@@ -28,7 +33,10 @@ CC.Systems = React.createClass ({
 			</div>
 
 			{ systemMap.map(function(item) { 
-					return <CC.SystemListing key={item._id} data={item}  />
+					return <CC.SystemListing 
+										key={item._id} 
+										data={item} 
+										reduxState={item.state} />
 				})
 			}
 

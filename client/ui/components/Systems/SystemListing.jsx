@@ -33,10 +33,19 @@ CC.SystemListing = React.createClass({
 			'hydro': this.props.data.hydroponic
 		});
 
+		// Set listing-sleeve classes (opening animation)
+		let openOption = false;
+		if( this.props.data._id === this.props.reduxState.openOption ){
+			openOption = true;
+		}
+		const optionClasses = classNames( 'listing-sleeve', {
+			'open': openOption
+		});
+
 		return (
-			<div className="listing" onClick={ this.toggleOptions }>
-				<div className="listing-sleeve">
-					<div className={systemTypeClasses}></div>
+			<div className="listing" onClick={ this.toggleOptions } >
+				<div className={ optionClasses } >
+					<div className={ systemTypeClasses } ></div>
 
 					<div className="listing__name">{this.props.data.name}</div>
 					<div className="listing__sub-heading">{ this.lightType() }</div>
@@ -46,8 +55,8 @@ CC.SystemListing = React.createClass({
 						<i className="fk-plant"></i>
 					</div>
 
-					<div className="listing__bottom-line"></div>
 				</div>
+				<div className="listing__bottom-line"></div>
 			</div>
 		)
 	}
