@@ -24,6 +24,9 @@ CC.SystemListing = React.createClass({
 			) 
 		}
 	},
+	toggleOptions () {
+		CC.store.dispatch({ type: 'toggleOption', id: this.props.data._id })
+	},
 	render () {
 		console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
@@ -31,18 +34,20 @@ CC.SystemListing = React.createClass({
 		});
 
 		return (
-			<div className="listing">
-				<div className={systemTypeClasses}></div>
+			<div className="listing" onClick={ this.toggleOptions }>
+				<div className="listing-sleeve">
+					<div className={systemTypeClasses}></div>
 
-				<div className="listing__name">{this.props.data.name}</div>
-				<div className="listing__sub-heading">{ this.lightType() }</div>
+					<div className="listing__name">{this.props.data.name}</div>
+					<div className="listing__sub-heading">{ this.lightType() }</div>
 
-				<div className="listing__plant-count">
-					<span>{ this.plantNum() }</span>
-					<i className="fk-plant"></i>
+					<div className="listing__plant-count">
+						<span>{ this.plantNum() }</span>
+						<i className="fk-plant"></i>
+					</div>
+
+					<div className="listing__bottom-line"></div>
 				</div>
-
-				<div className="listing__bottom-line"></div>
 			</div>
 		)
 	}

@@ -14,7 +14,8 @@ CC.defaultState = {
 	  		'sortSystemsHydro': false,
 	  		'sortSystemsSoil': false,
 	  		'search': null,
-	  		'addBtn': false
+	  		'addBtn': false,
+	  		'openOption': null
 	  	};
 
 
@@ -81,6 +82,12 @@ CC.reduxReducer = function sortControlReducer(state = CC.defaultState, action) {
   		return Object.assign({}, state, {
   			'addBtn': false
   		});
+  	// Toggles Listing options
+  	case 'toggleOption':
+  	console.log(action)
+  	 	return Object.assign({}, state, {
+  	 		'openOption': null
+  	 	});
 	  default:
 	    return state;
   }
