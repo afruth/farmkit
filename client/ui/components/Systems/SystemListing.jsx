@@ -55,8 +55,8 @@ CC.SystemListing = React.createClass({
 						<i className="fk-plant"></i>
 					</div>
 
+					<div className="listing__bottom-line"></div>
 				</div>
-				<div className="listing__bottom-line"></div>
 			</div>
 		)
 	}

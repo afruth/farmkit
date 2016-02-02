@@ -14,11 +14,13 @@
 		top: 0;
 		bottom: 0;
 		right: 0;
+		background-color: @white;
 		transform: translate3d( 0, 0, 0 );
 		transition: transform 350ms ease-out 50ms;
 	}	
 	.listing-sleeve.open {
 		transform: translate3d( -280px, 0, 0 );
+		border-right: 1px solid @lt-grey-2;
 	}	
 	.listing__system-type {
 		position: absolute;
@@ -77,6 +79,52 @@
 		color: @lime-1;
 		margin-top: -2px;
 	}
+
+	.listing__option-box {
+		height: 100%;
+		width: 280px;
+		float: right;
+		background-color: @lt-grey-2;
+		box-shadow: inset 29px 10px 7px -27px rgba(0,0,0,0.15);
+	}
+	.listing__option {
+		float: left;
+		height: 100%;
+		width: 25%;
+	}
+	.listing__option.pollinate {
+		i {
+			color: @pink-1;
+		}
+	}
+	.listing__option.harvest {
+		i {
+			color: @orange-1;
+		}
+	}
+	.listing__option.fertilize {
+		i {
+			color: @green-2;
+		}
+	}
+	.listing__option.water {
+		i {
+			color: @blue-2;
+		}
+	}
+	.listing__option__icon {
+		height: 55px;
+		padding-top: 20px;
+		text-align: center;
+		font-size: 28px;
+	}
+	.listing__option__title {
+		font-size: 12px;
+		font-family: @mainfont-light;
+		color: @grey-2;
+		text-align: center;
+	}
+
 	.listing__bottom-line {
 		position: absolute;
 		width: 92%;

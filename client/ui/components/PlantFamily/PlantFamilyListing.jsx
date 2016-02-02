@@ -29,8 +29,36 @@ CC.PlantFamilyListing = React.createClass({
 						<i className="fk-plant"></i>
 					</div>
 
+					<div className="listing__bottom-line"></div>
 				</div>
-				<div className="listing__bottom-line"></div>
+
+				<div className="listing__option-box">
+					<div className="listing__option pollinate">
+						<div className="listing__option__icon">
+							<i className="fk-pollinate"></i>
+						</div>
+						<p className="listing__option__title">pollinate</p>
+					</div>
+					<div className="listing__option harvest">
+						<div className="listing__option__icon">
+							<i className="fk-harvest"></i>
+						</div>
+						<p className="listing__option__title">harvest</p>
+					</div>
+					<div className="listing__option fertilize">
+						<div className="listing__option__icon">
+							<i className="fk-fertilize"></i>
+						</div>
+						<p className="listing__option__title">fertilize</p>
+					</div>
+					<div className="listing__option water">
+						<div className="listing__option__icon">
+							<i className="fk-water"></i>
+						</div>
+						<p className="listing__option__title">water</p>
+					</div>
+				</div>
+
 			</div>
 		)
 	}
