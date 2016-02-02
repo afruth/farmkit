@@ -57,6 +57,34 @@ CC.SystemListing = React.createClass({
 
 					<div className="listing__bottom-line"></div>
 				</div>
+
+				<div className="listing__option-box">
+					<div className="listing__option nutrients">
+						<div className="listing__option__icon">
+							<i className="fk-nutrients"></i>
+						</div>
+						<p className="listing__option__title">nutrients</p>
+					</div>
+					<div className="listing__option ph">
+						<div className="listing__option__icon">
+							<i className="fk-ph"></i>
+						</div>
+						<p className="listing__option__title">check PH</p>
+					</div>
+					<div className="listing__option clean">
+						<div className="listing__option__icon">
+							<i className="fk-clean"></i>
+						</div>
+						<p className="listing__option__title">clean</p>
+					</div>
+					<div className="listing__option water-level">
+						<div className="listing__option__icon">
+							<i className="fk-water-level"></i>
+						</div>
+						<p className="listing__option__title">water level</p>
+					</div>
+				</div>
+
 			</div>
 		)
 	}
