@@ -25,10 +25,15 @@ CC.SystemListing = React.createClass({
 		}
 	},
 	toggleOptions () {
-		CC.store.dispatch({ type: 'toggleOption', id: this.props.data._id })
+		// Opens the options, unless their already open
+		if( this.props.reduxState.openOption === this.props.data._id ){ // close if it's open
+			CC.store.dispatch({ type: 'closeOptions' })
+		} else {
+			CC.store.dispatch({ type: 'toggleOption', id: this.props.data._id })
+		}
 	},
 	render () {
-		console.log(this.props)
+		// console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.hydroponic
 		});

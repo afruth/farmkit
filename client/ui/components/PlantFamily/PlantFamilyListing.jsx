@@ -1,9 +1,14 @@
 CC.PlantFamilyListing = React.createClass({
 	toggleOptions () {
-		CC.store.dispatch({ type: 'toggleOption', id: this.props.data.key })
+		// Opens the options, unless their already open
+		if( this.props.reduxState.openOption === this.props.data.key ){ // close if it's open
+			CC.store.dispatch({ type: 'closeOptions' })
+		} else {
+			CC.store.dispatch({ type: 'toggleOption', id: this.props.data.key }) 
+		}
 	},
 	render () {
-		console.log(this.props)
+		// console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.systemType
 		});

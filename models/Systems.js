@@ -103,19 +103,23 @@ MaintenanceSchedule = Astro.Class({
   fields: {
     cleaning: {
       frequency: 'number', // in days
-      remind: 'boolean'
+      remind: 'boolean',
+      lastDone: 'date'
     },
     replaceNutrients: {
       frequency: 'number', // in days
-      remind: 'boolean'
+      remind: 'boolean',
+      lastDone: 'date'
     },
     checkWaterLevel: {
       frequency: 'number', // in days
-      remind: 'boolean'
+      remind: 'boolean',
+      lastDone: 'date'
     },
     checkPH: {
       frequency: 'number', // in days
-      remind: 'boolean'
+      remind: 'boolean',
+      lastDone: 'date'
     }
   }
 });

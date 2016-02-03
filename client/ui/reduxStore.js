@@ -87,6 +87,11 @@ CC.reduxReducer = function sortControlReducer(state = CC.defaultState, action) {
   	 	return Object.assign({}, state, {
   	 		'openOption': action.id
   	 	});
+  	// Closes Listing options
+  	case 'closeOptions':
+  	 	return Object.assign({}, state, {
+  	 		'openOption': null
+  	 	});
 	  default:
 	    return state;
   }
