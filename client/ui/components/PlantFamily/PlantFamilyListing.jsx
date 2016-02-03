@@ -8,7 +8,7 @@ CC.PlantFamilyListing = React.createClass({
 		}
 	},
 	render () {
-		// console.log(this.props)
+		console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.systemType
 		});
@@ -21,23 +21,36 @@ CC.PlantFamilyListing = React.createClass({
 		const optionClasses = classNames( 'listing-sleeve', {
 			'open': openOption
 		});
-		return (
-			<div className="listing" onClick={ this.toggleOptions } >
-				<div className={ optionClasses }>
-					<div className={ systemTypeClasses }></div>
 
-					<div className="listing__name">{this.props.data.plantType}</div>
-					<div className="listing__sub-heading">{this.props.data.system}</div>
+		// compile an array of options
+		let optionsArray = [];
+		// Pollinate based on plant family options
+		if( this.props.data.plantType.requiresPollination ){
+			let pollinate = {};
+			pollinate.key = "pollinate" + this.props.key;
+			pollinate.name = "pollinate";
+			pollinate.class = "pollinate";
+			optionsArray.push( pollinate );
+		}
+		// Group harvesting and system moving are always options
+		let harvest = {};
+		harvest.key = "harvest" + this.props._id;
+		harvest.name = "harvest";
+		harvest.class = "harvest";
+		optionsArray.push( harvest );
+		let move = {};
+		move.key = "move" + this.props._id;
+		move.name = "move";
+		move.class = "systems";
+		optionsArray.push( move );
 
-					<div className="listing__plant-count">
-						<span>{this.props.data.plantNumber}</span>
-						<i className="fk-plant"></i>
-					</div>
+		const listingClasses = "listing listing-options-" + optionsArray.length;
 
-					<div className="listing__bottom-line"></div>
-				</div>
-
-				<div className="listing__option-box">
+		// fake options - remove after EXPO
+		let fakeOptions;
+		if( optionsArray.length === 0 ){
+			fakeOptions = (
+				<div>
 					<div className="listing__option pollinate">
 						<div className="listing__option__icon">
 							<i className="fk-pollinate"></i>
@@ -62,6 +75,38 @@ CC.PlantFamilyListing = React.createClass({
 						</div>
 						<p className="listing__option__title">water</p>
 					</div>
+				</div>
+			)
+		}
+
+		return (
+			<div className={ listingClasses } onClick={ this.toggleOptions } >
+				<div className={ optionClasses }>
+					<div className={ systemTypeClasses }></div>
+
+					<div className="listing__name">{ this.props.data.plantType.name }</div>
+					<div className="listing__sub-heading">{ this.props.data.system }</div>
+
+					<div className="listing__plant-count">
+						<span>{ this.props.data.plantNumber }</span>
+						<i className="fk-plant"></i>
+					</div>
+
+					<div className="listing__bottom-line"></div>
+				</div>
+
+				<div className="listing__option-box">
+
+					{ optionsArray.map( function( item ){
+							return <CC.ListingOption 
+								key={ item.key }
+								title={ item.name } 
+								class={ item.class } />
+						})
+					}
+
+					{ fakeOptions }
+					
 				</div>
 
 			</div>

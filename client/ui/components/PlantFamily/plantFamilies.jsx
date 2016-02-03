@@ -1,5 +1,6 @@
 CC.PlantFamilies = React.createClass ({
 	render () {
+		console.log( this.props )
 		let plantMap = [];
 		const systems = this.props.data.systems
 		const state = this.props.reduxState
@@ -10,7 +11,10 @@ CC.PlantFamilies = React.createClass ({
 				for( let o = 0; o < activePlants.length; o++ ){
 					let family = {};
 					family.key = systems[i]._id + '-' + activePlants[o].familyId;
-					family.plantType = activePlants[o].name;
+					family.plantType = _.find( this.props.data.plants, function ( plantFamily ){
+						return plantFamily._id === activePlants[o].familyId;
+					});
+					// family.plantType = activePlants[o].name;
 					family.plantNumber = activePlants[o].plants.length;
 					family.system = systems[i].name;
 					family.systemType = systems[i].hydroponic;
@@ -30,10 +34,11 @@ CC.PlantFamilies = React.createClass ({
 			});
 		} 
 
-		// Splice state onto systemMap
+		// Splice state onto plantMap
 		for( let i = 0; i < plantMap.length; i++ ) {
 			plantMap[i].state = state;
 		}
+		console.log( plantMap )
 
 		return <div>
 			<div className="fk-header plants">
