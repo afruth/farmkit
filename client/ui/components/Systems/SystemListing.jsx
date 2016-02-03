@@ -33,7 +33,7 @@ CC.SystemListing = React.createClass({
 		}
 	},
 	render () {
-		// console.log(this.props)
+		console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.hydroponic
 		});
@@ -47,23 +47,44 @@ CC.SystemListing = React.createClass({
 			'open': openOption
 		});
 
-		return (
-			<div className="listing" onClick={ this.toggleOptions } >
-				<div className={ optionClasses } >
-					<div className={ systemTypeClasses } ></div>
+		// compile an array of options
+		let optionsArray = [];
+		if( this.props.data.cleaningSchedule.remind ){
+			let cleaningSchedule = this.props.data.cleaningSchedule;
+			cleaningSchedule.key = "clean" + this.props._id;
+			cleaningSchedule.name = "clean";
+			cleaningSchedule.class = "clean";
+			optionsArray.push( cleaningSchedule );
+		}
+		if( this.props.data.nutrientsSchedule.remind ){
+			let nutrientsSchedule = this.props.data.nutrientsSchedule;
+			nutrientsSchedule.key = "nutrients" + this.props._id;
+			nutrientsSchedule.name = "nutrients";
+			nutrientsSchedule.class = "nutrients";
+			optionsArray.push( nutrientsSchedule );
+		}
+		if( this.props.data.phSchedule.remind ){
+			let phSchedule = this.props.data.phSchedule;
+			phSchedule.key = "ph" + this.props._id;
+			phSchedule.name = "check PH";
+			phSchedule.class = "ph";
+			optionsArray.push( phSchedule );
+		}
+		if( this.props.data.waterLevelSchedule.remind ){
+			let waterLevelSchedule = this.props.data.waterLevelSchedule;
+			waterLevelSchedule.key = "water-level" + this.props._id;
+			waterLevelSchedule.name = "water level";
+			waterLevelSchedule.class = "water-level";
+			optionsArray.push( this.props.data.waterLevelSchedule );
+		}
 
-					<div className="listing__name">{this.props.data.name}</div>
-					<div className="listing__sub-heading">{ this.lightType() }</div>
+		const listingClasses = "listing listing-options-" + optionsArray.length;
 
-					<div className="listing__plant-count">
-						<span>{ this.plantNum() }</span>
-						<i className="fk-plant"></i>
-					</div>
-
-					<div className="listing__bottom-line"></div>
-				</div>
-
-				<div className="listing__option-box">
+		// fake options
+		let fakeOptions;
+		if( optionsArray.length === 0 ){
+			fakeOptions = ( 
+				<div>
 					<div className="listing__option nutrients">
 						<div className="listing__option__icon">
 							<i className="fk-nutrients"></i>
@@ -88,6 +109,37 @@ CC.SystemListing = React.createClass({
 						</div>
 						<p className="listing__option__title">water level</p>
 					</div>
+				</div>
+			);
+		}
+
+		return (
+			<div className={ listingClasses }onClick={ this.toggleOptions } >
+				<div className={ optionClasses } >
+					<div className={ systemTypeClasses } ></div>
+
+					<div className="listing__name">{this.props.data.name}</div>
+					<div className="listing__sub-heading">{ this.lightType() }</div>
+
+					<div className="listing__plant-count">
+						<span>{ this.plantNum() }</span>
+						<i className="fk-plant"></i>
+					</div>
+
+					<div className="listing__bottom-line"></div>
+				</div>
+
+				<div className="listing__option-box">
+
+					{ optionsArray.map( function( item ){
+							return <CC.ListingOption 
+								key={ item.key }
+								title={ item.name } 
+								class={ item.class } />
+						})
+					}
+
+					{ fakeOptions }
 				</div>
 
 			</div>

@@ -98,29 +98,39 @@ GrowingMedia = Astro.Class({
   }
 });
 
-MaintenanceSchedule = Astro.Class({
-  name: 'MaintenanceSchedule',
+CleaningSchedule = Astro.Class({
+  name: 'CleaningSchedule',
   fields: {
-    cleaning: {
-      frequency: 'number', // in days
-      remind: 'boolean',
-      lastDone: 'date'
-    },
-    replaceNutrients: {
-      frequency: 'number', // in days
-      remind: 'boolean',
-      lastDone: 'date'
-    },
-    checkWaterLevel: {
-      frequency: 'number', // in days
-      remind: 'boolean',
-      lastDone: 'date'
-    },
-    checkPH: {
-      frequency: 'number', // in days
-      remind: 'boolean',
-      lastDone: 'date'
-    }
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
+  }
+});
+
+NutrientsSchedule = Astro.Class({
+  name: 'NutrientsSchedule',
+  fields: {
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
+  }
+});
+
+WaterLevelSchedule = Astro.Class({
+  name: 'WaterLevelSchedule',
+  fields: {
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
+  }
+});
+
+PHSchedule = Astro.Class({
+  name: 'PHSchedule',
+  fields: {
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
   }
 });
 
@@ -201,11 +211,32 @@ System = new Astro.Class({
         return [];
       }
     },
-    maintenanceSchedule: {
+    cleaningSchedule: {
       type: 'object',
-      nested: 'MaintenanceSchedule',
+      nested: 'CleaningSchedule',
       default: function () {
-        return [];
+        return {};
+      }
+    },
+    nutrientsSchedule: {
+      type: 'object',
+      nested: 'NutrientsSchedule',
+      default: function () {
+        return {};
+      }
+    },
+    waterLevelSchedule: {
+      type: 'object',
+      nested: 'WaterLevelSchedule',
+      default: function () {
+        return {};
+      }
+    },
+    phSchedule: {
+      type: 'object',
+      nested: 'PHSchedule',
+      default: function () {
+        return {};
       }
     }
   },
