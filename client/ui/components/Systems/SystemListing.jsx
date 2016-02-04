@@ -24,12 +24,26 @@ CC.SystemListing = React.createClass({
 			) 
 		}
 	},
-	toggleOptions () {
+	individualView  () {
 		// Opens the options, unless their already open
+		console.log( 'change this to open individual view, once that exists')
 		if( this.props.reduxState.openOption === this.props.data._id ){ // close if it's open
 			CC.store.dispatch({ type: 'closeOptions' })
 		} else {
 			CC.store.dispatch({ type: 'toggleOption', id: this.props.data._id })
+		}
+	},
+	touchStart (event) {
+		// track touch start position for swipe direction
+		this.touchX = event.nativeEvent.changedTouches[0].screenX;
+	},
+	touchEnd (event) {
+		// toggle or close options, based on swipe direction
+		const currentX = event.nativeEvent.changedTouches[0].screenX;
+		if( this.touchX > currentX ){ // swipe left
+			CC.store.dispatch({ type: 'toggleOption', id: this.props.data._id });
+		} else { // swipe right
+			CC.store.dispatch({ type: 'closeOptions' })
 		}
 	},
 	render () {
@@ -124,7 +138,10 @@ CC.SystemListing = React.createClass({
 		}
 
 		return (
-			<div className={ listingClasses }onClick={ this.toggleOptions } >
+			<div 	className={ listingClasses } 
+						onClick={ this.individualView } 
+						onTouchStart={ this.touchStart }
+						onTouchEnd={ this.touchEnd } >
 				<div className={ optionClasses } >
 					<div className={ systemTypeClasses } ></div>
 
