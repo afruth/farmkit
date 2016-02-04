@@ -33,7 +33,7 @@ CC.SystemListing = React.createClass({
 		}
 	},
 	render () {
-		// console.log(this.props)
+		console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.hydroponic
 		});
@@ -49,20 +49,7 @@ CC.SystemListing = React.createClass({
 
 		// compile an array of options
 		let optionsArray = [];
-		if( this.props.data.cleaningSchedule.remind ){
-			let cleaningSchedule = this.props.data.cleaningSchedule;
-			cleaningSchedule.key = "clean" + this.props._id;
-			cleaningSchedule.name = "clean";
-			cleaningSchedule.class = "clean";
-			optionsArray.push( cleaningSchedule );
-		}
-		if( this.props.data.nutrientsSchedule.remind ){
-			let nutrientsSchedule = this.props.data.nutrientsSchedule;
-			nutrientsSchedule.key = "nutrients" + this.props._id;
-			nutrientsSchedule.name = "nutrients";
-			nutrientsSchedule.class = "nutrients";
-			optionsArray.push( nutrientsSchedule );
-		}
+		// PH is available for all systems
 		if( this.props.data.phSchedule.remind ){
 			let phSchedule = this.props.data.phSchedule;
 			phSchedule.key = "ph" + this.props._id;
@@ -70,12 +57,35 @@ CC.SystemListing = React.createClass({
 			phSchedule.class = "ph";
 			optionsArray.push( phSchedule );
 		}
-		if( this.props.data.waterLevelSchedule.remind ){
-			let waterLevelSchedule = this.props.data.waterLevelSchedule;
-			waterLevelSchedule.key = "water-level" + this.props._id;
-			waterLevelSchedule.name = "water level";
-			waterLevelSchedule.class = "water-level";
-			optionsArray.push( this.props.data.waterLevelSchedule );
+		if( this.props.data.hydroponic ){ // Hydroponic only options
+			if( this.props.data.cleaningSchedule.remind ){
+				let cleaningSchedule = this.props.data.cleaningSchedule;
+				cleaningSchedule.key = "clean" + this.props._id;
+				cleaningSchedule.name = "clean";
+				cleaningSchedule.class = "clean";
+				optionsArray.push( cleaningSchedule );
+			}
+			if( this.props.data.nutrientsSchedule.remind ){
+				let nutrientsSchedule = this.props.data.nutrientsSchedule;
+				nutrientsSchedule.key = "nutrients" + this.props._id;
+				nutrientsSchedule.name = "nutrients";
+				nutrientsSchedule.class = "nutrients";
+				optionsArray.push( nutrientsSchedule );
+			}
+			if( this.props.data.waterLevelSchedule.remind ){
+				let waterLevelSchedule = this.props.data.waterLevelSchedule;
+				waterLevelSchedule.key = "water-level" + this.props._id;
+				waterLevelSchedule.name = "water level";
+				waterLevelSchedule.class = "water-level";
+				optionsArray.push( waterLevelSchedule );
+			}
+		} else { // Soil only options
+			// All soil systems can be fertilized
+			let fertilize = {};
+			fertilize.key = "fertilize" + this.props._id;
+			fertilize.name = "fertilize";
+			fertilize.class = "fertilize";
+			optionsArray.push( fertilize );
 		}
 
 		const listingClasses = "listing listing-options-" + optionsArray.length;
@@ -112,6 +122,8 @@ CC.SystemListing = React.createClass({
 				</div>
 			);
 		}
+		console.log( optionsArray )
+		console.log( fakeOptions )
 
 		return (
 			<div className={ listingClasses }onClick={ this.toggleOptions } >

@@ -8,7 +8,7 @@ CC.PlantFamilyListing = React.createClass({
 		}
 	},
 	render () {
-		console.log(this.props)
+		// console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.systemType
 		});
