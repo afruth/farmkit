@@ -161,6 +161,7 @@ CC.SystemForm = React.createClass ({
 
 			return <div className="system-add">
 				<form className="ui grid container form" id="systemAdd">
+				{/* 
 					<div className="eight wide column">
 						<div className="system-add__image-box">
 							<CC.FormElements.FileUpload
@@ -171,11 +172,14 @@ CC.SystemForm = React.createClass ({
 								onChangedEvent={this.resetFieldState}
 								error={this.state.errors}/>
 						</div>
+					*/}
 						{/* {(images && images.length > 0) ? images.map(function (item) {
 							return <img key={item} src={self.getImage(item)}/>
 							}) : null} */}
+				{/*
 					</div>
-					<div className="eight wide column">
+				*/}
+					<div className="sixteen wide column">
 
 						<div className="system-add__name field">
 							<h3 className="ui header">

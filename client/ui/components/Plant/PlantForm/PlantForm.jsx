@@ -97,6 +97,7 @@ CC.PlantForm = React.createClass ({
 			const plant = this.data.plant || {};
 			return <div className="plantFormHolder plant-single">
 				<form className="ui grid container form" id="plantAdd">
+				{/*
 					<div className="eight wide column">
 						<div className="plant-single__image-box">
 							<CC.FormElements.FileUpload
@@ -107,11 +108,14 @@ CC.PlantForm = React.createClass ({
 								onChangedEvent={this.resetFieldState}
 								error={this.state.errors}/>
 						</div>
+					*/}
 						{/* {(images && images.length > 0) ? images.map(function (item) {
 							return <img key={item} src={self.getImage(item)}/>
 							}) : null} */}
+					{/*
 					</div>
-					<div className="eight wide column">
+					*/}
+					<div className="sixteen wide column">
 						<div className="plant-single__name">
 							<h3 className="ui header">
 								<CC.FormElements.TextInput

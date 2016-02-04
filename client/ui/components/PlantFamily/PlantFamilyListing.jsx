@@ -8,8 +8,6 @@ CC.PlantFamilyListing = React.createClass({
 			CC.store.dispatch({ type: 'toggleOption', id: this.props.data.key });
 		}
 	},
-	swipeLeft () {
-	},
 	touchStart (event) {
 		// track touch start position for swipe direction
 		this.touchX = event.nativeEvent.changedTouches[0].screenX;
