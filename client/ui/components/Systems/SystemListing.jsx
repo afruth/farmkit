@@ -33,7 +33,7 @@ CC.SystemListing = React.createClass({
 		}
 	},
 	render () {
-		console.log(this.props)
+		// console.log(this.props)
 		const systemTypeClasses = classNames( 'listing__system-type', {
 			'hydro': this.props.data.hydroponic
 		});
@@ -122,8 +122,6 @@ CC.SystemListing = React.createClass({
 				</div>
 			);
 		}
-		console.log( optionsArray )
-		console.log( fakeOptions )
 
 		return (
 			<div className={ listingClasses }onClick={ this.toggleOptions } >
