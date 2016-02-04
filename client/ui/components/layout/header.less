@@ -1,0 +1,44 @@
+// Import variables
+@import '/lib/variables.import.less';
+
+//  All headers
+.header__nav {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	overflow: hidden;
+	.header {
+		margin-top: 25px;
+		font-size: 17px;
+		color: @white;
+		font-family: @mainfont;
+		text-transform: uppercase;
+		text-align: center;
+		letter-spacing: 0.125em;
+	}
+	.header__settings {
+		position: absolute;
+		left: 12px;
+		top: 24px;
+		font-size: 20px;
+		color: @white;
+	}
+	.header__link {
+		position: absolute;
+		display: block;
+		top: 24px;
+		right: 10px;
+		font-family: @mainfont;
+		color: @white;
+		letter-spacing: 0.0625em;
+		text-transform: capitalize;
+	}
+	.header__settings:hover,
+	.header__link:hover {
+		color: @white-hover;
+	}
+}
+
+
+
+

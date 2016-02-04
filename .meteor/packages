@@ -14,6 +14,7 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
+atlewee:redux
 email
 jagi:astronomy
 jagi:astronomy-relations
@@ -25,6 +26,7 @@ kadira:flow-router
 kadira:react-layout
 lauricio:less-autoprefixer
 lepozepo:cloudinary
+maxharris9:classnames   				# for conditionally joining classNames together.
 momentjs:moment
 ongoworks:security
 random
@@ -35,3 +37,4 @@ sarasate:semantic-ui-datetimepicker
 semantic:ui
 tmeasday:publish-counts
 underscore
+universe:modules 								# support for ES6 modules

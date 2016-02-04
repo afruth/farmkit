@@ -1,0 +1,140 @@
+@import '/lib/variables.import.less';
+
+// This is shared by PlantFamilyListing.jsx and SystemListing.jsx
+
+
+.listing {
+	height: 74px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	.listing-sleeve {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		background-color: @white;
+		transform: translate3d( 0, 0, 0 );
+		transition: transform 350ms ease-out 50ms;
+	}	
+	.listing-sleeve.open {
+		transform: translate3d( -280px, 0, 0 ); // default (max witdh)
+		border-right: 1px solid @lt-grey-2;
+	}	
+	.listing__system-type {
+		position: absolute;
+		margin: 30px 0 0 18px;
+		font-size: 18px;
+	}	
+	.listing__system-type:before { // default is soil
+		content: "\69";
+		color: @tan-1;
+		font-family: "farmkit" !important;
+	  font-style: normal !important;
+	  font-weight: normal !important;
+	  font-variant: normal !important;
+	  text-transform: none !important;
+	  speak: none;
+	  line-height: 1;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	}	
+	.listing__system-type.hydro:before {
+		content: "\63";
+		color: @blue-1;
+	}
+	.listing__name {
+		margin: 20px 0 0 50px;
+		font-family: @mainfont-bold;
+		text-transform: uppercase;
+	}
+	.listing__sub-heading {
+		margin-left: 50px;
+		font-family: @mainfont;
+	}
+	.listing__light-type {
+		i{
+			margin-top: 7px;
+			color: @orange-1;
+			vertical-align: sub;
+		}
+	}
+	.listing__plant-count {
+		position: absolute;
+		top: 30px;
+		right: 18px;
+		span {
+			display: block;
+			float: left;
+			margin-right: 5px;
+			color: @grey-3;
+			font-family: @mainfont-bold;
+		}
+	}
+	.fk-plant {
+		display: block;
+		float: left;
+		font-size: 18px;
+		color: @lime-1;
+		margin-top: -2px;
+	}
+
+	.listing__option-box {
+		height: 100%;
+		width: 280px;
+		float: right;
+		background-color: @lt-grey-2;
+		box-shadow: inset 29px 27px 7px -27px rgba(0,0,0,0.15);
+	}
+	
+
+	.listing__bottom-line {
+		position: absolute;
+		width: 92%;
+		height: 2px;
+		bottom: 0;
+		margin: 0 4%;
+		background-color: @lt-grey-2;
+	}
+}
+
+// Changes based on number of options
+.listing.listing-options-0 {
+	.listing-sleeve.open {
+		transform: translate3d( -280px, 0, 0 );
+	}	
+	.listing__option-box {
+		width: 280px;
+	}
+}
+.listing.listing-options-1 {
+.listing-sleeve.open {
+		transform: translate3d( -70px, 0, 0 );
+	}	
+	.listing__option-box {
+		width: 70px;
+	}
+}
+.listing.listing-options-2 {
+	.listing-sleeve.open {
+		transform: translate3d( -140px, 0, 0 );
+	}	
+	.listing__option-box {
+		width: 140px;
+	}
+}
+.listing.listing-options-3 {
+  .listing-sleeve.open {
+		transform: translate3d( -210px, 0, 0 );
+	}	
+	.listing__option-box {
+		width: 210px;
+	}
+}
+.listing.listing-options-4 {
+	.listing-sleeve.open {
+		transform: translate3d( -280px, 0, 0 );
+	}	
+}
+

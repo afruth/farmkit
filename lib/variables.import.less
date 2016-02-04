@@ -1,0 +1,93 @@
+// Mixins
+
+// Placeholder text maker - no quotes!!
+.cumulo-placeholder( @class, @color, @font ) {
+  .@{class} {
+    color:@color;
+    font-family: @font;
+  }
+  .@{class}::-webkit-input-placeholder {
+    color:@color;
+    font-family: @font;
+  }
+  .@{class}::-moz-placeholder {
+    color:@color;
+    font-family: @font;
+  }
+  .@{class}:-ms-input-placeholder {
+    color:@color; 
+    font-family: @font;
+  }
+}
+
+// Fonts
+@font-face {
+  font-family: 'MontserratBold';
+  src:  url('../../fonts/montserrat-bold-webfont.eot');
+  src:  url('../../fonts/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../../fonts/montserrat-bold-webfont.woff') format('woff'), 
+        url('../../fonts/montserrat-bold-webfont.ttf') format('truetype'), 
+        url('../../fonts/montserrat-bold-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'MontserratRegular';
+  src:  url('../../fonts/montserrat-regular-webfont.eot');
+  src:  url('../../fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../../fonts/montserrat-regular-webfont.woff') format('woff'), 
+        url('../../fonts/montserrat-regular-webfont.ttf') format('truetype'), 
+        url('../../fonts/montserrat-regular-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'MontserratUltralight';
+  src:  url('../../fonts/montserrat-ultralight-webfont.eot');
+  src:  url('../../fonts/montserrat-ultralight-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../../fonts/montserrat-ultralight-webfont.woff') format('woff'), 
+        url('../../fonts/montserrat-ultralight-webfont.ttf') format('truetype'), 
+        url('../../fonts/montserrat-ultralight-webfont.svg#svgFontName') format('svg');
+}
+
+
+// Fonts 
+@mainfont:                MontserratRegular, Verdana, Geneva, sans-serif;
+@mainfont-bold:           MontserratBold, Verdana, Geneva, sans-serif;
+@mainfont-light:          MontserratUltralight, Verdana, Geneva, sans-serif;
+
+
+// Colors
+@white:               #ffffff;
+@white-hover:         #d2d2d2;
+// @off-white:           #e6eaf8; 
+// @cool-off-white:      #e9eef2;
+// @lt-off-white:        #f4f5fb;
+@text:                #242424;  // Charcoal
+// @text-blue:           #6c7697;
+// @mid-blue:            #6982b2;
+// @black:               #000000;
+@background-green:  #0c2537;
+
+@teal:              #60beb3;
+@lime-1:            #4fec67;
+@lime-2:            #42e05a;
+
+@sea-foam-1:        #45ddbb;
+@sea-foam-2:        #38cbaa;
+
+@green-1:           #3dc18a;
+@green-2:           #36aa5e;
+
+@lt-grey-1:         #f7f7f7;
+@lt-grey-2:         #f1f1f1;
+
+@grey-1:            #a1a1a1;
+@grey-2:            #959595;
+@grey-3:            #7e7e7e;
+
+@tan-1:             #d7b593;
+
+@orange-1:          #ff9f15;
+
+@blue-1:            #60a7be;
+
+@pink-1:            #fe7c84;
+
+@lavender-1:        #a1ade6;

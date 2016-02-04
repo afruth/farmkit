@@ -23,7 +23,6 @@ CC.SystemListItem = React.createClass({
 		}
 	},
 	render() {
-		console.log(this.props)
 		return (this.props.rowData) ? <tr>
 			<td>
 				<a href={"/system/view/" + this.props.rowData._id} >

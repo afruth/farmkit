@@ -1,0 +1,177 @@
+// Import variables
+@import '/lib/variables.import.less';
+
+// Sort Control Buttons
+.sort-control-panel {
+	position: relative;
+	width: 100%;
+	margin: -28px auto 0 auto;
+	.sort-control_all,
+	.sort-control__hydro,
+	.sort-control_soil {
+		display: inline-block;
+		margin: 0 10px;
+		color: @white;
+		font-family: @mainfont;
+		letter-spacing: 0.1em;
+		cursor: pointer;
+		.active {
+
+		}
+		.active ~ .sort-control__underline {
+			height: 3px;
+			margin-top: 3px;
+			border-radius: 3px;
+			background-color: @lime-1;
+		}
+	}
+	.sort-control_all {
+		margin-left: 18px;
+		.sort-control__underline {
+			width: 180%;
+			margin-left: -40%;
+		}
+	}
+	.sort-control__hydro {
+		.sort-control__underline {
+			width: 116%;
+			margin-left: -8%;
+		}
+	}
+	.sort-control_soil {
+		.sort-control__underline {
+			width: 150%;
+			margin-left: -25%;
+		}
+	}
+	.sort-control_all:hover,
+	.sort-control__hydro:hover,
+	.sort-control_soil:hover {
+		color: @white-hover;
+	}
+
+	// Search
+	.sort-search { // form/container div
+		position: relative;
+		width: 100%;
+		height: 60px;
+		margin-top: 3px;
+		background-color: @lt-grey-1;
+		z-index: 1;
+	}
+	.sort-search:before { 
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -9999px;
+		right: -9999px;
+		background-color: @lt-grey-1;
+		z-index: -1;
+	}
+	.fk-search {
+		position: absolute;
+		margin: 22px 0 0 23px;
+		color: @grey-2;
+	}
+	.sort-search-input {
+		width: 100%;
+		height: 60px;
+		padding: 0 0 0 50px;
+		border: none;
+		background-color: transparent;
+		color: @grey-2;
+		transition: background-color 350ms ease-out 50ms, color 350ms ease-out 50ms;
+	}
+	.sort-search-input:focus {
+		outline: none;
+		background-color: darken( @lt-grey-1, 10% );
+		color: darken( @grey-2, 10% );
+	}
+
+	// Add Button
+	.add-button {	
+		position: absolute;
+		right: 10px;
+		top: -2px;
+		z-index: 2;
+	}
+	.add-button-add,
+	.add-button-system,
+	.add-button-plant {
+		display: block;
+		position: absolute;
+		height: 50px;
+		width: 50px;
+		top: 5px;
+		right: 5px;
+		padding-top: 15px;
+		border-radius: 50%;
+		text-align: center;
+		box-shadow: 0px 4px 40px -3px rgba(0,0,0,0.75);
+		cursor: pointer;
+		opacity: 0;
+		transform: translate3d( 0, 0, 0 );
+		transition: background-color 350ms ease-out 50ms, 
+								opacity 350ms ease-out 50ms, 
+								transform 350ms ease-out 50ms;
+	}
+	.add-button-add {
+		width: 60px;
+		height: 60px;
+		top: 0;
+		right: 0;
+		padding-top: 18px;
+		background-color: @lime-1;
+		opacity: 1;
+		z-index: 1;
+	}
+	.add-button-system {
+		background-color: @sea-foam-1;
+	}
+	.add-button-plant {
+		background-color: @green-1;
+	}
+	.add-button-add:hover {
+		background-color: @lime-2;
+	}
+	.add-button-system:hover {
+		background-color: @sea-foam-2;
+	}
+	.add-button-plant:hover {
+		background-color: @green-2;
+	}
+	.fk-plus,
+	.fk-systems,
+	.fk-plant {
+		font-size: 22px;
+		color: @white;
+	}
+	.fk-plus {
+		transform: rotate( 0deg );
+		font-size: 26px;
+		pointer-events: none;
+	}
+	.fk-plant {
+		transform: rotate( 180deg );
+	}
+	// Open style
+	.add-button.open {	
+		z-index: 100; // must clear shadow
+		.add-button-add {
+			transform: rotate( 45deg );
+		}
+		.add-button-system,
+		.add-button-plant {
+			opacity: 1;
+		}
+		.add-button-system {
+			transform: translate3d( -80px, 20px, 0 );
+		}
+		.add-button-plant {
+			transform: translate3d( 0, 80px, 0 );
+		}
+	}
+}
+
+

@@ -1,6 +1,17 @@
 Systems = new Mongo.Collection('systems');
 
 // Nested Classes
+ActivePlantFamilies = Astro.Class({
+  // array of on/off times for artificial lights
+  name: 'ActivePlantFamilies',
+  fields: {
+    name: 'string',
+    familyId: 'string',
+    requiresPollination: 'boolean',
+    plants: 'array' // will be an array of active plants' IDs
+  }
+});
+
 DailyLightingSchedule = Astro.Class({
   // array of on/off times for artificial lights
   name: 'DailyLightingSchedule',
@@ -87,25 +98,39 @@ GrowingMedia = Astro.Class({
   }
 });
 
-MaintenanceSchedule = Astro.Class({
-  name: 'MaintenanceSchedule',
+CleaningSchedule = Astro.Class({
+  name: 'CleaningSchedule',
   fields: {
-    cleaning: {
-      frequency: 'number', // in days
-      remind: 'boolean'
-    },
-    replaceNutrients: {
-      frequency: 'number', // in days
-      remind: 'boolean'
-    },
-    checkWaterLevel: {
-      frequency: 'number', // in days
-      remind: 'boolean'
-    },
-    checkPH: {
-      frequency: 'number', // in days
-      remind: 'boolean'
-    }
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
+  }
+});
+
+NutrientsSchedule = Astro.Class({
+  name: 'NutrientsSchedule',
+  fields: {
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
+  }
+});
+
+WaterLevelSchedule = Astro.Class({
+  name: 'WaterLevelSchedule',
+  fields: {
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
+  }
+});
+
+PHSchedule = Astro.Class({
+  name: 'PHSchedule',
+  fields: {
+    frequency: 'number', // in days
+    remind: 'boolean',
+    lastDone: 'date'
   }
 });
 
@@ -116,13 +141,19 @@ System = new Astro.Class({
   fields: {
     name: 'string',
     systemId: 'string', 
-    activePlants: 'array', // active plants' IDs
     historicPlants: 'array', // historic plants' IDs
     description: 'string',
     hydroponic: 'boolean',  // false is for soil systems
     sunlight: 'boolean', 
     systemImage: {
       type: 'array'
+    },
+    activePlantFamilies: { 
+      type: 'array',
+      nested: 'ActivePlantFamilies',
+      default: function () {
+        return [];
+      }
     },
     dailyLightingSchedule: { 
       type: 'array',
@@ -180,11 +211,32 @@ System = new Astro.Class({
         return [];
       }
     },
-    maintenanceSchedule: {
+    cleaningSchedule: {
       type: 'object',
-      nested: 'MaintenanceSchedule',
+      nested: 'CleaningSchedule',
       default: function () {
-        return [];
+        return {};
+      }
+    },
+    nutrientsSchedule: {
+      type: 'object',
+      nested: 'NutrientsSchedule',
+      default: function () {
+        return {};
+      }
+    },
+    waterLevelSchedule: {
+      type: 'object',
+      nested: 'WaterLevelSchedule',
+      default: function () {
+        return {};
+      }
+    },
+    phSchedule: {
+      type: 'object',
+      nested: 'PHSchedule',
+      default: function () {
+        return {};
       }
     }
   },

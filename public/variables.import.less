@@ -1,0 +1,55 @@
+// Mixins
+
+// Placeholder text maker - no quotes!!
+.cumulo-placeholder( @class, @color, @font ) {
+  .@{class} {
+    color:@color;
+    font-family: @font;
+  }
+  .@{class}::-webkit-input-placeholder {
+    color:@color;
+    font-family: @font;
+  }
+  .@{class}::-moz-placeholder {
+    color:@color;
+    font-family: @font;
+  }
+  .@{class}:-ms-input-placeholder {
+    color:@color; 
+    font-family: @font;
+  }
+}
+
+// Fonts
+@font-face {
+  font-family: 'MontserratBold';
+  src:  url('../../fonts/montserrat-bold-webfont.eot');
+  src:  url('../../fonts/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../../fonts/montserrat-bold-webfont.woff') format('woff'), 
+        url('../../fonts/montserrat-bold-webfont.ttf') format('truetype'), 
+        url('../../fonts/montserrat-bold-webfont.svg#svgFontName') format('svg');
+}
+@font-face {
+  font-family: 'MontserratRegular';
+  src:  url('../../fonts/montserrat-regular-webfont.eot');
+  src:  url('../../fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'), 
+        url('../../fonts/montserrat-regular-webfont.woff') format('woff'), 
+        url('../../fonts/montserrat-regular-webfont.ttf') format('truetype'), 
+        url('../../fonts/montserrat-regular-webfont.svg#svgFontName') format('svg');
+}
+
+
+// Fonts 
+@mainfont-bold:           MontserratBold, Verdana, Geneva, sans-serif;
+@mainfont:                MontserratRegular, Verdana, Geneva, sans-serif;
+
+
+// Colors
+@white:               #ffffff;
+// @off-white:           #e6eaf8; 
+// @cool-off-white:      #e9eef2;
+// @lt-off-white:        #f4f5fb;
+// @text:                #393939;  // Charcoal
+// @text-blue:           #6c7697;
+// @mid-blue:            #6982b2;
+// @black:               #000000;

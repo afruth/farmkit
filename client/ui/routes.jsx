@@ -10,72 +10,56 @@ FlowRouter.route('/', {
     topnav: true,
     footer: false 
   },
-  name: 'home',
+  name: 'plants',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.Content />,
-      footer: <CC.Footer />
+      header: <CC.Header route="plants" />,
+      content: <CC.DataLayer route="PlantFamilies" />
     });
   }
 });
 
-FlowRouter.route('/plant-inventory', {
+FlowRouter.route('/plants', {
   navbar: { 
-    topnav: false, 
-    footer: true 
-  },
-  name: 'my plants',
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.PlantList />,
-      footer: <CC.Footer />
-    });
-  }
-});
-
-FlowRouter.route('/plant-list', {
-  navbar: { 
-    topnav: false, 
-    footer: true 
+    topnav: true,
+    footer: false 
   },
   name: 'plants',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.PlantFamilies />,
-      footer: <CC.Footer />
+      header: <CC.Header route="plants" />,
+      content: <CC.DataLayer route="PlantFamilies" />
     });
   }
 });
 
+// FlowRouter.route('/plant-inventory', {
+//   navbar: { 
+//     topnav: false, 
+//     footer: false 
+//   },
+//   name: 'my plants',
+//   action: function(params, queryParams) {
+//     ReactLayout.render(CC.MainLayout,{
+//       header: <CC.Header />,
+//       content: <CC.PlantList />
+//     });
+//   }
+// });
+
 FlowRouter.route('/systems', {
   navbar: { 
-    topnav: false, 
+    topnav: true, 
     footer: true 
   },
   name: 'systems',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.Systems />,
-      footer: <CC.Footer />
-    });
-  }
-});
-
-FlowRouter.route('/tasks', {
-  navbar: { 
-    topnav: false, 
-    footer: true 
-  },
-  name: 'tasks',
-  action: function(params, queryParams) {
-    ReactLayout.render(CC.MainLayout,{
-      header: <CC.Header />,
-      content: <CC.Tasks />,
-      footer: <CC.Footer />
+      header: <CC.Header route="systems"/>,
+      content: <CC.DataLayer route="Systems" />
     });
   }
 });
@@ -87,10 +71,10 @@ FlowRouter.route('/inventory/add', {
   },
   name: 'addPlant',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantForm />,
-      footer: <CC.Footer />
+      content: <CC.PlantForm />
     });
   }
 });
@@ -104,8 +88,7 @@ FlowRouter.route('/inventory/edit/:docId', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.PlantForm docId={params.docId} />,
-      footer: <CC.Footer />
+      content: <CC.PlantForm docId={params.docId} />
     });
   }
 });
@@ -119,23 +102,21 @@ FlowRouter.route('/inventory/view/:docId', {
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantSingle docId={params.docId} />,
-			footer: <CC.Footer />
+			content: <CC.PlantSingle docId={params.docId} />
 		});
 	}
 });
 
 FlowRouter.route('/inventory/list/', {
 	navbar: {
-		topnav: true,
+		topnav: false,
 		footer: false
 	},
 	name: 'listPlants',
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantList />,
-			footer: <CC.Footer />
+			content: <CC.PlantList />
 		});
 	}
 });
@@ -149,8 +130,7 @@ FlowRouter.route('/inventory/remove/:docId', {
 	action: function(params, queryParams) {
 		ReactLayout.render(CC.MainLayout,{
 			header: <CC.Header />,
-			content: <CC.PlantRemove docId={params.docId} />,
-			footer: <CC.Footer />
+			content: <CC.PlantRemove docId={params.docId} />
 		});
 	}
 });
@@ -164,10 +144,10 @@ FlowRouter.route('/system/add', {
   },
   name: 'addSystem',
   action: function(params, queryParams) {
+    CC.store.dispatch({ type: 'closeAddBtn' }); // close AddBtn
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.SystemForm />,
-      footer: <CC.Footer />
+      content: <CC.SystemForm />
     });
   }
 });
@@ -181,8 +161,7 @@ FlowRouter.route('/system/edit/:docId', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.SystemForm docId={params.docId} />,
-      footer: <CC.Footer />
+      content: <CC.SystemForm docId={params.docId} />
     });
   }
 });
@@ -196,8 +175,21 @@ FlowRouter.route('/system/remove/:docId', {
   action: function(params, queryParams) {
     ReactLayout.render(CC.MainLayout,{
       header: <CC.Header />,
-      content: <CC.SystemRemove docId={params.docId} />,
-      footer: <CC.Footer />
+      content: <CC.SystemRemove docId={params.docId} />
+    });
+  }
+});
+
+FlowRouter.route('/settings', {
+  navbar: {
+    topnav: false,
+    footer: false
+  },
+  name: 'settings',
+  action: function(params, queryParams) {
+    ReactLayout.render(CC.MainLayout,{
+      header: <CC.Header />,
+      content: <CC.Settings />
     });
   }
 });
